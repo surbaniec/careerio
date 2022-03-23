@@ -1,0 +1,13 @@
+.header {
+  height: 82px;
+  padding: 20px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  &__logo {
+    width: 145px;
+    height: auto;
+  }
+}
