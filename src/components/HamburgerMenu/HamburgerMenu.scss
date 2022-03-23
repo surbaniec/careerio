@@ -10,3 +10,44 @@
   font-size: 14px;
   color: var(--font-dark-color);
 }
+
+.dropdown-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  height: 93vh;
+  width: 100%;
+  padding-top: 40px;
+  padding-left: 0;
+  left: 0;
+  top: 50px;
+  list-style-type: none;
+  z-index: 999;
+  background-color: var(--primary-color);
+  &__item {
+    display: flex;
+    align-items: center;
+    background-color: var(--light-color-1);
+    border-radius: var(--btn-border-radius);
+    padding: 30px 40px;
+    width: 80%;
+  }
+  &__link {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: var(--font-dark-color);
+    cursor: pointer;
+  }
+  &__item--blue {
+    background-color: var(--accent-color);
+  }
+  &__link--blue {
+    color: var(--font-light-color);
+  }
+}
+
+.dropdown-menu.show-menu {
+  display: flex;
+}
