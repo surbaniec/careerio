@@ -1,0 +1,28 @@
+.hero {
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  padding-top: 82px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url('../../assets/hero-img.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  color: var(--font-light-color);
+  text-align: center;
+  &__title {
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+  &__text {
+    font-size: 1.4rem;
+  }
+  &__btn {
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+}
