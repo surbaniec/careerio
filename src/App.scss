@@ -10,8 +10,23 @@
   --font-dark-color: #575757;
   --font-light-color: #ffffff;
   --border-radius: 25px;
+  --btn-border-radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   font-family: 'Encode Sans';
+  font-size: 10px;
+}
+
+/* GLOBAL COMPONENTS */
+.btn {
+  cursor: pointer;
+  padding: 15px 45px;
+  border-radius: var(--btn-border-radius);
+  background-color: transparent;
+  border: none;
 }
