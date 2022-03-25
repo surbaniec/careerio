@@ -5,12 +5,14 @@ import './Header.scss';
 const Header = () => {
   return (
     <header className='header'>
-      <img
-        className='header__logo'
-        src='./assets/logo-careerio.svg'
-        alt='careerio'
-      />
-      <HamburgerMenu />
+      <div className='wrapper'>
+        <img
+          className='header__logo'
+          src='./assets/logo-careerio.svg'
+          alt='careerio'
+        />
+        <HamburgerMenu />
+      </div>
     </header>
   );
 };
