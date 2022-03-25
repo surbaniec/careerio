@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import './HamburgerMenu.scss';
 import { Link } from 'react-router-dom';
 // react icons
-import { GiHamburgerMenu } from 'react-icons/gi';
 import { FaTimes } from 'react-icons/fa';
 import { BsBriefcase, BsPlusCircle } from 'react-icons/bs';
-import { FiMessageSquare, FiUsers } from 'react-icons/fi';
+import { FiMenu, FiMessageSquare, FiUsers } from 'react-icons/fi';
 import { CgFileDocument } from 'react-icons/cg';
 import { HiOutlineCog } from 'react-icons/hi';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
@@ -22,7 +21,7 @@ const HamburgerMenu = () => {
       {navbarOpen ? (
         <FaTimes onClick={handleToggle} style={iconStyle} />
       ) : (
-        <GiHamburgerMenu onClick={handleToggle} style={iconStyle} />
+        <FiMenu onClick={handleToggle} style={iconStyle} />
       )}
       <span onClick={handleToggle}>MENU</span>
       <ul className={`dropdown-menu ${navbarOpen ? 'show-menu' : ''}`}>
@@ -97,7 +96,7 @@ const iconStyle = {
   width: '25px',
   height: 'auto',
   color: '#575757',
-  marginRight: '15px',
+  marginRight: '10px',
 };
 
 export default HamburgerMenu;
