@@ -53,3 +53,15 @@
 .dropdown-menu.show-menu {
   display: flex;
 }
+
+@media (min-width: 768px) {
+  .dropdown-menu {
+    &__item {
+      padding: 35px 40px;
+    }
+
+    &__link {
+      font-size: 1.2rem;
+    }
+  }
+}
