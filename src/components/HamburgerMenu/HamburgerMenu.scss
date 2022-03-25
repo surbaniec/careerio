@@ -12,6 +12,7 @@
 }
 
 .dropdown-menu {
+  overflow-y: scroll;
   display: none;
   flex-direction: column;
   align-items: center;
