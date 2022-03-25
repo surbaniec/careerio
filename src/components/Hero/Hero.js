@@ -1,4 +1,5 @@
 import React from 'react';
+import JobSearch from '../JobSearch/JobSearch';
 import './Hero.scss';
 
 const Hero = () => {
@@ -11,6 +12,7 @@ const Hero = () => {
         Przygotowaliśmy dla Ciebie <span>124 784</span> oferty pracy!
       </p>
       <button className='btn hero__btn'>Sprawdź</button>
+      <JobSearch />
     </section>
   );
 };
