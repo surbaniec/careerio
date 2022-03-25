@@ -1,13 +1,13 @@
 .job-search {
   width: 90%;
-  margin-top: 100px;
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   background-color: var(--primary-color);
   border-radius: var(--border-radius);
-  padding: 15px 10px;
+  padding: 25px 20px;
   color: var(--font-dark-color);
 
   &__title {
