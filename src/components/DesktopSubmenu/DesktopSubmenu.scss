@@ -3,11 +3,11 @@
   padding-top: 20px;
   margin: 0;
   width: 100%;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 0px;
+  top: 90px;
   left: 0;
   background-color: var(--secondary-color);
   border-bottom-left-radius: var(--border-radius);
@@ -28,5 +28,5 @@
 }
 
 .show-submenu {
-  top: 90px;
+  display: flex;
 }

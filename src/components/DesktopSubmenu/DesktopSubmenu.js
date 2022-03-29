@@ -10,7 +10,7 @@ import { HiOutlineCog } from 'react-icons/hi';
 import { SubmenuOpenContext } from '../../App';
 
 const DesktopSubmenu = () => {
-  const { submenuOpen, setSubmenuOpen } = useContext(SubmenuOpenContext);
+  const { submenuOpen } = useContext(SubmenuOpenContext);
 
   return (
     <ul className={`desktop-submenu ${submenuOpen ? 'show-submenu' : ''}`}>
