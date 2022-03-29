@@ -1,5 +1,5 @@
 import React from 'react';
-import HamburgerMenu from '../HamburgerMenu/HamburgerMenu';
+import Nav from '../Nav/Nav';
 import './Header.scss';
 
 const Header = () => {
@@ -11,7 +11,7 @@ const Header = () => {
           src='./assets/logo-careerio.svg'
           alt='careerio'
         />
-        <HamburgerMenu />
+        <Nav />
       </div>
     </header>
   );
