@@ -1,0 +1,32 @@
+.desktop-submenu {
+  height: 100px;
+  padding-top: 20px;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0px;
+  left: 0;
+  background-color: var(--secondary-color);
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  transition: all ease-in-out 0.3s;
+
+  &__item {
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    margin: 0 50px;
+  }
+  &__link {
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--font-dark-color);
+  }
+}
+
+.show-submenu {
+  top: 90px;
+}
