@@ -18,19 +18,19 @@
   text-align: center;
   &__title {
     margin-top: 70px;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: 500;
   }
   &__text {
     margin-top: 10px;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: 300;
   }
   &__btn {
     margin-top: 10px;
     border: 2px solid var(--primary-color);
     color: var(--primary-color);
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: 400;
   }
 }
@@ -39,12 +39,12 @@
   .hero {
     padding-top: 220px;
     &__title {
-      font-size: 2rem;
+      font-size: 2.8rem;
     }
 
     &__text,
     &__btn {
-      font-size: 1.6rem;
+      font-size: 2.2rem;
     }
   }
 }
