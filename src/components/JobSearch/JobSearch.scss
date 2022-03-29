@@ -1,6 +1,6 @@
 .job-search {
   width: 90%;
-  margin-top: 60px;
+  margin-top: 80px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -16,16 +16,16 @@
     align-items: center;
     justify-content: center;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   &__input {
-    font-size: 0.8rem;
+    font-size: 1.2rem;
     width: 100%;
     background-color: var(--light-color-2);
     border: 1px solid var(--secondary-color);
     border-radius: var(--btn-border-radius);
-    padding: 20px 40px;
+    padding: 20px 35px;
     margin: 5px 0;
   }
 
@@ -40,7 +40,10 @@
   }
 
   &__btn {
-    width: 43%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 42%;
     background-color: var(--accent-color);
     color: var(--font-light-color);
     cursor: pointer;
@@ -66,11 +69,11 @@
     padding: 35px 20px;
 
     &__title {
-      font-size: 1.4rem;
+      font-size: 1.8rem;
     }
 
     &__input {
-      font-size: 1.2rem;
+      font-size: 1.6rem;
       margin: 10px 0;
     }
 
@@ -98,12 +101,6 @@
 
     &__input--select {
       margin: 5px 5px;
-    }
-
-    &__btn {
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
     &__input--select,

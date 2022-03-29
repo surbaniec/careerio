@@ -6,7 +6,7 @@
 }
 
 .nav span {
-  font-size: 14px;
+  font-size: 1.4rem;
   font-weight: 600;
   color: var(--font-dark-color);
 }
@@ -38,12 +38,14 @@
   }
   &__link {
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     color: var(--font-dark-color);
     cursor: pointer;
   }
   &__item--blue {
     background-color: var(--accent-color);
+  }
+  &__link--blue {
     color: var(--font-light-color);
   }
 }
