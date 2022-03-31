@@ -1,0 +1,11 @@
+.category {
+  display: flex;
+  align-items: center;
+  padding: 10px 30px;
+  margin: 0 15px;
+  background-color: var(--secondary-color);
+  border: 1px solid var(--light-color-1);
+  border-radius: var(--btn-border-radius);
+  font-size: 1rem;
+  font-weight: 600;
+}
