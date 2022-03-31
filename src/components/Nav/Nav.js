@@ -2,12 +2,11 @@ import React, { useContext, useState } from 'react';
 import './Nav.scss';
 import { Link } from 'react-router-dom';
 // react icons
-import { AiOutlineClose } from 'react-icons/ai';
 import { BsBriefcase, BsPlusCircle } from 'react-icons/bs';
 import { FiMenu, FiMessageSquare, FiUsers } from 'react-icons/fi';
 import { CgFileDocument } from 'react-icons/cg';
 import { HiOutlineCog } from 'react-icons/hi';
-import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
+import { MdOutlineKeyboardArrowDown, MdOutlineClose } from 'react-icons/md';
 import { SubmenuOpenContext } from '../../App';
 
 const Nav = () => {
@@ -26,7 +25,7 @@ const Nav = () => {
     <>
       <nav className='nav'>
         {navbarOpen ? (
-          <AiOutlineClose onClick={handleToggle} style={iconStyle} />
+          <MdOutlineClose onClick={handleToggle} style={iconStyle} />
         ) : (
           <FiMenu onClick={handleToggle} style={iconStyle} />
         )}
@@ -130,7 +129,7 @@ const Nav = () => {
             onClick={(handleToggle, handleSubmenuToggle)}
           >
             {submenuOpen ? (
-              <AiOutlineClose style={iconStyle} />
+              <MdOutlineClose style={iconStyle} />
             ) : (
               <FiMenu style={iconStyle} />
             )}
