@@ -1,5 +1,5 @@
 import React from 'react';
-import RecommendedJob from '../RecommendedJob/RecommendedJob';
+import JobTile from '../JobTile/JobTile';
 import './RecommendedJobs.scss';
 
 const RecommendedJobs = () => {
@@ -7,9 +7,9 @@ const RecommendedJobs = () => {
     <section className='recommended-jobs'>
       <h2 className='recommended-jobs__title'>Oferty wybrane dla Ciebie</h2>
       <div className='recommended-jobs__wrapper'>
-        <RecommendedJob />
-        <RecommendedJob />
-        <RecommendedJob />
+        <JobTile />
+        <JobTile />
+        <JobTile />
       </div>
     </section>
   );
