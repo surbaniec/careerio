@@ -1,0 +1,74 @@
+.recommended-job {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 190px;
+  margin: 0 15px;
+  padding: 18px;
+  background-color: var(--primary-color);
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+
+  &__info {
+    display: flex;
+  }
+
+  &__img-wrapper {
+    margin-right: 10px;
+  }
+
+  &__company-name,
+  &__salary-wrapper {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.25rem;
+  }
+
+  &__position {
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+
+  &__salary-wrapper span {
+    color: var(--accent-color);
+  }
+
+  &__address-wrapper,
+  &__company-name,
+  &__position,
+  &__salary-wrapper {
+    margin: 0 0 5px 0;
+  }
+
+  &__salary-wrapper span:last-child {
+    color: var(--font-dark-color);
+  }
+
+  &__address-province,
+  &__address-city {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  &__controls {
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__btn {
+    font-size: 0.8rem;
+    font-weight: 600;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--light-color-1);
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 2px;
+    cursor: pointer;
+  }
+}
