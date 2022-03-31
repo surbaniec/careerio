@@ -4,12 +4,12 @@ import { RiStackLine } from 'react-icons/ri';
 
 const Category = () => {
   return (
-    <div className='category'>
+    <button className='category'>
       <RiStackLine
         style={{ marginRight: '5px', width: '15px', height: '15px' }}
       />
       <h3>Full-stack developer</h3>
-    </div>
+    </button>
   );
 };
 
