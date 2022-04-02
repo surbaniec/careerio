@@ -1,16 +1,19 @@
 import React from 'react';
 import './Category.scss';
-import { RiStackLine } from 'react-icons/ri';
+import PropTypes from 'prop-types';
 
-const Category = () => {
+const Category = ({ categoryName, categoryIcon }) => {
   return (
     <button className='category'>
-      <RiStackLine
-        style={{ marginRight: '5px', width: '15px', height: '15px' }}
-      />
-      <h3>Full-stack developer</h3>
+      {categoryIcon}
+      <h3>{categoryName}</h3>
     </button>
   );
+};
+
+Category.propTypes = {
+  categoryName: PropTypes.string.isRequired,
+  categoryIcon: PropTypes.object,
 };
 
 export default Category;

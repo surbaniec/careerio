@@ -1,4 +1,5 @@
 import React from 'react';
+import Advices from '../../components/Advices/Advices';
 import Categories from '../../components/Categories/Categories';
 import Hero from '../../components/Hero/Hero';
 import RecommendedJobs from '../../components/RecommendedJobs/RecommendedJobs';
@@ -14,6 +15,7 @@ const Home = () => {
       <Categories />
       <Webinar />
       <YourActivity />
+      <Advices />
     </>
   );
 };

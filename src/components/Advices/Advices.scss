@@ -1,0 +1,22 @@
+.advices {
+  margin-bottom: 40px;
+  &__title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 2rem;
+    text-align: center;
+  }
+
+  &__categories-wrapper,
+  &__posts-wrapper {
+    display: flex;
+    align-items: stretch;
+    overflow-x: scroll;
+    padding: 20px 0;
+  }
+
+  &__posts-wrapper {
+    background-color: var(--light-color-2);
+    border-radius: var(--border-radius);
+  }
+}

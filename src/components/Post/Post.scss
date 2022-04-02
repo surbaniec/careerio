@@ -1,0 +1,32 @@
+.post {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 220px;
+  margin: 0 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  cursor: pointer;
+
+  &__img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px 15px 0px 0px;
+  }
+
+  &__content {
+    font-weight: 400;
+    padding: 10px;
+  }
+
+  &__title {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+  }
+
+  &__text {
+    font-size: 1rem;
+    line-height: 1rem;
+  }
+}
