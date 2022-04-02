@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import DesktopSubmenu from './components/DesktopSubmenu/DesktopSubmenu';
 import { createContext, useState } from 'react';
+import Footer from './components/Footer/Footer';
 
 export const SubmenuOpenContext = createContext({
   submenuOpen: false,
@@ -25,6 +26,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
         </Routes>
+        <Footer />
       </>
     </Router>
   );
