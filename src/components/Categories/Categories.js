@@ -2,6 +2,7 @@ import React from 'react';
 import Category from '../Category/Category';
 import './Categories.scss';
 import { RiStackLine } from 'react-icons/ri';
+import { FaChevronRight } from 'react-icons/fa';
 
 const Categories = () => {
   return (
@@ -32,6 +33,20 @@ const Categories = () => {
             />
           }
         />
+        <Category
+          categoryName={'Full-stack developer'}
+          categoryIcon={
+            <RiStackLine
+              style={{ marginRight: '5px', height: '20px', width: '20px' }}
+            />
+          }
+        />
+        <button className='categories__btn'>
+          <h3>Wszystkie kategorie</h3>
+          <FaChevronRight
+            style={{ marginLeft: '5px', height: 'auto', width: '15px' }}
+          />
+        </button>
       </div>
     </section>
   );

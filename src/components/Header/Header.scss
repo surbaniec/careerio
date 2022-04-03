@@ -3,7 +3,7 @@
   width: 100vw;
   background-color: var(--primary-color);
   height: 75px;
-  padding: 20px;
+  padding: 20px 25px;
   border-bottom-left-radius: var(--border-radius);
   border-bottom-right-radius: var(--border-radius);
   z-index: 10;
@@ -25,7 +25,7 @@
 @media (min-width: 768px) {
   .wrapper {
     margin: 0 auto;
-    width: 90%;
+    width: 85%;
   }
 }
 

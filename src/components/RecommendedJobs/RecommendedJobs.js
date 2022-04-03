@@ -10,6 +10,8 @@ const RecommendedJobs = () => {
         <JobTile />
         <JobTile />
         <JobTile />
+        <JobTile />
+        <JobTile />
       </div>
     </section>
   );

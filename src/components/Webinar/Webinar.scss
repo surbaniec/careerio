@@ -37,3 +37,23 @@
     font-weight: 400;
   }
 }
+
+@media (min-width: 768px) {
+  .webinar {
+    padding: 50px 100px;
+    background-position: center 90%;
+
+    &__title {
+      font-size: 3.6rem;
+    }
+
+    &__text,
+    &__btn {
+      font-size: 1.8rem;
+    }
+
+    &__btn {
+      margin-top: 40px;
+    }
+  }
+}

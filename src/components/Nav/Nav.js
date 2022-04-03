@@ -67,7 +67,7 @@ const Nav = () => {
                 color: '#fff',
                 width: '25px',
                 height: 'auto',
-                marginRight: '15px',
+                marginRight: '10px',
               }}
             />
             <Link
@@ -83,7 +83,7 @@ const Nav = () => {
                 color: '#fff',
                 width: '25px',
                 height: 'auto',
-                marginRight: '15px',
+                marginRight: '10px',
               }}
             />
             <Link

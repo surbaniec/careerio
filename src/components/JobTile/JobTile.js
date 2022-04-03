@@ -9,7 +9,11 @@ const JobTile = () => {
     <div className='job-tile'>
       <div className='job-tile__info'>
         <div className='job-tile__img-wrapper'>
-          <img src='../../assets/company-logo.png' alt='company logo' />
+          <img
+            className='job-tile__logo'
+            src='../../assets/company-logo.png'
+            alt='company logo'
+          />
         </div>
         <div className='job-tile__desc-wrapper'>
           <h2 className='job-tile__company-name'>UI CENTER SGS</h2>
