@@ -15,32 +15,32 @@ const DesktopSubmenu = () => {
   return (
     <ul className={`desktop-submenu ${submenuOpen ? 'show-submenu' : ''}`}>
       <li className='desktop-submenu__item'>
-        <BsBriefcase style={iconStyle} />
         <Link to='/' className='desktop-submenu__link'>
+          <BsBriefcase style={iconStyle} />
           Oferty pracy
         </Link>
       </li>
       <li className='desktop-submenu__item'>
-        <FiMessageSquare style={iconStyle} />
         <Link to='/' className='desktop-submenu__link'>
+          <FiMessageSquare style={iconStyle} />
           Porady
         </Link>
       </li>
       <li className='desktop-submenu__item'>
-        <FiUsers style={iconStyle} />
         <Link to='/' className='desktop-submenu__link'>
+          <FiUsers style={iconStyle} />
           Profile pracodawców
         </Link>
       </li>
       <li className='desktop-submenu__item'>
-        <CgFileDocument style={iconStyle} />
         <Link to='/' className='desktop-submenu__link'>
+          <CgFileDocument style={iconStyle} />
           Kreator CV
         </Link>
       </li>
       <li className='desktop-submenu__item'>
-        <HiOutlineCog style={iconStyle} />
         <Link to='/' className='desktop-submenu__link'>
+          <HiOutlineCog style={iconStyle} />
           Dla firm
         </Link>
       </li>

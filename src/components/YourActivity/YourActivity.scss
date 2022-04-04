@@ -19,6 +19,7 @@
   &__btn {
     display: flex;
     align-items: center;
+    color: var(--font-dark-color);
     background-color: var(--secondary-color);
     border: 1px solid var(--light-color-1);
     border-radius: var(--btn-border-radius);
@@ -28,6 +29,10 @@
     font-weight: 600;
     line-height: 1.2rem;
     cursor: pointer;
+
+    &:hover {
+      color: var(--accent-color);
+    }
   }
 
   &__btn.active {

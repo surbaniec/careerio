@@ -10,11 +10,16 @@
   border-radius: var(--btn-border-radius);
   font-size: 1rem;
   cursor: pointer;
+  color: var(--font-dark-color);
+
+  &:hover,
+  &:hover svg {
+    color: var(--accent-color) !important;
+  }
 }
 
 .category h3 {
-  color: var(--font-dark-color);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 @media (min-width: 768px) {
