@@ -1,6 +1,7 @@
 .categories {
   padding: 40px 0;
   &__title {
+    color: var(--font-dark-color);
     text-align: center;
     font-size: 1.6rem;
     font-weight: 600;
@@ -32,6 +33,17 @@
   }
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.categories__wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.categories__wrapper {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 @media (min-width: 768px) {
   .categories {
     padding: 50px 0 50px 40px;
@@ -47,6 +59,22 @@
     &__btn {
       min-width: 300px;
       font-size: 1.4rem;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .categories {
+    padding: 120px 0;
+    &__title {
+      width: 1400px;
+      margin: 0 auto;
+      margin-bottom: 50px;
+    }
+
+    &__wrapper {
+      width: 1400px;
+      margin: 0 auto;
     }
   }
 }

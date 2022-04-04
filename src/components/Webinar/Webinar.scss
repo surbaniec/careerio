@@ -1,7 +1,4 @@
 .webinar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   height: 550px;
   padding: 35px 70px;
   background-image: url('../../assets/webinar-bg.jpg');
@@ -35,6 +32,7 @@
     color: var(--primary-color);
     font-size: 1.4rem;
     font-weight: 400;
+    cursor: pointer;
   }
 }
 
@@ -54,6 +52,25 @@
 
     &__btn {
       margin-top: 40px;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .webinar {
+    height: 400px;
+    border-radius: 0;
+    background-image: url('../../assets/webinar-bg-desktop.jpg');
+    background-position: center;
+    background-size: cover;
+
+    &__wrapper {
+      padding: 50px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 1400px;
+      margin: 0 auto;
     }
   }
 }
