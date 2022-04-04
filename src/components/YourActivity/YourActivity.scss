@@ -37,11 +37,25 @@
   &__tiles {
     background-color: var(--light-color-2);
     border-radius: var(--border-radius);
+  }
+
+  &__tiles .your-activity__wrapper {
+    display: flex;
     margin: 20px 0;
     padding: 20px;
     overflow-x: scroll;
-    display: flex;
   }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.your-activity__tiles .your-activity__wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.your-activity__tiles .your-activity__wrapper {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 @media (min-width: 768px) {
@@ -75,6 +89,32 @@
     &__tiles {
       margin: 40px 0 0 0;
       padding: 40px 0 40px 40px;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .your-activity {
+    &__wrapper {
+      width: 1400px;
+      margin: 0 auto;
+    }
+
+    &__title {
+      padding-left: 0;
+    }
+
+    &__controls {
+      padding: 0;
+    }
+
+    &__tiles {
+      padding: 40px 0;
+    }
+
+    &__tiles .your-activity__wrapper {
+      margin: 20px auto;
+      padding: 20px 0;
     }
   }
 }

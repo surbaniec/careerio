@@ -23,12 +23,40 @@
   }
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.recommended-jobs::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.recommended-jobs {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 @media (min-width: 768px) {
   .recommended-jobs {
     padding: 50px 40px;
 
     &__title {
       display: block;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .recommended-jobs {
+    padding: 50px 0;
+
+    &__title {
+      width: 1400px;
+      margin: 0 auto;
+      margin-bottom: 40px;
+    }
+
+    &__wrapper {
+      width: 1400px;
+      margin: 0 auto;
     }
   }
 }

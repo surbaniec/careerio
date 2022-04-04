@@ -13,7 +13,12 @@ const Categories = () => {
           categoryName={'Full-stack developer'}
           categoryIcon={
             <RiStackLine
-              style={{ marginRight: '5px', height: '20px', width: '20px' }}
+              style={{
+                marginRight: '5px',
+                height: '20px',
+                width: '20px',
+                color: '#575757',
+              }}
             />
           }
         />
@@ -21,7 +26,12 @@ const Categories = () => {
           categoryName={'Full-stack developer'}
           categoryIcon={
             <RiStackLine
-              style={{ marginRight: '5px', height: '20px', width: '20px' }}
+              style={{
+                marginRight: '5px',
+                height: '20px',
+                width: '20px',
+                color: '#575757',
+              }}
             />
           }
         />
@@ -29,7 +39,12 @@ const Categories = () => {
           categoryName={'Full-stack developer'}
           categoryIcon={
             <RiStackLine
-              style={{ marginRight: '5px', height: '20px', width: '20px' }}
+              style={{
+                marginRight: '5px',
+                height: '20px',
+                width: '20px',
+                color: '#575757',
+              }}
             />
           }
         />
@@ -37,7 +52,12 @@ const Categories = () => {
           categoryName={'Full-stack developer'}
           categoryIcon={
             <RiStackLine
-              style={{ marginRight: '5px', height: '20px', width: '20px' }}
+              style={{
+                marginRight: '5px',
+                height: '20px',
+                width: '20px',
+                color: '#575757',
+              }}
             />
           }
         />
