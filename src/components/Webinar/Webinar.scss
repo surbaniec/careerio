@@ -33,6 +33,12 @@
     font-size: 1.4rem;
     font-weight: 400;
     cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      background-color: var(--primary-color);
+      color: var(--accent-color);
+    }
   }
 }
 

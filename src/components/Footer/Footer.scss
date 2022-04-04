@@ -31,6 +31,10 @@
     line-height: 1.5rem;
     color: var(--font-dark-color);
     cursor: pointer;
+
+    &:hover {
+      color: var(--font-placeholder-color);
+    }
   }
 
   &__img {

@@ -37,7 +37,6 @@ const YourActivity = () => {
           <JobTile />
           <JobTile />
           <JobTile />
-          <JobTile />
         </div>
       </div>
     </section>

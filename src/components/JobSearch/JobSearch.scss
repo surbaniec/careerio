@@ -27,12 +27,20 @@
     border-radius: var(--btn-border-radius);
     padding: 20px 35px;
     margin: 5px 0;
+
+    &:focus {
+      outline-color: var(--accent-color);
+    }
   }
 
   &__input--select {
     cursor: pointer;
     width: 55%;
     color: var(--font-dark-color);
+
+    &:focus {
+      outline: 2px solid var(--accent-color);
+    }
   }
 
   &__input--select option {
@@ -47,7 +55,13 @@
     background-color: var(--accent-color);
     color: var(--font-light-color);
     cursor: pointer;
-    border: 1px solid #2a95ff;
+    border: 2px solid #2a95ff;
+    transition: 0.2s;
+
+    &:hover {
+      background-color: transparent;
+      color: var(--accent-color);
+    }
   }
 }
 
