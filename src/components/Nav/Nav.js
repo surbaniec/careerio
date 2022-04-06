@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Nav.scss';
 import { Link } from 'react-router-dom';
 // react icons
@@ -12,6 +12,12 @@ import { SubmenuOpenContext } from '../../App';
 const Nav = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const { submenuOpen, setSubmenuOpen } = useContext(SubmenuOpenContext);
+
+  // disable background scrolling when mobile menu is active
+  useEffect(() => {
+    if (navbarOpen) document.body.style.overflowY = 'hidden';
+    else document.body.style.overflowY = 'auto';
+  }, [navbarOpen]);
 
   const handleToggle = () => {
     setNavbarOpen(!navbarOpen);
