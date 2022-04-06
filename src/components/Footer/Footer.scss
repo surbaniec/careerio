@@ -85,12 +85,13 @@
 @media (min-width: 1200px) {
   .footer {
     &__container {
-      width: 1400px;
+      width: 1300px;
       margin: 0 auto;
       grid-template-columns: repeat(5, 1fr);
     }
 
     &__wrapper:last-child {
+      margin-top: 50px;
       grid-column: 3;
     }
 

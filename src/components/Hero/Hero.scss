@@ -1,7 +1,6 @@
 .hero {
-  height: 100vh;
   width: 100vw;
-  padding: 80px 20px 0;
+  padding: 80px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,6 +23,7 @@
   }
   &__btn {
     margin-top: 10px;
+    margin-bottom: 80px;
     border: 2px solid var(--primary-color);
     color: var(--primary-color);
     font-size: 1.4rem;
@@ -39,7 +39,7 @@
 
 @media (min-width: 768px) {
   .hero {
-    padding-top: 220px;
+    padding-top: 140px;
     &__title {
       font-size: 2.8rem;
     }
@@ -61,6 +61,7 @@
     }
     &__btn {
       font-size: 2.4rem;
+      margin-bottom: 120px;
     }
   }
 }

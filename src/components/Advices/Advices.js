@@ -59,11 +59,6 @@ const Advices = () => {
             title={`Czeka Cię rozmowa o pracę? Rozmowa kwalifikacyjna w...`}
             text={`Rozmowa online jeszcze do niedawna była narzędziem rekrutacyjnym po które....`}
           />
-          <Post
-            imgSrc={'../../assets/article-bg.jpg'}
-            title={`Czeka Cię rozmowa o pracę? Rozmowa kwalifikacyjna w...`}
-            text={`Rozmowa online jeszcze do niedawna była narzędziem rekrutacyjnym po które....`}
-          />
         </div>
       </div>
     </section>

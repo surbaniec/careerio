@@ -1,6 +1,5 @@
 .job-search {
   width: 100%;
-  margin-top: 80px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -99,18 +98,17 @@
 
 @media (min-width: 1200px) {
   .job-search {
-    width: 80%;
-    margin-top: 120px;
-    padding: 20px;
+    width: 1300px;
+    padding: 15px 20px;
 
     &__title {
       margin: 0;
     }
 
     &__input {
-      margin: 5px 20px;
+      margin: 5px 15px;
       font-size: 1.4rem;
-      width: 360px;
+      width: 310px;
     }
 
     &__input--select {
@@ -119,7 +117,7 @@
 
     &__input--select,
     &__btn {
-      width: 167px;
+      width: 150px;
     }
   }
 
