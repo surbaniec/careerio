@@ -73,14 +73,18 @@
   .categories {
     padding: 120px 0;
     &__title {
-      width: 1400px;
+      width: 1300px;
       margin: 0 auto;
       margin-bottom: 50px;
     }
 
     &__wrapper {
-      width: 1400px;
+      width: 1300px;
       margin: 0 auto;
+    }
+
+    &__btn {
+      min-width: 220px;
     }
   }
 }

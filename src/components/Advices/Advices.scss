@@ -55,7 +55,7 @@
     padding: 100px 0;
 
     &__title {
-      width: 1400px;
+      width: 1300px;
       padding-left: 0;
       margin: 0 auto 50px;
     }
@@ -65,7 +65,7 @@
       border-radius: var(--border-radius);
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-around;
     }
 
     &__categories-wrapper {
@@ -80,9 +80,6 @@
 
     &__categories-wrapper .category:last-child {
       margin-bottom: 0;
-    }
-
-    &__posts-wrapper {
     }
   }
 }
