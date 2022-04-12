@@ -6,6 +6,7 @@ import Home from './pages/Home/Home';
 import DesktopSubmenu from './components/DesktopSubmenu/DesktopSubmenu';
 import { createContext, useState } from 'react';
 import Footer from './components/Footer/Footer';
+import SearchPage from './pages/SearchPage/SearchPage';
 
 export const SubmenuOpenContext = createContext({
   submenuOpen: false,
@@ -25,6 +26,7 @@ function App() {
         </SubmenuOpenContext.Provider>
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/search' element={<SearchPage />} />
         </Routes>
         <Footer />
       </>

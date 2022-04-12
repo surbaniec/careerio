@@ -15,7 +15,7 @@ const DesktopSubmenu = () => {
   return (
     <ul className={`desktop-submenu ${submenuOpen ? 'show-submenu' : ''}`}>
       <li className='desktop-submenu__item'>
-        <Link to='/' className='desktop-submenu__link'>
+        <Link to='/search' className='desktop-submenu__link'>
           <BsBriefcase style={iconStyle} />
           Oferty pracy
         </Link>
