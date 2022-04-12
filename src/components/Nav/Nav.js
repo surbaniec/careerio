@@ -39,7 +39,7 @@ const Nav = () => {
         <ul className={`dropdown-menu ${navbarOpen ? 'show-menu' : ''}`}>
           <li className='dropdown-menu__item'>
             <BsBriefcase style={iconStyle} />
-            <Link to='/' className='dropdown-menu__link'>
+            <Link to='/search' className='dropdown-menu__link'>
               Oferty pracy
             </Link>
           </li>
