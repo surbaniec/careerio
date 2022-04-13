@@ -38,3 +38,18 @@
     letter-spacing: 0.025em;
   }
 }
+
+@media (min-width: 768px) {
+  .job-filters {
+    width: 75%;
+
+    &__wrapper span,
+    &__btn {
+      font-size: 1.4rem;
+    }
+
+    &__btn {
+      width: 200px;
+    }
+  }
+}

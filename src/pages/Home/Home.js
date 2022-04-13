@@ -5,7 +5,6 @@ import Hero from '../../components/Hero/Hero';
 import RecommendedJobs from '../../components/RecommendedJobs/RecommendedJobs';
 import Webinar from '../../components/Webinar/Webinar';
 import YourActivity from '../../components/YourActivity/YourActivity';
-import './Home.scss';
 
 const Home = () => {
   return (
