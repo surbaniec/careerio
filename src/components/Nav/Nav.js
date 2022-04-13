@@ -126,10 +126,7 @@ const Nav = () => {
 
       <nav className='nav-desktop'>
         <ul className='nav-desktop__menu'>
-          <li
-            className='nav-desktop__item'
-            onClick={() => setNavbarOpen(!navbarOpen)}
-          >
+          <li className='nav-desktop__item'>
             <BsPlusCircle
               style={{
                 color: '#575757',
@@ -142,10 +139,7 @@ const Nav = () => {
               Dodaj ogłoszenie
             </Link>
           </li>
-          <li
-            className='nav-desktop__item nav-desktop__item--bg'
-            onClick={() => setNavbarOpen(!navbarOpen)}
-          >
+          <li className='nav-desktop__item nav-desktop__item--bg'>
             <Link to='/' className='nav-desktop__link'>
               Zaloguj się
             </Link>

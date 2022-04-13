@@ -7,6 +7,7 @@ import DesktopSubmenu from './components/DesktopSubmenu/DesktopSubmenu';
 import { createContext, useState } from 'react';
 import Footer from './components/Footer/Footer';
 import SearchPage from './pages/SearchPage/SearchPage';
+import ScrollToTop from './utils/ScrollToTop';
 
 export const SubmenuOpenContext = createContext({
   submenuOpen: false,
@@ -20,6 +21,7 @@ function App() {
   return (
     <Router>
       <>
+        <ScrollToTop />
         <SubmenuOpenContext.Provider value={submenuValue}>
           <Header />
           <DesktopSubmenu />
