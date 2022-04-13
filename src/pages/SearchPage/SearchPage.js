@@ -29,12 +29,6 @@ const SearchPage = () => {
           <FilteredJob />
         </div>
       </section>
-      <div className='search-page__hero'>
-        <JobSearch />
-      </div>
-      <div className='search-page__filters'>
-        <JobFilters />
-      </div>
     </section>
   );
 };

@@ -25,7 +25,7 @@
     background-color: var(--accent-color);
     border-radius: 0px 0px var(--border-radius) var(--border-radius);
   }
-  
+
   &__recommended {
     padding: 60px 20px;
     display: flex;
@@ -83,6 +83,20 @@
     &__recommended-text {
       font-size: 1.8rem;
       line-height: 2.25rem;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .search-page {
+    &__hero {
+      padding-top: 130px;
+    }
+
+    &__recommended {
+      width: 1300px;
+      margin: 30px auto 0;
+      padding: 60px 0;
     }
   }
 }
