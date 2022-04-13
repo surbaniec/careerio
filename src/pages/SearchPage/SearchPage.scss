@@ -25,4 +25,64 @@
     background-color: var(--accent-color);
     border-radius: 0px 0px var(--border-radius) var(--border-radius);
   }
+
+  &__recommended {
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    color: var(--font-dark-color);
+
+    &-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      line-height: 2rem;
+      text-align: center;
+      letter-spacing: 0.025em;
+    }
+
+    &-text {
+      text-align: center;
+      font-size: 1.2rem;
+      line-height: 1.5rem;
+      font-weight: 400;
+      letter-spacing: 0.025em;
+      margin-bottom: 20px;
+    }
+    &-jobs {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .search-page {
+    &__hero {
+      padding-bottom: 50px;
+    }
+
+    &__filters {
+      margin-top: 0;
+    }
+
+    &__recommended {
+      padding: 60px 40px;
+    }
+
+    &__recommended-title {
+      font-size: 2.4rem;
+      line-height: 3rem;
+    }
+
+    &__recommended-text {
+      font-size: 1.8rem;
+      line-height: 2.25rem;
+    }
+  }
 }
