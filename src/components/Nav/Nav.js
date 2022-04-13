@@ -39,35 +39,54 @@ const Nav = () => {
         <ul className={`dropdown-menu ${navbarOpen ? 'show-menu' : ''}`}>
           <li className='dropdown-menu__item'>
             <BsBriefcase style={iconStyle} />
-            <Link to='/search' className='dropdown-menu__link'>
+            <Link
+              to='/search'
+              className='dropdown-menu__link'
+              onClick={() => setNavbarOpen(!navbarOpen)}
+            >
               Oferty pracy
             </Link>
           </li>
-          <li className='dropdown-menu__item'>
+          <li
+            className='dropdown-menu__item'
+            onClick={() => setNavbarOpen(!navbarOpen)}
+          >
             <FiMessageSquare style={iconStyle} />
             <Link to='/' className='dropdown-menu__link'>
               Porady
             </Link>
           </li>
-          <li className='dropdown-menu__item'>
+          <li
+            className='dropdown-menu__item'
+            onClick={() => setNavbarOpen(!navbarOpen)}
+          >
             <FiUsers style={iconStyle} />
             <Link to='/' className='dropdown-menu__link'>
               Profile pracodawców
             </Link>
           </li>
-          <li className='dropdown-menu__item'>
+          <li
+            className='dropdown-menu__item'
+            onClick={() => setNavbarOpen(!navbarOpen)}
+          >
             <CgFileDocument style={iconStyle} />
             <Link to='/' className='dropdown-menu__link'>
               Kreator CV
             </Link>
           </li>
-          <li className='dropdown-menu__item'>
+          <li
+            className='dropdown-menu__item'
+            onClick={() => setNavbarOpen(!navbarOpen)}
+          >
             <HiOutlineCog style={iconStyle} />
             <Link to='/' className='dropdown-menu__link'>
               Dla firm
             </Link>
           </li>
-          <li className='dropdown-menu__item dropdown-menu__item--blue'>
+          <li
+            className='dropdown-menu__item dropdown-menu__item--blue'
+            onClick={() => setNavbarOpen(!navbarOpen)}
+          >
             <BsPlusCircle
               style={{
                 color: '#fff',
@@ -83,7 +102,10 @@ const Nav = () => {
               Dodaj ogłoszenie
             </Link>
           </li>
-          <li className='dropdown-menu__item dropdown-menu__item--blue'>
+          <li
+            className='dropdown-menu__item dropdown-menu__item--blue'
+            onClick={() => setNavbarOpen(!navbarOpen)}
+          >
             <MdOutlineKeyboardArrowDown
               style={{
                 color: '#fff',
@@ -104,7 +126,10 @@ const Nav = () => {
 
       <nav className='nav-desktop'>
         <ul className='nav-desktop__menu'>
-          <li className='nav-desktop__item'>
+          <li
+            className='nav-desktop__item'
+            onClick={() => setNavbarOpen(!navbarOpen)}
+          >
             <BsPlusCircle
               style={{
                 color: '#575757',
@@ -117,7 +142,10 @@ const Nav = () => {
               Dodaj ogłoszenie
             </Link>
           </li>
-          <li className='nav-desktop__item nav-desktop__item--bg'>
+          <li
+            className='nav-desktop__item nav-desktop__item--bg'
+            onClick={() => setNavbarOpen(!navbarOpen)}
+          >
             <Link to='/' className='nav-desktop__link'>
               Zaloguj się
             </Link>
