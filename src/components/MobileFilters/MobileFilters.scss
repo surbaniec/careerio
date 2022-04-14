@@ -16,6 +16,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    color: var(--font-dark-color);
   }
 
   &__title {
@@ -34,7 +35,7 @@
     border-radius: var(--btn-border-radius);
     margin-top: 40px;
     padding: 20px 15px;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 600;
     line-height: 1.75rem;
     color: var(--font-dark-color);
@@ -56,4 +57,24 @@
 .btn-blue {
   background-color: var(--accent-color);
   color: var(--font-light-color);
+}
+
+@media (min-width: 768px) {
+  .mobile-filters {
+    padding: 60px 40px;
+
+    &__header svg {
+      width: 30px !important;
+    }
+
+    &__title {
+      font-size: 3.6rem;
+    }
+
+    &__select,
+    &__btn,
+    .css-319lph-ValueContainer {
+      font-size: 1.6rem;
+    }
+  }
 }
