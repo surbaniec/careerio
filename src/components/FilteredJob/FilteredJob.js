@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './FilteredJob.scss';
 import { FiHeart } from 'react-icons/fi';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { AiOutlineHome } from 'react-icons/ai';
 
 const FilteredJob = () => {
+  const [favourite, setFavourite] = useState(false);
+
+  const toggleFavourite = () => {
+    setFavourite(!favourite);
+  };
+
   return (
     <div className='filtered-job'>
       <div className='filtered-job__details'>
@@ -34,9 +40,22 @@ const FilteredJob = () => {
         <p className='filtered-job__controls-salary'>
           <span className='text-blue'>3 000 - 5 500</span> PLN
         </p>
-        <div className='filtered-job__controls-favourite'>
-          <span>Dodaj do ulubionych </span>
-          <FiHeart style={{ marginLeft: '5px' }} />
+        <div
+          className='filtered-job__controls-favourite'
+          onClick={toggleFavourite}
+        >
+          {favourite ? (
+            <>
+              {' '}
+              <span className='text-blue'>Dodano do ulubionych </span>
+              <FiHeart style={{ marginLeft: '5px', color: '#2a95ff' }} />
+            </>
+          ) : (
+            <>
+              <span>Dodaj do ulubionych </span>
+              <FiHeart style={{ marginLeft: '5px' }} />
+            </>
+          )}
         </div>
       </div>
     </div>
