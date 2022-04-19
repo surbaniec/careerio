@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './MobileFilters.scss';
 import Select from 'react-select';
@@ -51,6 +51,32 @@ const employmentTypeOptions = [
 ];
 
 const MobileFilters = ({ toggleMobileFilters }) => {
+  const [categoryOption, setCategoryOption] = useState();
+  const [seniorityLevelOption, setSeniorityLevelOption] = useState();
+  const [employmentOption, setEmploymentOption] = useState();
+
+  const onClear = () => {
+    setCategoryOption(null);
+    setSeniorityLevelOption(null);
+    setEmploymentOption(null);
+  };
+
+  const changeCategory = (e) => {
+    setCategoryOption({ value: e.value, label: e.label });
+  };
+
+  const changeSeniorityLevel = (e) => {
+    setSeniorityLevelOption({ value: e.value, label: e.label });
+  };
+
+  const changeEmploymentOption = (e) => {
+    setEmploymentOption({ value: e.value, label: e.label });
+  };
+
+  const filter = () => {
+    console.log(categoryOption, seniorityLevelOption, employmentOption);
+  };
+
   return (
     <div className='mobile-filters'>
       <div className='mobile-filters__header'>
@@ -65,25 +91,33 @@ const MobileFilters = ({ toggleMobileFilters }) => {
           options={categoriesOptions}
           styles={selectStyles}
           defaultValue={{ label: 'Kategorie', value: '' }}
+          value={categoryOption}
+          onChange={changeCategory}
         />
 
         <Select
           options={seniorityLevelOptions}
           styles={selectStyles}
           defaultValue={{ label: 'Poziom stanowiska', value: '' }}
+          value={seniorityLevelOption}
+          onChange={changeSeniorityLevel}
         />
 
         <Select
           options={employmentTypeOptions}
           styles={selectStyles}
           defaultValue={{ label: 'Rodzaj umowy', value: '' }}
+          value={employmentOption}
+          onChange={changeEmploymentOption}
         />
 
         <button className='mobile-filters__btn'>Pozostałe filtry</button>
       </div>
       <div className='mobile-filters__footer'>
-        <button className='mobile-filters__btn'>Wyczyść filtry</button>
-        <button className='mobile-filters__btn btn-blue'>
+        <button className='mobile-filters__btn' onClick={onClear}>
+          Wyczyść filtry
+        </button>
+        <button className='mobile-filters__btn btn-blue' onClick={filter}>
           Wyświetl oferty
         </button>
       </div>

@@ -4,6 +4,7 @@ import JobFilters from '../../components/JobFilters/JobFilters';
 import JobSearch from '../../components/JobSearch/JobSearch';
 import MobileFilters from '../../components/MobileFilters/MobileFilters';
 import './SearchPage.scss';
+import { jobAdvertisements } from '../../data';
 
 const SearchPage = () => {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
@@ -32,11 +33,21 @@ const SearchPage = () => {
           oczekiwań.
         </p>
         <div className='search-page__recommended-jobs'>
-          <FilteredJob />
-          <FilteredJob />
-          <FilteredJob />
-          <FilteredJob />
-          <FilteredJob />
+          {jobAdvertisements.map((job) => {
+            return (
+              <FilteredJob
+                key={job.jobAdvertisementId}
+                logo={job.logo}
+                companyName={job.company}
+                jobTitle={job.jobTitle}
+                province={job.province}
+                city={job.city}
+                remoteJob={job.remoteJob}
+                salaryFrom={job.salaryFrom}
+                salaryTo={job.salaryTo}
+              />
+            );
+          })}
         </div>
       </section>
     </section>

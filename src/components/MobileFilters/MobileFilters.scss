@@ -78,3 +78,9 @@
     }
   }
 }
+
+@media (min-width: 1200px) {
+  .mobile-filters {
+    display: none;
+  }
+}
