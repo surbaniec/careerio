@@ -39,3 +39,7 @@
 .show-submenu {
   display: flex;
 }
+
+.active {
+  color: var(--font-placeholder-color);
+}

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './DesktopSubmenu.scss';
 
 // react icons
@@ -15,54 +15,64 @@ const DesktopSubmenu = () => {
   return (
     <ul className={`desktop-submenu ${submenuOpen ? 'show-submenu' : ''}`}>
       <li className='desktop-submenu__item'>
-        <Link
+        <NavLink
           to='/search'
-          className='desktop-submenu__link'
+          className={({ isActive }) =>
+            isActive ? 'desktop-submenu__link active' : 'desktop-submenu__link'
+          }
           onClick={() => setSubmenuOpen(!submenuOpen)}
         >
           <BsBriefcase style={iconStyle} />
           Oferty pracy
-        </Link>
+        </NavLink>
       </li>
       <li className='desktop-submenu__item'>
-        <Link
-          to='/'
-          className='desktop-submenu__link'
+        <NavLink
+          to='/porady'
+          className={({ isActive }) =>
+            isActive ? 'desktop-submenu__link active' : 'desktop-submenu__link'
+          }
           onClick={() => setSubmenuOpen(!submenuOpen)}
         >
           <FiMessageSquare style={iconStyle} />
           Porady
-        </Link>
+        </NavLink>
       </li>
       <li className='desktop-submenu__item'>
-        <Link
-          to='/'
-          className='desktop-submenu__link'
+        <NavLink
+          to='/pracodawcy'
+          className={({ isActive }) =>
+            isActive ? 'desktop-submenu__link active' : 'desktop-submenu__link'
+          }
           onClick={() => setSubmenuOpen(!submenuOpen)}
         >
           <FiUsers style={iconStyle} />
           Profile pracodawców
-        </Link>
+        </NavLink>
       </li>
       <li className='desktop-submenu__item'>
-        <Link
-          to='/'
-          className='desktop-submenu__link'
+        <NavLink
+          to='/kreator-cv'
+          className={({ isActive }) =>
+            isActive ? 'desktop-submenu__link active' : 'desktop-submenu__link'
+          }
           onClick={() => setSubmenuOpen(!submenuOpen)}
         >
           <CgFileDocument style={iconStyle} />
           Kreator CV
-        </Link>
+        </NavLink>
       </li>
       <li className='desktop-submenu__item'>
-        <Link
-          to='/'
-          className='desktop-submenu__link'
+        <NavLink
+          to='/dla-firm'
+          className={({ isActive }) =>
+            isActive ? 'desktop-submenu__link active' : 'desktop-submenu__link'
+          }
           onClick={() => setSubmenuOpen(!submenuOpen)}
         >
           <HiOutlineCog style={iconStyle} />
           Dla firm
-        </Link>
+        </NavLink>
       </li>
     </ul>
   );

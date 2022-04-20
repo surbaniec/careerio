@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './Nav.scss';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 // react icons
 import { BsBriefcase, BsPlusCircle } from 'react-icons/bs';
 import { FiMenu, FiMessageSquare, FiUsers } from 'react-icons/fi';
@@ -39,49 +39,71 @@ const Nav = () => {
         <ul className={`dropdown-menu ${navbarOpen ? 'show-menu' : ''}`}>
           <li className='dropdown-menu__item'>
             <BsBriefcase style={iconStyle} />
-            <Link
+            <NavLink
               to='/search'
-              className='dropdown-menu__link'
+              className={({ isActive }) =>
+                isActive ? 'dropdown-menu__link active' : 'dropdown-menu__link'
+              }
               onClick={() => setNavbarOpen(!navbarOpen)}
             >
               Oferty pracy
-            </Link>
+            </NavLink>
           </li>
           <li
             className='dropdown-menu__item'
             onClick={() => setNavbarOpen(!navbarOpen)}
           >
             <FiMessageSquare style={iconStyle} />
-            <Link to='/' className='dropdown-menu__link'>
+            <NavLink
+              to='/porady'
+              className={({ isActive }) =>
+                isActive ? 'dropdown-menu__link active' : 'dropdown-menu__link'
+              }
+            >
               Porady
-            </Link>
+            </NavLink>
           </li>
           <li
             className='dropdown-menu__item'
             onClick={() => setNavbarOpen(!navbarOpen)}
           >
             <FiUsers style={iconStyle} />
-            <Link to='/' className='dropdown-menu__link'>
+            <NavLink
+              to='/pracodawcy'
+              className={({ isActive }) =>
+                isActive ? 'dropdown-menu__link active' : 'dropdown-menu__link'
+              }
+            >
               Profile pracodawców
-            </Link>
+            </NavLink>
           </li>
           <li
             className='dropdown-menu__item'
             onClick={() => setNavbarOpen(!navbarOpen)}
           >
             <CgFileDocument style={iconStyle} />
-            <Link to='/' className='dropdown-menu__link'>
+            <NavLink
+              to='/kreator-cv'
+              className={({ isActive }) =>
+                isActive ? 'dropdown-menu__link active' : 'dropdown-menu__link'
+              }
+            >
               Kreator CV
-            </Link>
+            </NavLink>
           </li>
           <li
             className='dropdown-menu__item'
             onClick={() => setNavbarOpen(!navbarOpen)}
           >
             <HiOutlineCog style={iconStyle} />
-            <Link to='/' className='dropdown-menu__link'>
+            <NavLink
+              to='/dla-firm'
+              className={({ isActive }) =>
+                isActive ? 'dropdown-menu__link active' : 'dropdown-menu__link'
+              }
+            >
               Dla firm
-            </Link>
+            </NavLink>
           </li>
           <li
             className='dropdown-menu__item dropdown-menu__item--blue'
@@ -95,12 +117,16 @@ const Nav = () => {
                 marginRight: '10px',
               }}
             />
-            <Link
-              to='/'
-              className='dropdown-menu__link dropdown-menu__link--blue'
+            <NavLink
+              to='/dodaj-ogloszenie'
+              className={({ isActive }) =>
+                isActive
+                  ? 'dropdown-menu__link dropdown-menu__link--blue active'
+                  : 'dropdown-menu__link dropdown-menu__link--blue'
+              }
             >
               Dodaj ogłoszenie
-            </Link>
+            </NavLink>
           </li>
           <li
             className='dropdown-menu__item dropdown-menu__item--blue'
@@ -114,12 +140,16 @@ const Nav = () => {
                 marginRight: '10px',
               }}
             />
-            <Link
-              to='/'
-              className='dropdown-menu__link dropdown-menu__link--blue'
+            <NavLink
+              to='/logowanie'
+              className={({ isActive }) =>
+                isActive
+                  ? 'dropdown-menu__link dropdown-menu__link--blue active'
+                  : 'dropdown-menu__link dropdown-menu__link--blue'
+              }
             >
               Zaloguj się
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>
@@ -135,14 +165,24 @@ const Nav = () => {
                 marginRight: '8px',
               }}
             />
-            <Link to='/' className='nav-desktop__link'>
+            <NavLink
+              to='/dodaj-ogloszenie'
+              className={({ isActive }) =>
+                isActive ? 'nav-desktop__link active' : 'nav-desktop__link'
+              }
+            >
               Dodaj ogłoszenie
-            </Link>
+            </NavLink>
           </li>
           <li className='nav-desktop__item nav-desktop__item--bg'>
-            <Link to='/' className='nav-desktop__link'>
+            <NavLink
+              to='/logowanie'
+              className={({ isActive }) =>
+                isActive ? 'nav-desktop__link active' : 'nav-desktop__link'
+              }
+            >
               Zaloguj się
-            </Link>
+            </NavLink>
             <MdOutlineKeyboardArrowDown
               style={{
                 color: '#575757',

@@ -98,6 +98,10 @@
   }
 }
 
+.active {
+  color: var(--font-placeholder-color);
+}
+
 @media (min-width: 768px) {
   .dropdown-menu {
     padding-top: 30px;
