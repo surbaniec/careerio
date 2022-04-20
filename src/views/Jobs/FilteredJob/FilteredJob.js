@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import './FilteredJob.scss';
 import { FiHeart } from 'react-icons/fi';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { AiOutlineHome } from 'react-icons/ai';
 
-const FilteredJob = ({
-  companyName,
-  logo,
-  jobTitle,
-  province,
-  city,
-  salaryFrom,
-  salaryTo,
-  remoteJob,
-}) => {
+const FilteredJob = ({ data }) => {
   const [favourite, setFavourite] = useState(false);
+  const {
+    company,
+    logo,
+    jobTitle,
+    province,
+    city,
+    salaryFrom,
+    salaryTo,
+    remoteJob,
+  } = data;
 
   const toggleFavourite = () => {
     setFavourite(!favourite);
@@ -25,15 +25,15 @@ const FilteredJob = ({
     <div className='filtered-job'>
       <div className='filtered-job__details'>
         <div className='filtered-job__img-wrapper'>
-          <img className='filtered-job__logo' src={logo} alt={companyName} />
+          <img className='filtered-job__logo' src={logo} alt={company} />
         </div>
         <div className='filtered-job__info'>
-          <h2 className='filtered-job__company-name'>{companyName}</h2>
+          <h2 className='filtered-job__company-name'>{company}</h2>
           <h3 className='filtered-job__position'>{jobTitle}</h3>
           <div className='filtered-job__address-wrapper'>
             <HiOutlineLocationMarker style={{ marginRight: '5px' }} />
             <span className='filtered-job__address-province'>{province}</span>
-            <span>, </span>
+            <span>-</span>
             <span className='filtered-job__address-city'>{city}</span>
           </div>
           {remoteJob && (
@@ -48,7 +48,7 @@ const FilteredJob = ({
         <p className='filtered-job__controls-salary'>
           <span className='text-blue'>
             {salaryFrom}
-            {salaryTo && <>- {salaryTo}</>}
+            {salaryTo && <> - {salaryTo}</>}
           </span>{' '}
           PLN
         </p>
@@ -72,16 +72,6 @@ const FilteredJob = ({
       </div>
     </div>
   );
-};
-
-FilteredJob.propTypes = {
-  companyName: PropTypes.string.isRequired,
-  salaryFrom: PropTypes.number.isRequired,
-  salaryTo: PropTypes.number,
-  province: PropTypes.string.isRequired,
-  city: PropTypes.string.isRequired,
-  logo: PropTypes.string.isRequired,
-  jobTitle: PropTypes.string.isRequired,
 };
 
 export default FilteredJob;
