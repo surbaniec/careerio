@@ -4,8 +4,12 @@ import { IoSearch } from 'react-icons/io5';
 import { FaChevronRight } from 'react-icons/fa';
 
 const JobSearch = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
-    <form className='job-search'>
+    <form className='job-search' onSubmit={handleSubmit}>
       <ul>
         <li>
           <h2 className='job-search__title'>

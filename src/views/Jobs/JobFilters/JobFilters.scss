@@ -12,6 +12,7 @@
   &__wrapper {
     display: flex;
     align-items: center;
+    flex-grow: 0.5;
   }
 
   &__wrapper span {
@@ -20,6 +21,27 @@
     line-height: 1.5rem;
     font-weight: 600;
     margin-left: 10px;
+  }
+
+  &__options {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  &__more-btn {
+    display: flex;
+    align-items: center;
+    background-color: #f3f3f3;
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
+    padding: 24px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.75rem;
+    color: #575757;
+    cursor: pointer;
   }
 
   &__btn {
@@ -58,5 +80,6 @@
   .job-filters {
     width: 1300px;
     padding: 30px 20px;
+    margin-top: 0;
   }
 }
