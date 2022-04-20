@@ -2,7 +2,7 @@ import React from 'react';
 import './YourActivity.scss';
 import { IoPhonePortraitOutline } from 'react-icons/io5';
 import { FiStar, FiSend } from 'react-icons/fi';
-import JobTile from '../JobTile/JobTile';
+import JobTile from '../../components/JobTile/JobTile';
 import { jobAdvertisements } from '../../data';
 
 const YourActivity = () => {

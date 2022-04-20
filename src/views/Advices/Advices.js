@@ -1,8 +1,8 @@
 import React from 'react';
-import Category from '../Category/Category';
+import Category from '../../components/Category/Category';
 import './Advices.scss';
 import { FiBookmark } from 'react-icons/fi';
-import Post from '../Post/Post';
+import Post from '../../components/Post/Post';
 
 const Advices = () => {
   return (

@@ -174,40 +174,6 @@ export const jobAdvertisements = [
     benefits: ['Pakiet Medicover', 'Darmowy parking', 'Rest room'],
     remainingAnnocementTime: 11,
   },
-  {
-    jobAdvertisementId: 4,
-    background: './assets/company-background.png',
-    logo: './assets/company-logo.png',
-    company: 'UI CENTER SGS',
-    province: 'Śląskie',
-    city: 'Katowice',
-    jobTitle: 'Backend developer',
-    employmentType: ['B2B', 'UoP'],
-    seniorityLevel: 'Mid',
-    remoteRecruitment: true,
-    remoteJob: true,
-    workingHours: ['full time'],
-    salaryFrom: 8000,
-    salaryTo: 12000,
-    duties: [
-      'Rozwój i utrzymanie wydajnego i skalowalnego kodu opartego o odpowiednie wzorce projektowe',
-      'Analiza wymagań biznesowych i udział w definiowaniu zadań',
-      'Implementacja kluczowych funkcjonalności w systemie',
-      'Przeprowadzanie code review dla innych członków zespołu',
-      'Podejmowanie decyzji technologicznych i architektonicznych',
-      'Optymalizacja i refaktoryzacja kodu w razie potrzeby, redukowanie długu technologicznego',
-    ],
-    requirements: [
-      '3 lat doświadczenia w tworzeniu w Python',
-      'bardzo dobra znajomość języka Python oraz umiejętność programowania zorientowanego obiektowo,',
-      'dobra znajomość języka SQL oraz baz relacyjnych danych (PostgreSQL),',
-      'umiejętność posługiwania się systemem kontroli wersji GIT',
-      'doświadczenie w tworzeniu komercyjnych projektów',
-      'znajomość języka angielskiego w stopniu komunikatywnym',
-    ],
-    benefits: ['Pakiet Medicover', 'Darmowy parking', 'Rest room'],
-    remainingAnnocementTime: 11,
-  },
 ];
 
 export const categories = [
@@ -215,5 +181,4 @@ export const categories = [
   { categoryId: 1, categoryName: 'Backend developer' },
   { categoryId: 2, categoryName: 'Fullstack developer' },
   { categoryId: 3, categoryName: 'DevOps engineer' },
-  { categoryId: 4, categoryName: 'UX designer' },
 ];

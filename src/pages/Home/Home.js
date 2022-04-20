@@ -1,18 +1,36 @@
 import React from 'react';
-import Advices from '../../components/Advices/Advices';
-import Categories from '../../components/Categories/Categories';
-import Hero from '../../components/Hero/Hero';
-import RecommendedJobs from '../../components/RecommendedJobs/RecommendedJobs';
-import Webinar from '../../components/Webinar/Webinar';
-import YourActivity from '../../components/YourActivity/YourActivity';
+import './Home.scss';
+import Categories from '../../views/Categories/Categories';
+import JobSearch from '../../components/JobSearch/JobSearch';
+import RecommendedJobs from '../../views/Jobs/RecommendedJobs/RecommendedJobs';
+import YourActivity from '../../views/YourActivity/YourActivity';
+import Advices from '../../views/Advices/Advices';
 
 const Home = () => {
   return (
     <>
-      <Hero />
+      <section className='hero'>
+        <h1 className='hero__title'>
+          Dzięki nam znajdziesz pracę Twoich marzeń!
+        </h1>
+        <p className='hero__text'>
+          Przygotowaliśmy dla Ciebie <span>124 784</span> oferty pracy!
+        </p>
+        <button className='btn hero__btn'>Sprawdź</button>
+        <JobSearch />
+      </section>
       <RecommendedJobs />
       <Categories />
-      <Webinar />
+      <section className='webinar'>
+        <div className='webinar__wrapper'>
+          <h2 className='webinar__title'>Wypłyń na morze kariery!</h2>
+          <p className='webinar__text'>
+            Zapisz się na nasze spotkania online, które pomogą Ci wybrać kariere
+            marzeń.
+          </p>
+          <button className='webinar__btn'>Sprawdź</button>
+        </div>
+      </section>
       <YourActivity />
       <Advices />
     </>

@@ -7,7 +7,7 @@ import { FiMenu, FiMessageSquare, FiUsers } from 'react-icons/fi';
 import { CgFileDocument } from 'react-icons/cg';
 import { HiOutlineCog } from 'react-icons/hi';
 import { MdOutlineKeyboardArrowDown, MdOutlineClose } from 'react-icons/md';
-import { SubmenuOpenContext } from '../../App';
+import { SubmenuOpenContext } from '../../../App';
 
 const Nav = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);

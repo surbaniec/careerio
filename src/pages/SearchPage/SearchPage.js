@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import FilteredJob from '../../components/FilteredJob/FilteredJob';
-import JobFilters from '../../components/JobFilters/JobFilters';
+import FilteredJob from '../../views/Jobs/FilteredJob/FilteredJob';
+import JobFilters from '../../views/Jobs/JobFilters/JobFilters';
 import JobSearch from '../../components/JobSearch/JobSearch';
-import MobileFilters from '../../components/MobileFilters/MobileFilters';
+import MobileFilters from '../../views/Jobs/MobileJobFilters/MobileFilters';
 import './SearchPage.scss';
 import { jobAdvertisements } from '../../data';
 
