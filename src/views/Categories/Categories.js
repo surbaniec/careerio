@@ -1,5 +1,5 @@
 import React from 'react';
-import Category from '../Category/Category';
+import Category from '../../components/Category/Category';
 import './Categories.scss';
 import { RiStackLine } from 'react-icons/ri';
 import { FaChevronRight } from 'react-icons/fa';

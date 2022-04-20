@@ -1,11 +1,11 @@
 import 'normalize.css';
 import './App.scss';
-import Header from './components/Header/Header';
+import Header from './components/layout/Header/Header';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
-import DesktopSubmenu from './components/DesktopSubmenu/DesktopSubmenu';
+import DesktopSubmenu from './components/layout/DesktopSubmenu/DesktopSubmenu';
 import { createContext, useState } from 'react';
-import Footer from './components/Footer/Footer';
+import Footer from './components/layout/Footer/Footer';
 import SearchPage from './pages/SearchPage/SearchPage';
 import ScrollToTop from './utils/ScrollToTop';
 

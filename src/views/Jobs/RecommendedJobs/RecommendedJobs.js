@@ -1,7 +1,7 @@
 import React from 'react';
-import JobTile from '../JobTile/JobTile';
+import JobTile from '../../../components/JobTile/JobTile';
 import './RecommendedJobs.scss';
-import { jobAdvertisements } from '../../data';
+import { jobAdvertisements } from '../../../data';
 
 const RecommendedJobs = () => {
   return (
