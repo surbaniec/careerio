@@ -90,6 +90,9 @@ const JobFilters = ({ toggleMobileFilters }) => {
           <Select
             options={categoriesOptions}
             styles={selectStyles}
+            components={{
+              IndicatorSeparator: () => null,
+            }}
             defaultValue={{ label: 'Kategorie', value: null }}
             value={categoryOption}
             onChange={changeCategory}
@@ -98,6 +101,9 @@ const JobFilters = ({ toggleMobileFilters }) => {
           <Select
             options={seniorityLevelOptions}
             styles={selectStyles}
+            components={{
+              IndicatorSeparator: () => null,
+            }}
             defaultValue={{ label: 'Poziom stanowiska', value: null }}
             value={seniorityLevelOption}
             onChange={changeSeniorityLevel}
@@ -106,6 +112,9 @@ const JobFilters = ({ toggleMobileFilters }) => {
           <Select
             options={employmentTypeOptions}
             styles={selectStyles}
+            components={{
+              IndicatorSeparator: () => null,
+            }}
             defaultValue={{ label: 'Rodzaj umowy', value: null }}
             value={employmentOption}
             onChange={changeEmploymentOption}

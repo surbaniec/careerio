@@ -31,7 +31,7 @@ const Categories = () => {
         <button className='categories__btn'>
           <h3>Wszystkie kategorie</h3>
           <FaChevronRight
-            style={{ marginLeft: '5px', width: '15px', height: 'auto' }}
+            style={{ marginLeft: '5px', width: '15px', height: '15px' }}
           />
         </button>
       </div>

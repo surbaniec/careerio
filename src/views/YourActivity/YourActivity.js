@@ -60,7 +60,7 @@ const YourActivity = () => {
       </div>
 
       <div className='your-activity__tiles'>
-        <div className='your-activity__wrapper'>
+        <div className='your-activity__tiles-wrapper'>
           {jobAdvertisements.map((job) => {
             return (
               <JobTile

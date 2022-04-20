@@ -35,7 +35,7 @@ const Pagination = ({ data, RenderComponent, pageLimit, dataLimit }) => {
   };
 
   return (
-    <div>
+    <div className='pagination-wrapper'>
       {/* show the posts, 3 posts at a time */}
       <div className='dataContainer'>
         {getPaginatedData().map((d, idx) => (
