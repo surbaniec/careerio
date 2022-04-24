@@ -16,7 +16,7 @@ const DesktopSubmenu = () => {
     <ul className={`desktop-submenu ${submenuOpen ? 'show-submenu' : ''}`}>
       <li className='desktop-submenu__item'>
         <NavLink
-          to='/search'
+          to='/wyszukiwarka'
           className={({ isActive }) =>
             isActive ? 'desktop-submenu__link active' : 'desktop-submenu__link'
           }

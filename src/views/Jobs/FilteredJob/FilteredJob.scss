@@ -14,6 +14,10 @@
   letter-spacing: 0.025em;
   cursor: pointer;
 
+  &__link {
+    text-decoration: none;
+  }
+
   &__details {
     display: flex;
     align-items: center;

@@ -29,8 +29,8 @@ function App() {
         </SubmenuOpenContext.Provider>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/search' element={<SearchPage />} />
-          <Route path='/jobad' element={<JobAd />} />
+          <Route path='/wyszukiwarka' element={<SearchPage />} />
+          <Route path='/ogloszenie' element={<JobAd />} />
         </Routes>
         <Footer />
       </>

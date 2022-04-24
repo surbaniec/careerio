@@ -18,3 +18,19 @@
     line-height: 1rem;
   }
 }
+
+@media (min-width: 768px) {
+  .listItem {
+    margin: 20px 0;
+    margin-left: -25px;
+  }
+
+  .listItem__icon-wrapper {
+    padding: 8px;
+  }
+
+  .listItem__text {
+    font-size: 1.4rem;
+    line-height: 1.75rem;
+  }
+}

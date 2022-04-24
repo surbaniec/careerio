@@ -12,8 +12,6 @@
   &__background-img {
     height: 100%;
     width: 100vw;
-    background-size: cover;
-    background-repeat: no-repeat;
     background-position: top;
   }
 
@@ -184,4 +182,177 @@
 .similar-ads__container {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+@media (min-width: 768px) {
+  .job-ad {
+    &__background-wrapper {
+      height: 250px;
+      padding-top: 50px;
+    }
+
+    &__header {
+      width: 85%;
+    }
+
+    &__logo {
+      margin-right: 15px;
+      width: 40px;
+      height: auto;
+    }
+
+    &__company-name {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+      margin-top: 10px;
+    }
+
+    &__job-title {
+      font-size: 1.8rem;
+    }
+
+    &__link {
+      font-size: 1.6rem;
+    }
+
+    &__controls {
+      margin-top: 20px;
+    }
+
+    &__btn {
+      font-size: 1.4rem;
+    }
+
+    &__informations {
+      padding: 30px 40px;
+    }
+
+    &__info-icon-container {
+      padding: 10px;
+    }
+
+    &__info-wrapper {
+      margin-top: 20px;
+      margin-left: 20px;
+    }
+
+    &__info {
+      font-size: 1.4rem;
+      line-height: 1.75rem;
+    }
+
+    .duties__container,
+    .requirements__container,
+    .benefits__container {
+      width: 100%;
+      margin-right: -100px;
+    }
+
+    .duties__wrapper,
+    .requirements__wrapper,
+    .benefits__wrapper {
+      padding-right: 120px;
+    }
+
+    .duties__title,
+    .requirements__title,
+    .benefits__title {
+      font-size: 2.4rem;
+      font-weight: 600;
+      line-height: 3rem;
+      text-align: left;
+    }
+  }
+
+  .similar-ads__title {
+    margin-top: 50px;
+    font-size: 2.4rem;
+    text-align: left;
+    padding-left: 70px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .job-ad {
+    width: 70%;
+    align-items: flex-start;
+
+    &__wrapper {
+      width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__background-wrapper {
+      height: 500px;
+      padding-top: 100px;
+    }
+
+    &__header {
+      width: 100%;
+      padding: 30px;
+    }
+
+    &__header-company-info {
+      align-items: center;
+    }
+
+    &__company-name {
+      font-size: 3.6rem;
+    }
+
+    &__job-title {
+      font-size: 2.4rem;
+    }
+
+    &__logo {
+      width: 60px;
+    }
+
+    &__link {
+      font-size: 1.8rem;
+    }
+
+    &__informations {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    &__info-icon-container {
+      padding: 15px;
+    }
+
+    .duties__container,
+    .requirements__container,
+    .benefits__container {
+      margin-right: 0;
+      overflow-x: auto;
+      overflow-y: auto;
+      white-space: normal;
+    }
+
+    .benefits__container {
+      padding-bottom: 50px;
+    }
+
+    .duties__wrapper,
+    .requirements__wrapper,
+    .benefits__wrapper {
+      margin-right: 0;
+    }
+  }
+
+  .similar-ads {
+    width: 30%;
+    &__container {
+      width: 100%;
+      align-items: flex-end;
+      flex-direction: column;
+    }
+
+    &__title {
+      margin-left: 20px;
+    }
+  }
 }

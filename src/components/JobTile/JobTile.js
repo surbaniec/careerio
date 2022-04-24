@@ -4,6 +4,7 @@ import './JobTile.scss';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { MdChevronRight, MdOutlineClose } from 'react-icons/md';
 import { FiHeart } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 const JobTile = ({
   company,
@@ -45,9 +46,9 @@ const JobTile = ({
       </div>
 
       <div className='job-tile__controls'>
-        <button className='job-tile__btn'>
+        <Link to='/ogloszenie' className='job-tile__btn'>
           Aplikuj teraz <MdChevronRight />
-        </button>
+        </Link>
         <button className='job-tile__btn'>
           <FiHeart />
         </button>

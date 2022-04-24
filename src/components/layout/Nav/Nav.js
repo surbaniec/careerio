@@ -40,7 +40,7 @@ const Nav = () => {
           <li className='dropdown-menu__item'>
             <BsBriefcase style={iconStyle} />
             <NavLink
-              to='/search'
+              to='/wyszukiwarka'
               className={({ isActive }) =>
                 isActive ? 'dropdown-menu__link active' : 'dropdown-menu__link'
               }

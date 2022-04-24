@@ -75,6 +75,7 @@
     font-weight: 500;
     background-color: var(--secondary-color);
     color: var(--font-dark-color);
+    text-decoration: none;
     border: 1px solid var(--light-color-1);
     border-radius: 5px;
     padding: 8px;
@@ -142,5 +143,6 @@
 @media (min-width: 1200px) {
   .job-tile {
     margin-left: 10px;
+    margin-bottom: 30px;
   }
 }
