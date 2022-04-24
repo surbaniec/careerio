@@ -8,6 +8,7 @@ import { createContext, useState } from 'react';
 import Footer from './components/layout/Footer/Footer';
 import SearchPage from './pages/SearchPage/SearchPage';
 import ScrollToTop from './utils/ScrollToTop';
+import JobAd from './pages/JobAd/JobAd';
 
 export const SubmenuOpenContext = createContext({
   submenuOpen: false,
@@ -29,6 +30,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/search' element={<SearchPage />} />
+          <Route path='/jobad' element={<JobAd />} />
         </Routes>
         <Footer />
       </>

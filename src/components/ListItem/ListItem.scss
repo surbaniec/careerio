@@ -1,0 +1,20 @@
+.listItem {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  margin-left: -25px;
+
+  &__icon-wrapper {
+    margin-right: 10px;
+    background-color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    border-radius: 5px;
+    padding: 2px;
+  }
+
+  &__text {
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1rem;
+  }
+}

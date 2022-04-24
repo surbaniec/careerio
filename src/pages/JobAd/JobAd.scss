@@ -1,0 +1,187 @@
+.job-ad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--font-dark-color);
+
+  &__background-wrapper {
+    height: 200px;
+    padding-top: 50px;
+  }
+
+  &__background-img {
+    height: 100%;
+    width: 100vw;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+  }
+
+  /* HEADER */
+  &__header {
+    margin-top: -50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 92%;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--light-color-1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: var(--border-radius);
+    padding: 15px;
+  }
+
+  &__header-company-info {
+    display: flex;
+  }
+
+  &__logo {
+    margin-right: 10px;
+  }
+
+  &__header-company-name-wrapper {
+    height: 100%;
+  }
+
+  &__company-name {
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    margin-bottom: 2px;
+  }
+
+  &__job-title {
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+  }
+
+  &__controls-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__link {
+    font-size: 1rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-decoration: none;
+    color: var(--accent-color);
+    text-align: right;
+  }
+
+  &__controls {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__btn {
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--light-color-1);
+    border-radius: 0.5rem;
+    margin-left: 8px;
+    cursor: pointer;
+  }
+
+  /* INFO */
+  &__informations {
+    padding: 30px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &__info-wrapper {
+    margin-top: 10px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__info-icon-container {
+    margin-right: 10px;
+    border-radius: 5px;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--light-color-1);
+    padding: 7px;
+  }
+
+  &__info {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1rem;
+  }
+
+  /* DUTIES, REQUIREMENTS, BENEFITS */
+  .duties__container,
+  .requirements__container,
+  .benefits__container {
+    padding: 20px 0 10px 20px;
+    overflow-x: hidden;
+  }
+
+  .duties__title,
+  .requirements__title,
+  .benefits__title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 2rem;
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  .duties__wrapper,
+  .requirements__wrapper,
+  .benefits__wrapper {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--light-color-1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    padding: 20px 15px;
+    margin-right: -10px;
+  }
+}
+
+/* Similar ads */
+.similar-ads {
+  &__container {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    display: flex;
+    padding: 20px 20px 40px;
+  }
+
+  &__title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 2rem;
+    text-align: center;
+    margin-bottom: 25px;
+    color: var(--font-dark-color);
+  }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.similar-ads__container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.similar-ads__container {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
