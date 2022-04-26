@@ -9,6 +9,7 @@ import Footer from './components/layout/Footer/Footer';
 import SearchPage from './pages/SearchPage/SearchPage';
 import ScrollToTop from './utils/ScrollToTop';
 import JobAd from './pages/JobAd/JobAd';
+import CompanyProfile from './pages/CompanyProfile/CompanyProfile';
 
 export const SubmenuOpenContext = createContext({
   submenuOpen: false,
@@ -31,6 +32,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/wyszukiwarka' element={<SearchPage />} />
           <Route path='/ogloszenie' element={<JobAd />} />
+          <Route path='/profil-firmy' element={<CompanyProfile />} />
         </Routes>
         <Footer />
       </>
