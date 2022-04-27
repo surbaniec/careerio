@@ -1,0 +1,161 @@
+.hero {
+  width: 100vw;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url('../../assets/hero-bg.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  color: var(--font-light-color);
+  text-align: center;
+  border-radius: 0 0 25px 25px;
+}
+  
+  .hero h1.title{
+    margin-top: 70px;
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+
+  .logreg-box{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    flex-wrap: wrap;
+  }
+
+  .login-box, .register-box{
+    background-color: #f3f3f3;
+    width: 80%;
+    border-radius: 0 0 10px 10px;
+    margin-bottom: 50px;
+  }
+
+  .login-title{
+    background-color: #2A95FF;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .login-title h2{
+    margin: 0;
+  }
+
+  .form-wrapper{
+    padding: 15px;
+  }
+
+  .form-wrapper p{
+    margin: 0;
+    margin-left: 5px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #575757;
+  }
+
+.form-wrapper p:nth-of-type(2), .form-wrapper p:nth-of-type(3), .form-wrapper p:nth-of-type(4) {
+  margin-top: 15px;
+}
+
+  input.login-name, input.login-password{
+    font-size: 10px;
+    width: 100%;
+    height: 40px;
+    background-color: #e8e8e8;
+    border-radius: 10px;
+    border: none;
+    padding: 15px 10px;
+    margin: 5px 0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .login-submit, .register-submit{
+    margin-top: 20px;
+    background-color: #2a95ff;
+    color: white;
+    cursor: pointer;
+    border: 2px solid #2a95ff;
+    padding: 10px 30px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+ 
+
+@media (min-width: 768px) {
+  .hero {
+    padding-top: 140px;
+  }
+
+  .hero h1.title {
+    font-size: 2.8rem;
+  }
+  .form-wrapper p{
+    font-size: 14px;
+  }
+  input.login-name, input.login-password{
+    font-size: 12px;
+  }
+  .login-title h2{
+    font-size: 18px;
+  }
+  .login-submit, .register-submit{
+    font-size: 14px;
+  }
+}
+
+  
+
+@media (min-width: 1200px) {
+  .hero h1.title {
+      font-size: 6.4rem;
+    }
+    .login-box, .register-box{
+      width: 35%;
+    }
+    .login-box{
+      margin-right: 25px;
+    }
+    .register-box{
+      margin-left: 25px;
+    }
+    .form-wrapper{
+      padding: 35px 45px;
+    }
+    .form-wrapper p:nth-of-type(2), .form-wrapper p:nth-of-type(3), .form-wrapper p:nth-of-type(4) {
+      margin-top: 25px;
+    }
+    .login-submit, .register-submit{
+      margin-top: 25px;
+    }
+    .login-title{
+      padding: 30px 45px;
+    }
+    .form-wrapper p{
+      font-size: 18px;
+    }
+    input.login-name, input.login-password{
+      font-size: 16px;
+      height: 50px;
+      padding: 20px;
+    }
+    .login-title h2{
+      font-size: 20px;
+    }
+    .login-submit, .register-submit{
+      font-size: 18px;
+    }
+    .logreg-box{
+      margin-top: 100px;
+    }
+  
+    .login-box, .register-box{
+      margin-bottom: 100px;
+    }
+  }
+
+  
