@@ -10,6 +10,7 @@ import SearchPage from './pages/SearchPage/SearchPage';
 import ScrollToTop from './utils/ScrollToTop';
 import JobAd from './pages/JobAd/JobAd';
 import CompanyProfile from './pages/CompanyProfile/CompanyProfile';
+import Login from './pages/Login/Login';
 
 export const SubmenuOpenContext = createContext({
   submenuOpen: false,
@@ -33,6 +34,7 @@ function App() {
           <Route path='/wyszukiwarka' element={<SearchPage />} />
           <Route path='/ogloszenie' element={<JobAd />} />
           <Route path='/profil-firmy' element={<CompanyProfile />} />
+          <Route path='/logowanie' element={<Login />} />
         </Routes>
         <Footer />
       </>
