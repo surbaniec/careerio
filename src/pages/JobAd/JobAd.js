@@ -34,7 +34,7 @@ const JobAd = () => {
               </div>
             </div>
             <div className='job-ad__controls-wrapper'>
-              <Link className='job-ad__link' to='/'>
+              <Link className='job-ad__link' to='/profil-firmy'>
                 <IoPersonOutline style={{ marginRight: '3px' }} /> Odwiedź
                 profil firmy
               </Link>

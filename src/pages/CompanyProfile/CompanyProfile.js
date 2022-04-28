@@ -212,28 +212,32 @@ const CompanyProfile = () => {
                 src='../../../assets/company-gallery-11.png'
                 alt=''
               />
-            </div>
-          </div>
-          <div className='company-profile__section'>
-            <h2 className='company-profile__section-title'>Oferty Firmy</h2>
-            <div className='company-profile__ads-container'>
-              {jobAdvertisements.map((job) => {
-                return (
-                  <JobTile
-                    key={job.jobAdvertisementId}
-                    company={job.company}
-                    salaryFrom={job.salaryFrom}
-                    salaryTo={job.salaryTo}
-                    province={job.province}
-                    city={job.city}
-                    logo={job.logo}
-                    jobTitle={job.jobTitle}
-                  />
-                );
-              })}
+              <button className='company-profile__gallery-btn'>
+                Pokaż wszystkie{' '}
+                <MdChevronRight style={{ width: '20px', height: '20px' }} />
+              </button>
             </div>
           </div>
         </div>
+        <aside className='company-profile__section'>
+          <h2 className='company-profile__section-title'>Oferty Firmy</h2>
+          <div className='company-profile__ads-container'>
+            {jobAdvertisements.map((job) => {
+              return (
+                <JobTile
+                  key={job.jobAdvertisementId}
+                  company={job.company}
+                  salaryFrom={job.salaryFrom}
+                  salaryTo={job.salaryTo}
+                  province={job.province}
+                  city={job.city}
+                  logo={job.logo}
+                  jobTitle={job.jobTitle}
+                />
+              );
+            })}
+          </div>
+        </aside>
       </div>
     </section>
   );

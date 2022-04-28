@@ -47,7 +47,7 @@ const JobTile = ({
 
       <div className='job-tile__controls'>
         <Link to='/ogloszenie' className='job-tile__btn'>
-          Aplikuj teraz <MdChevronRight />
+          Aplikuj <MdChevronRight style={{ width: '15px', height: '15px' }} />
         </Link>
         <button className='job-tile__btn'>
           <FiHeart />
