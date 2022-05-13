@@ -1,7 +1,7 @@
 import React from 'react';
 import './Login.scss';
 
-const Home = () => {
+const Login = () => {
   return (
     <>
       <section className='hero'>
@@ -68,4 +68,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Login;
