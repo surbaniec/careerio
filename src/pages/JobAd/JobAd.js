@@ -10,6 +10,10 @@ import JobTile from '../../components/JobTile/JobTile';
 import { jobAdvertisements } from '../../data';
 
 const JobAd = () => {
+  const toggleFavourite = () => {
+    document.querySelector('.heart-icon').classList.toggle('favourite');
+  };
+
   return (
     <section className='job-ad__container'>
       <div className='job-ad__background-wrapper'>
@@ -34,7 +38,7 @@ const JobAd = () => {
               </div>
             </div>
             <div className='job-ad__controls-wrapper'>
-              <Link className='job-ad__link' to='/'>
+              <Link className='job-ad__link' to='/profil-firmy'>
                 <IoPersonOutline style={{ marginRight: '3px' }} /> Odwiedź
                 profil firmy
               </Link>
@@ -42,8 +46,8 @@ const JobAd = () => {
                 <button className='job-ad__btn'>
                   Aplikuj teraz <MdChevronRight />
                 </button>
-                <button className='job-ad__btn'>
-                  <FiHeart />
+                <button className='job-ad__btn' onClick={toggleFavourite}>
+                  <FiHeart className='heart-icon' />
                 </button>
                 <button className='job-ad__btn'>
                   <MdOutlineClose />

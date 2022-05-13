@@ -15,6 +15,11 @@ const JobTile = ({
   logo,
   jobTitle,
 }) => {
+  const toggleFavourite = (e) => {
+    e.stopPropagation();
+    e.target.classList.toggle('favourite');
+  };
+
   return (
     <div className='job-tile'>
       <div className='job-tile__info'>
@@ -47,10 +52,11 @@ const JobTile = ({
 
       <div className='job-tile__controls'>
         <Link to='/ogloszenie' className='job-tile__btn'>
-          Aplikuj teraz <MdChevronRight />
+          Aplikuj teraz{' '}
+          <MdChevronRight style={{ width: '15px', height: '15px' }} />
         </Link>
-        <button className='job-tile__btn'>
-          <FiHeart />
+        <button className='job-tile__btn' onClick={toggleFavourite}>
+          <FiHeart className='heart-icon' />
         </button>
         <button className='job-tile__btn'>
           <MdOutlineClose />
