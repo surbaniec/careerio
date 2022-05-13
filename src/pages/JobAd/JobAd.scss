@@ -88,11 +88,16 @@
     justify-content: center;
     align-items: center;
     padding: 5px;
+    color: var(--font-dark-color);
     background-color: var(--secondary-color);
     border: 1px solid var(--light-color-1);
     border-radius: 0.5rem;
     margin-left: 8px;
     cursor: pointer;
+
+    &:hover {
+      color: var(--accent-color);
+    }
   }
 
   /* INFO */
@@ -182,6 +187,11 @@
 .similar-ads__container {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+.favourite {
+  fill: var(--accent-color);
+  stroke: var(--accent-color);
 }
 
 @media (min-width: 768px) {
@@ -310,6 +320,10 @@
       width: 60px;
     }
 
+    &__btn {
+      padding: 10px;
+    }
+
     &__link {
       font-size: 1.8rem;
     }
@@ -347,12 +361,8 @@
     width: 30%;
     &__container {
       width: 100%;
-      align-items: flex-end;
       flex-direction: column;
-    }
-
-    &__title {
-      margin-left: 20px;
+      margin-left: 40px;
     }
   }
 }

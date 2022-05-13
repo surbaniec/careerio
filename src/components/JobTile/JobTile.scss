@@ -141,6 +141,15 @@
   }
 }
 
+.favourite .heart-icon {
+  fill: var(--accent-color);
+  stroke: var(--accent-color);
+}
+
+.heart-icon {
+  pointer-events: none;
+}
+
 @media (min-width: 1200px) {
   .job-tile {
     margin-left: 10px;

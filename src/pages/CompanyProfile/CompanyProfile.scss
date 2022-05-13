@@ -302,7 +302,7 @@
 
 @media (min-width: 1200px) {
   .company-profile {
-    width: 80%;
+    width: 70%;
 
     &__section {
       width: 100%;
@@ -343,6 +343,10 @@
       font-size: 1.8rem;
     }
 
+    &__controls .company-profile__link {
+      padding: 8px;
+    }
+
     &__informations {
       padding-left: 0;
       padding-right: 0;
@@ -376,12 +380,12 @@
     }
   }
 
-  aside {
-    margin-left: 200px;
-    width: 20%;
+  .company-profile__container aside {
+    width: 30%;
+    margin-left: 40px;
   }
 
-  aside h2 {
+  .company-profile__container aside h2 {
     margin-left: 10px;
   }
 }
