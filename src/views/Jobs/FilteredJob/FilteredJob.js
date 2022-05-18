@@ -3,9 +3,10 @@ import './FilteredJob.scss';
 import { FiHeart } from 'react-icons/fi';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { AiOutlineHome } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const FilteredJob = ({ data }) => {
+  const navigate = useNavigate();
   const [favourite, setFavourite] = useState(false);
   const {
     company,
@@ -18,13 +19,17 @@ const FilteredJob = ({ data }) => {
     remoteJob,
   } = data;
 
-  const toggleFavourite = (e) => {
+  const handleRedirect = () => {
+    navigate('/ogloszenie');
+  };
+
+  const toggleFavourite = () => {
     setFavourite(!favourite);
   };
 
   return (
     <div className='filtered-job'>
-      <div className='filtered-job__details'>
+      <div className='filtered-job__details' onClick={handleRedirect}>
         <div className='filtered-job__img-wrapper'>
           <img className='filtered-job__logo' src={logo} alt={company} />
         </div>

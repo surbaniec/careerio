@@ -103,15 +103,20 @@
 }
 
 @media (min-width: 768px) {
+  .nav span {
+    font-size: 2rem;
+  }
+
   .dropdown-menu {
     padding-top: 30px;
+    top: 80px;
     &__item {
       margin: 15px 0;
       padding: 35px 40px;
     }
 
     &__link {
-      font-size: 1.6rem;
+      font-size: 1.8rem;
     }
   }
 }

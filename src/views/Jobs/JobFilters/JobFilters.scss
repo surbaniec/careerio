@@ -64,14 +64,16 @@
 @media (min-width: 768px) {
   .job-filters {
     width: 75%;
+    padding: 20px 30px;
 
     &__wrapper span,
     &__btn {
-      font-size: 1.4rem;
+      font-size: 1.8rem;
     }
 
     &__btn {
-      width: 200px;
+      width: 220px;
+      padding: 20px 45px;
     }
   }
 }
@@ -79,7 +81,7 @@
 @media (min-width: 1200px) {
   .job-filters {
     width: 1300px;
-    padding: 20px;
+    padding: 30px;
     margin-top: 0;
   }
 }

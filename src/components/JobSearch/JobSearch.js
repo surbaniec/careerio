@@ -17,6 +17,10 @@ const selectStyles = {
     paddingTop: '15px',
     paddingBottom: '15px',
     color: '#575757',
+
+    '@media(min-width: 768px)': {
+      fontSize: '1.8rem',
+    },
   }),
   control: () => ({
     // none of react-select's styles are passed to <Control />
@@ -31,12 +35,23 @@ const selectStyles = {
     lineHeight: '1.75rem',
     color: '#575757',
     cursor: 'pointer',
+
+    '@media(min-width: 768px)': {
+      fontSize: '1.8rem',
+      width: '250px',
+    },
+
+    '@media(min-width: 1200px)': {
+      fontSize: '1.6rem',
+      width: '200px',
+    },
   }),
   singleValue: (provided, state) => {
     const opacity = state.isDisabled ? 0.5 : 1;
     const transition = 'opacity 300ms';
+    const color = '#575757';
 
-    return { ...provided, opacity, transition };
+    return { ...provided, opacity, transition, color };
   },
 };
 

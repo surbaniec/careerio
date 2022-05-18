@@ -37,7 +37,7 @@ const SearchPage = () => {
           <Pagination
             data={jobAdvertisements}
             RenderComponent={FilteredJob}
-            pageLimit={4}
+            pageLimit={3}
             dataLimit={3}
           />
         </div>

@@ -7,6 +7,11 @@ import { MdOutlineClose } from 'react-icons/md';
 const selectStyles = {
   option: (provided, state) => ({
     ...provided,
+    fontSize: '1.4rem',
+    color: '#575757',
+    '@media (min-width: 768px)': {
+      fontSize: '1.8rem',
+    },
   }),
   control: () => ({
     // none of react-select's styles are passed to <Control />
@@ -16,17 +21,21 @@ const selectStyles = {
     borderRadius: '10px',
     marginTop: '30px',
     padding: '15px',
-    fontSize: '1rem',
+    fontSize: '1.4rem',
     fontWeight: 600,
     lineHeight: '1.75rem',
     color: '#575757',
     cursor: 'pointer',
+    '@media (min-width: 768px)': {
+      fontSize: '1.8rem',
+    },
   }),
   singleValue: (provided, state) => {
     const opacity = state.isDisabled ? 0.5 : 1;
     const transition = 'opacity 300ms';
+    const color = '#575757';
 
-    return { ...provided, opacity, transition };
+    return { ...provided, opacity, transition, color };
   },
 };
 
@@ -83,7 +92,7 @@ const MobileFilters = ({ toggleMobileFilters }) => {
         <h2 className='mobile-filters__title'>Filtry</h2>
         <MdOutlineClose
           onClick={toggleMobileFilters}
-          style={{ width: '20px', height: 'auto', cursor: 'pointer' }}
+          style={{ width: '25px', height: 'auto', cursor: 'pointer' }}
         />
       </div>
       <div className='mobile-filters__body'>

@@ -5,6 +5,7 @@ import JobSearch from '../../components/JobSearch/JobSearch';
 import RecommendedJobs from '../../views/Jobs/RecommendedJobs/RecommendedJobs';
 import YourActivity from '../../views/YourActivity/YourActivity';
 import Advices from '../../views/Advices/Advices';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   return (
@@ -16,7 +17,9 @@ const Home = () => {
         <p className='hero__text'>
           Przygotowaliśmy dla Ciebie <span>124 784</span> oferty pracy!
         </p>
-        <button className='btn hero__btn'>Sprawdź</button>
+        <Link to='/wyszukiwarka' className='btn hero__btn'>
+          Sprawdź
+        </Link>
         <JobSearch />
       </section>
       <RecommendedJobs />

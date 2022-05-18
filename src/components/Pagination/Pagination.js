@@ -20,6 +20,9 @@ const Pagination = ({ data, RenderComponent, pageLimit, dataLimit }) => {
 
   function changePage(event) {
     const pageNumber = Number(event.target.textContent);
+    if (pageNumber > pages) {
+      return;
+    }
     setCurrentPage(pageNumber);
   }
 

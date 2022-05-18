@@ -42,9 +42,11 @@ const JobTile = ({
             <span className='job-tile__salary-currency'> PLN</span>
           </div>
           <div className='job-tile__address-wrapper'>
-            <HiOutlineLocationMarker style={{ marginRight: '5px' }} />
+            <HiOutlineLocationMarker
+              style={{ marginRight: '5px', width: '12px', height: 'auto' }}
+            />
             <span className='job-tile__address-province'>{province}</span>
-            <span>, </span>
+            <span className='job-tile__address-divider'>, </span>
             <span className='job-tile__address-city'>{city}</span>
           </div>
         </div>
@@ -56,10 +58,13 @@ const JobTile = ({
           <MdChevronRight style={{ width: '15px', height: '15px' }} />
         </Link>
         <button className='job-tile__btn' onClick={toggleFavourite}>
-          <FiHeart className='heart-icon' />
+          <FiHeart
+            className='heart-icon'
+            style={{ width: '15px', height: '15px' }}
+          />
         </button>
         <button className='job-tile__btn'>
-          <MdOutlineClose />
+          <MdOutlineClose style={{ width: '15px', height: '15px' }} />
         </button>
       </div>
     </div>

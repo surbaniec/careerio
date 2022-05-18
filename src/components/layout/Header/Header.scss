@@ -27,6 +27,16 @@
     margin: 0 auto;
     width: 85%;
   }
+
+  .header {
+    display: flex;
+    align-items: center;
+    height: 113px;
+  }
+
+  .header__logo {
+    width: 191px;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -35,8 +45,6 @@
   }
 
   .header {
-    display: flex;
-    align-items: center;
     height: 113px;
     &__logo {
       width: 191px;
