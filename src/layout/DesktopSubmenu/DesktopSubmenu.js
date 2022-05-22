@@ -7,7 +7,7 @@ import { BsBriefcase } from 'react-icons/bs';
 import { FiMessageSquare, FiUsers } from 'react-icons/fi';
 import { CgFileDocument } from 'react-icons/cg';
 import { HiOutlineCog } from 'react-icons/hi';
-import { SubmenuOpenContext } from '../../../App';
+import { SubmenuOpenContext } from '../../App';
 
 const DesktopSubmenu = () => {
   const { submenuOpen, setSubmenuOpen } = useContext(SubmenuOpenContext);
