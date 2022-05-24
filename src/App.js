@@ -15,6 +15,10 @@ import JobAd from './pages/JobAd/JobAd';
 import CompanyProfile from './pages/CompanyProfile/CompanyProfile';
 import Login from './pages/Login/Login';
 import EmployersPage from './pages/EmployersPage/EmployersPage';
+import { fetchJobOffers } from './actions/jobOfferActions';
+
+//Dispatch the fetchJobOffers() beofre our root component renders
+// store.dispatch(fetchJobOffers());
 
 export const SubmenuOpenContext = createContext({
   submenuOpen: false,
