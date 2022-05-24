@@ -91,6 +91,18 @@ input.login-password {
   text-decoration: none;
 }
 
+.input-wrapper {
+  margin-bottom: 15px;
+}
+
+small.error {
+  display: block;
+  margin-top: 5px;
+  margin-left: 5px;
+  color: red;
+  font-size: 1.4rem;
+}
+
 @media (min-width: 768px) {
   .hero {
     padding-top: 140px;
