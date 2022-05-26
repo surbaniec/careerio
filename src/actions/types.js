@@ -11,6 +11,8 @@ export const GET_COMPANIES = 'GET_COMPANIES';
 export const ADD_COMPANY = 'ADD_COMPANY';
 export const UPDATE_COMPANY = 'UPDATE_COMPANY';
 export const DELETE_COMPANY = 'DELETE_COMPANY';
+export const FETCH_COMPANIES_SUCCESS = 'FETCH_COMPANIES_SUCCESS';
+export const COMPANY_ERROR = 'COMPANY_ERROR';
 
 export const GET_USER = 'GET_USER';
 export const GET_USERS = 'GET_USERS';
