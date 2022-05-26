@@ -7,6 +7,7 @@ import { FiHeart } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
 const JobTile = ({
+  jobOfferId,
   company,
   salaryFrom,
   salaryTo,
@@ -18,6 +19,11 @@ const JobTile = ({
   const toggleFavourite = (e) => {
     e.stopPropagation();
     e.target.classList.toggle('favourite');
+  };
+
+  const handleRemove = (e) => {
+    e.stopPropagation();
+    e.target.parentElement.parentElement.remove();
   };
 
   return (
@@ -53,7 +59,7 @@ const JobTile = ({
       </div>
 
       <div className='job-tile__controls'>
-        <Link to='/ogloszenie' className='job-tile__btn'>
+        <Link to={`/ogloszenie/${jobOfferId}`} className='job-tile__btn'>
           Aplikuj teraz{' '}
           <MdChevronRight style={{ width: '15px', height: '15px' }} />
         </Link>
@@ -63,8 +69,10 @@ const JobTile = ({
             style={{ width: '15px', height: '15px' }}
           />
         </button>
-        <button className='job-tile__btn'>
-          <MdOutlineClose style={{ width: '15px', height: '15px' }} />
+        <button className='job-tile__btn' onClick={handleRemove}>
+          <MdOutlineClose
+            style={{ width: '15px', height: '15px', pointerEvents: 'none' }}
+          />
         </button>
       </div>
     </div>
@@ -72,6 +80,7 @@ const JobTile = ({
 };
 
 JobTile.propTypes = {
+  jobOfferId: PropTypes.number.isRequired,
   company: PropTypes.string.isRequired,
   salaryFrom: PropTypes.number.isRequired,
   salaryTo: PropTypes.number,

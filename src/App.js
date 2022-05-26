@@ -41,7 +41,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/wyszukiwarka' element={<SearchPage />} />
-            <Route path='/ogloszenie/' element={<JobAd />} />
+            <Route path='/ogloszenie/:jobOfferId' element={<JobAd />} />
             <Route path='/profil-firmy' element={<CompanyProfile />} />
             <Route path='/logowanie' element={<Login />} />
             <Route path='/panel-pracodawcy' element={<EmployersPage />} />
