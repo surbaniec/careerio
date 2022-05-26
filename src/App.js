@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { createContext, useState } from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
+import { fetchJobOffers } from './actions/jobOfferActions';
 
 import Header from './layout/Header/Header';
 import Home from './pages/Home/Home';
@@ -15,10 +16,9 @@ import JobAd from './pages/JobAd/JobAd';
 import CompanyProfile from './pages/CompanyProfile/CompanyProfile';
 import Login from './pages/Login/Login';
 import EmployersPage from './pages/EmployersPage/EmployersPage';
-import { fetchJobOffers } from './actions/jobOfferActions';
 
 //Dispatch the fetchJobOffers() beofre our root component renders
-// store.dispatch(fetchJobOffers());
+store.dispatch(fetchJobOffers());
 
 export const SubmenuOpenContext = createContext({
   submenuOpen: false,
@@ -41,7 +41,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/wyszukiwarka' element={<SearchPage />} />
-            <Route path='/ogloszenie' element={<JobAd />} />
+            <Route path='/ogloszenie/' element={<JobAd />} />
             <Route path='/profil-firmy' element={<CompanyProfile />} />
             <Route path='/logowanie' element={<Login />} />
             <Route path='/panel-pracodawcy' element={<EmployersPage />} />

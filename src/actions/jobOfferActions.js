@@ -6,6 +6,8 @@ import {
   UPDATE_JOB_OFFER,
   DELETE_JOB_OFFER,
   FETCH_JOB_OFFERS_SUCCESS,
+  SET_LOADING,
+  JOB_OFFERS_ERROR,
 } from './types';
 
 //synchronous action creator
@@ -18,12 +20,23 @@ const fetchJobOffersSuccess = (jobOffers) => ({
 export const fetchJobOffers = () => {
   return async (dispatch) => {
     try {
+      setLoading();
       const jobOffers = await axios(
         'https://careerio.azurewebsites.net/JobOffer'
       );
-      dispatch(fetchJobOffersSuccess(jobOffers));
-    } catch (e) {
-      console.log(e);
+      const jobOffersData = await jobOffers.data;
+      dispatch(fetchJobOffersSuccess(jobOffersData));
+    } catch (err) {
+      dispatch({
+        type: JOB_OFFERS_ERROR,
+        payload: err.response.statusText,
+      });
     }
+  };
+};
+
+export const setLoading = () => {
+  return {
+    type: SET_LOADING,
   };
 };

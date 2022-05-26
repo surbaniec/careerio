@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
 import './JobAd.scss';
 import { FiHeart } from 'react-icons/fi';
 import { MdChevronRight, MdOutlineClose } from 'react-icons/md';
@@ -10,6 +11,11 @@ import JobTile from '../../components/JobTile/JobTile';
 import { jobAdvertisements } from '../../data';
 
 const JobAd = () => {
+  // const { jobOfferId } = useParams();
+
+  // const jobOffer = jobOffers.find((jobOffer) => jobOffer.id === jobOfferId);
+  // console.log(jobOffer);
+
   const toggleFavourite = () => {
     document.querySelector('.heart-icon').classList.toggle('favourite');
   };
@@ -177,26 +183,15 @@ const JobAd = () => {
               logo={jobAdvertisements[3].logo}
               jobTitle={jobAdvertisements[3].jobTitle}
             />
-
-            {/* {jobAdvertisements.map((job) => {
-              return (
-                <JobTile
-                  key={job.jobAdvertisementId}
-                  company={job.company}
-                  salaryFrom={job.salaryFrom}
-                  salaryTo={job.salaryTo}
-                  province={job.province}
-                  city={job.city}
-                  logo={job.logo}
-                  jobTitle={job.jobTitle}
-                />
-              );
-            })} */}
           </div>
         </aside>
       </div>
     </section>
   );
 };
+
+// const mapStateToProps = (state) => {
+//   return { jobOffers: state.jobOffer.data };
+// };
 
 export default JobAd;
