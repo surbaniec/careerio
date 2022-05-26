@@ -17,6 +17,7 @@ import JobAd from './pages/JobAd/JobAd';
 import CompanyProfile from './pages/CompanyProfile/CompanyProfile';
 import Login from './pages/Login/Login';
 import EmployersPage from './pages/EmployersPage/EmployersPage';
+import NotFound from './pages/NotFound/NotFound';
 
 //Dispatch the fetchJobOffers() beofre our root component renders
 store.dispatch(fetchJobOffers());
@@ -50,6 +51,7 @@ function App() {
             />
             <Route path='/logowanie' element={<Login />} />
             <Route path='/panel-pracodawcy' element={<EmployersPage />} />
+            <Route path='*' element={<NotFound />} />
           </Routes>
           <Footer />
         </>
