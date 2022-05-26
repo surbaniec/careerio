@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
@@ -20,6 +20,7 @@ const JobAd = ({ jobOffers: { jobOffers, loading } }) => {
         jobOffers.find((jobOffer) => jobOffer.id === parseInt(jobOfferId))
       );
     }
+    //eslint-disable-next-line
   }, [loading, jobOfferId]);
 
   const toggleFavourite = () => {
@@ -56,7 +57,10 @@ const JobAd = ({ jobOffers: { jobOffers, loading } }) => {
                   </div>
                 </div>
                 <div className='job-ad__controls-wrapper'>
-                  <Link className='job-ad__link' to='/profil-firmy'>
+                  <Link
+                    className='job-ad__link'
+                    to={`/profil-firmy/${selectedJobOffer.companyId}`}
+                  >
                     <IoPersonOutline style={{ marginRight: '3px' }} /> Odwiedź
                     profil firmy
                   </Link>

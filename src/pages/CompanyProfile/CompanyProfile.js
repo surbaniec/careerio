@@ -1,14 +1,30 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import './CompanyProfile.scss';
-import { Link } from 'react-router-dom';
-import { FiHeart, FiLink } from 'react-icons/fi';
+import { Link, useParams } from 'react-router-dom';
+import { FiLink } from 'react-icons/fi';
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
-import { MdChevronRight, MdOutlineClose } from 'react-icons/md';
+import { MdChevronRight } from 'react-icons/md';
 import { HiFire } from 'react-icons/hi';
-import { jobAdvertisements } from '../../data';
 import JobTile from '../../components/JobTile/JobTile';
 
-const CompanyProfile = () => {
+const CompanyProfile = ({
+  companies: { companies, loading },
+  jobOffers: { jobOffers },
+}) => {
+  const { companyId } = useParams();
+  const [selectedCompany, setSelectedCompany] = useState(null);
+
+  useEffect(() => {
+    if (loading === false) {
+      setSelectedCompany(
+        companies.find((company) => company.id === parseInt(companyId))
+      );
+    }
+    //eslint-disable-next-line
+  }, [loading, companyId]);
+
   return (
     <section className='company-profile__container'>
       <div className='company-profile__background-wrapper'>
@@ -19,228 +35,288 @@ const CompanyProfile = () => {
         />
       </div>
       <div className='company-profile__wrapper'>
-        <div className='company-profile'>
-          <header className='company-profile__header'>
-            <div className='company-profile__header-company-info'>
-              <img
-                src='../../assets/company-logo.png'
-                alt=''
-                className='company-profile__logo'
-              />
-              <div className='company-profile__header-company-name-wrapper'>
-                <h2 className='company-profile__company-name'>UI CENTER SGS</h2>
-                <span className='company-profile__company-desc'>
-                  Digital Agency Katowice
-                </span>
-              </div>
-            </div>
-            <div className='company-profile__controls-wrapper'>
-              <Link className='company-profile__link' to='/'>
-                Subskrybuj oferty firmy
-              </Link>
-              <div className='company-profile__controls'>
-                <Link className='company-profile__link' to='/'>
-                  <FiLink />
-                </Link>
-                <Link className='company-profile__link' to='/'>
-                  <FaFacebookF />
-                </Link>
-                <Link className='company-profile__link' to='/'>
-                  <FaTwitter />
-                </Link>
-                <Link className='company-profile__link' to='/'>
-                  <FaLinkedinIn />
-                </Link>
-              </div>
-            </div>
-          </header>
-          <div className='company-profile__informations'>
-            <div className='company-profile__info-wrapper'>
-              <div className='company-profile__info-icon-container'>
-                <HiFire style={{ width: '15px', height: '15px' }} />
-              </div>
-              <span className='company-profile__info-title'>Lokalizacja:</span>
-              <span className='company-profile__info'>
-                Mickiewicza 29b, Katowice 40-001, śląskie
-              </span>
-            </div>
-            <div className='company-profile__info-wrapper'>
-              <div className='company-profile__info-icon-container'>
-                <HiFire style={{ width: '15px', height: '15px' }} />
-              </div>
-              <span className='company-profile__info-title'>
-                Wielkość firmy
-              </span>
-              <span className='company-profile__info'>80+</span>
-            </div>
-            <div className='company-profile__info-wrapper'>
-              <div className='company-profile__info-icon-container'>
-                <HiFire style={{ width: '15px', height: '15px' }} />
-              </div>
-              <span className='company-profile__info-title'>Branża:</span>
-              <span className='company-profile__info'>Digital Agency</span>
-            </div>
+        {!loading && selectedCompany !== null && (
+          <>
+            <div className='company-profile'>
+              <header className='company-profile__header'>
+                <div className='company-profile__header-company-info'>
+                  <img
+                    src={selectedCompany.imageUrl}
+                    alt={selectedCompany.name}
+                    className='company-profile__logo'
+                  />
+                  <div className='company-profile__header-company-name-wrapper'>
+                    <h2 className='company-profile__company-name'>
+                      {selectedCompany.name}
+                    </h2>
+                    <span className='company-profile__company-desc'>
+                      {selectedCompany.description}
+                    </span>
+                  </div>
+                </div>
+                <div className='company-profile__controls-wrapper'>
+                  <Link className='company-profile__link' to='/'>
+                    Subskrybuj oferty firmy
+                  </Link>
+                  <div className='company-profile__controls'>
+                    <Link
+                      className='company-profile__link'
+                      to={selectedCompany.url}
+                    >
+                      <FiLink />
+                    </Link>
+                    <Link className='company-profile__link' to='/'>
+                      <FaFacebookF />
+                    </Link>
+                    <Link className='company-profile__link' to='/'>
+                      <FaTwitter />
+                    </Link>
+                    <Link className='company-profile__link' to='/'>
+                      <FaLinkedinIn />
+                    </Link>
+                  </div>
+                </div>
+              </header>
+              <div className='company-profile__informations'>
+                <div className='company-profile__info-wrapper'>
+                  <div className='company-profile__info-icon-container'>
+                    <HiFire style={{ width: '15px', height: '15px' }} />
+                  </div>
+                  <span className='company-profile__info-title'>
+                    Lokalizacja:
+                  </span>
+                  <span className='company-profile__info'>
+                    {selectedCompany.adress.street}
+                    {selectedCompany.adress.city}
+                    {selectedCompany.adress.postCode}
+                    {selectedCompany.adress.province}
+                  </span>
+                </div>
+                <div className='company-profile__info-wrapper'>
+                  <div className='company-profile__info-icon-container'>
+                    <HiFire style={{ width: '15px', height: '15px' }} />
+                  </div>
+                  <span className='company-profile__info-title'>
+                    Wielkość firmy
+                  </span>
+                  <span className='company-profile__info'>
+                    {selectedCompany.numberOfEmployees}
+                  </span>
+                </div>
+                <div className='company-profile__info-wrapper'>
+                  <div className='company-profile__info-icon-container'>
+                    <HiFire style={{ width: '15px', height: '15px' }} />
+                  </div>
+                  <span className='company-profile__info-title'>Branża:</span>
+                  <span className='company-profile__info'>Digital Agency</span>
+                </div>
 
-            <div className='company-profile__info-wrapper'>
-              <div className='company-profile__info-icon-container'>
-                <HiFire style={{ width: '15px', height: '15px' }} />
+                <div className='company-profile__info-wrapper'>
+                  <div className='company-profile__info-icon-container'>
+                    <HiFire style={{ width: '15px', height: '15px' }} />
+                  </div>
+                  <span className='company-profile__info-title'>Założona</span>
+                  <span className='company-profile__info'>2015</span>
+                </div>
+                <div className='company-profile__info-wrapper'>
+                  <div className='company-profile__info-icon-container'>
+                    <HiFire style={{ width: '15px', height: '15px' }} />
+                  </div>
+                  <span className='company-profile__info-title'>
+                    Pracujemy z branżami:
+                  </span>
+                  <span className='company-profile__badges-container'>
+                    <div className='company-profile__badge'>Retail</div>
+                    <div className='company-profile__badge'>Fintech</div>
+                    <div className='company-profile__badge'>Banking</div>
+                  </span>
+                </div>
               </div>
-              <span className='company-profile__info-title'>Założona</span>
-              <span className='company-profile__info'>2015</span>
-            </div>
-            <div className='company-profile__info-wrapper'>
-              <div className='company-profile__info-icon-container'>
-                <HiFire style={{ width: '15px', height: '15px' }} />
+              <div className='company-profile__section'>
+                <h2 className='company-profile__section-title'>O firmie</h2>
+                <div className='company-profile__about'>
+                  <p className='company-profile__about-text'>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Magnam adipisci rem perspiciatis eaque unde in neque
+                    molestiae facilis eos quis? Sint voluptas, vero delectus
+                    magni assumenda asperiores alias repudiandae dolorum
+                    dignissimos, impedit aliquam qui, sunt omnis obcaecati nobis
+                    expedita illum eum ex. Voluptates ipsa error blanditiis est
+                    officia quaerat unde?
+                  </p>
+                  <p className='company-profile__about-text'>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Magnam adipisci rem perspiciatis eaque unde in neque
+                    molestiae facilis eos quis? Sint voluptas, vero delectus
+                    magni assumenda asperiores alias repudiandae dolorum
+                    dignissimos, impedit aliquam qui, sunt omnis obcaecati nobis
+                    expedita illum eum ex. Voluptates ipsa error blanditiis est
+                    officia quaerat unde?
+                  </p>
+                  <p className='company-profile__about-text'>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Magnam adipisci rem perspiciatis eaque unde in neque
+                    molestiae facilis eos quis? Sint voluptas, vero delectus
+                    magni assumenda asperiores alias repudiandae dolorum
+                    dignissimos, impedit aliquam qui, sunt omnis obcaecati nobis
+                    expedita illum eum ex. Voluptates ipsa error blanditiis est
+                    officia quaerat unde?
+                  </p>
+                </div>
               </div>
-              <span className='company-profile__info-title'>
-                Pracujemy z branżami:
-              </span>
-              <span className='company-profile__badges-container'>
-                <div className='company-profile__badge'>Retail</div>
-                <div className='company-profile__badge'>Fintech</div>
-                <div className='company-profile__badge'>Banking</div>
-              </span>
+              <div className='company-profile__section'>
+                <h2 className='company-profile__section-title'>
+                  Technologie i oprogramowanie
+                </h2>
+                <div className='company-profile__badges-container'>
+                  <div className='company-profile__badge'>Figma</div>
+                  <div className='company-profile__badge'>UxPin</div>
+                  <div className='company-profile__badge'>Jira</div>
+                  <div className='company-profile__badge'>Adobe Xd</div>
+                  <div className='company-profile__badge'>Adobe Photoshop</div>
+                </div>
+              </div>
+              <div className='company-profile__section'>
+                <h2 className='company-profile__section-title'>
+                  Benefity i udogodnienia
+                </h2>
+                <div className='company-profile__badges-container'>
+                  <div className='company-profile__badge'>Praca zdalna</div>
+                  <div className='company-profile__badge'>Darmowa kawa</div>
+                  <div className='company-profile__badge'>Kuchnia</div>
+                  <div className='company-profile__badge'>Parking</div>
+                </div>
+              </div>
+              <div className='company-profile__section'>
+                <h2 className='company-profile__section-title'>
+                  Galeria firmy
+                </h2>
+                <div className='company-profile__gallery'>
+                  <img
+                    className='company-profile__gallery-img'
+                    src='../../../assets/company-gallery-1.png'
+                    alt=''
+                  />
+                  <img
+                    className='company-profile__gallery-img'
+                    src='../../../assets/company-gallery-2.png'
+                    alt=''
+                  />
+                  <img
+                    className='company-profile__gallery-img'
+                    src='../../../assets/company-gallery-3.png'
+                    alt=''
+                  />
+                  <img
+                    className='company-profile__gallery-img'
+                    src='../../../assets/company-gallery-4.png'
+                    alt=''
+                  />
+                  <img
+                    className='company-profile__gallery-img'
+                    src='../../../assets/company-gallery-5.png'
+                    alt=''
+                  />
+                  <img
+                    className='company-profile__gallery-img'
+                    src='../../../assets/company-gallery-6.png'
+                    alt=''
+                  />
+                  <img
+                    className='company-profile__gallery-img'
+                    src='../../../assets/company-gallery-7.png'
+                    alt=''
+                  />
+                  <img
+                    className='company-profile__gallery-img'
+                    src='../../../assets/company-gallery-8.png'
+                    alt=''
+                  />
+                  <img
+                    className='company-profile__gallery-img'
+                    src='../../../assets/company-gallery-9.png'
+                    alt=''
+                  />
+                  <img
+                    className='company-profile__gallery-img'
+                    src='../../../assets/company-gallery-10.png'
+                    alt=''
+                  />
+                  <img
+                    className='company-profile__gallery-img'
+                    src='../../../assets/company-gallery-11.png'
+                    alt=''
+                  />
+                  <button className='company-profile__gallery-btn'>
+                    Pokaż wszystkie{' '}
+                    <MdChevronRight style={{ width: '20px', height: '20px' }} />
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-          <div className='company-profile__section'>
-            <h2 className='company-profile__section-title'>O firmie</h2>
-            <div className='company-profile__about'>
-              <p className='company-profile__about-text'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam
-                adipisci rem perspiciatis eaque unde in neque molestiae facilis
-                eos quis? Sint voluptas, vero delectus magni assumenda
-                asperiores alias repudiandae dolorum dignissimos, impedit
-                aliquam qui, sunt omnis obcaecati nobis expedita illum eum ex.
-                Voluptates ipsa error blanditiis est officia quaerat unde?
-              </p>
-              <p className='company-profile__about-text'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam
-                adipisci rem perspiciatis eaque unde in neque molestiae facilis
-                eos quis? Sint voluptas, vero delectus magni assumenda
-                asperiores alias repudiandae dolorum dignissimos, impedit
-                aliquam qui, sunt omnis obcaecati nobis expedita illum eum ex.
-                Voluptates ipsa error blanditiis est officia quaerat unde?
-              </p>
-              <p className='company-profile__about-text'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam
-                adipisci rem perspiciatis eaque unde in neque molestiae facilis
-                eos quis? Sint voluptas, vero delectus magni assumenda
-                asperiores alias repudiandae dolorum dignissimos, impedit
-                aliquam qui, sunt omnis obcaecati nobis expedita illum eum ex.
-                Voluptates ipsa error blanditiis est officia quaerat unde?
-              </p>
-            </div>
-          </div>
-          <div className='company-profile__section'>
-            <h2 className='company-profile__section-title'>
-              Technologie i oprogramowanie
-            </h2>
-            <div className='company-profile__badges-container'>
-              <div className='company-profile__badge'>Figma</div>
-              <div className='company-profile__badge'>UxPin</div>
-              <div className='company-profile__badge'>Jira</div>
-              <div className='company-profile__badge'>Adobe Xd</div>
-              <div className='company-profile__badge'>Adobe Photoshop</div>
-            </div>
-          </div>
-          <div className='company-profile__section'>
-            <h2 className='company-profile__section-title'>
-              Benefity i udogodnienia
-            </h2>
-            <div className='company-profile__badges-container'>
-              <div className='company-profile__badge'>Praca zdalna</div>
-              <div className='company-profile__badge'>Darmowa kawa</div>
-              <div className='company-profile__badge'>Kuchnia</div>
-              <div className='company-profile__badge'>Parking</div>
-            </div>
-          </div>
-          <div className='company-profile__section'>
-            <h2 className='company-profile__section-title'>Galeria firmy</h2>
-            <div className='company-profile__gallery'>
-              <img
-                className='company-profile__gallery-img'
-                src='../../../assets/company-gallery-1.png'
-                alt=''
-              />
-              <img
-                className='company-profile__gallery-img'
-                src='../../../assets/company-gallery-2.png'
-                alt=''
-              />
-              <img
-                className='company-profile__gallery-img'
-                src='../../../assets/company-gallery-3.png'
-                alt=''
-              />
-              <img
-                className='company-profile__gallery-img'
-                src='../../../assets/company-gallery-4.png'
-                alt=''
-              />
-              <img
-                className='company-profile__gallery-img'
-                src='../../../assets/company-gallery-5.png'
-                alt=''
-              />
-              <img
-                className='company-profile__gallery-img'
-                src='../../../assets/company-gallery-6.png'
-                alt=''
-              />
-              <img
-                className='company-profile__gallery-img'
-                src='../../../assets/company-gallery-7.png'
-                alt=''
-              />
-              <img
-                className='company-profile__gallery-img'
-                src='../../../assets/company-gallery-8.png'
-                alt=''
-              />
-              <img
-                className='company-profile__gallery-img'
-                src='../../../assets/company-gallery-9.png'
-                alt=''
-              />
-              <img
-                className='company-profile__gallery-img'
-                src='../../../assets/company-gallery-10.png'
-                alt=''
-              />
-              <img
-                className='company-profile__gallery-img'
-                src='../../../assets/company-gallery-11.png'
-                alt=''
-              />
-              <button className='company-profile__gallery-btn'>
-                Pokaż wszystkie{' '}
-                <MdChevronRight style={{ width: '20px', height: '20px' }} />
-              </button>
-            </div>
-          </div>
-        </div>
-        <aside className='company-profile__section'>
-          <h2 className='company-profile__section-title'>Oferty Firmy</h2>
-          <div className='company-profile__ads-container'>
-            {jobAdvertisements.map((job) => {
-              return (
+            <aside className='company-profile__section'>
+              <h2 className='company-profile__section-title'>Oferty Firmy</h2>
+              <div className='company-profile__ads-container'>
                 <JobTile
-                  key={job.jobAdvertisementId}
-                  company={job.company}
-                  salaryFrom={job.salaryFrom}
-                  salaryTo={job.salaryTo}
-                  province={job.province}
-                  city={job.city}
-                  logo={job.logo}
-                  jobTitle={job.jobTitle}
+                  key={jobOffers[0].id}
+                  jobOfferId={jobOffers[0].id}
+                  company={jobOffers[0].company.name}
+                  salaryFrom={jobOffers[0].salaryFrom}
+                  salaryTo={jobOffers[0].salaryTo}
+                  province={jobOffers[0].company.adress.province}
+                  city={jobOffers[0].company.adress.city}
+                  logo={jobOffers[0].company.imageUrl}
+                  jobTitle={jobOffers[1].jobTitle}
                 />
-              );
-            })}
-          </div>
-        </aside>
+                <JobTile
+                  key={jobOffers[1].id}
+                  jobOfferId={jobOffers[1].id}
+                  company={jobOffers[1].company.name}
+                  salaryFrom={jobOffers[1].salaryFrom}
+                  salaryTo={jobOffers[1].salaryTo}
+                  province={jobOffers[1].company.adress.province}
+                  city={jobOffers[1].company.adress.city}
+                  logo={jobOffers[1].company.imageUrl}
+                  jobTitle={jobOffers[1].jobTitle}
+                />
+                <JobTile
+                  key={jobOffers[2].id}
+                  jobOfferId={jobOffers[2].id}
+                  company={jobOffers[2].company.name}
+                  salaryFrom={jobOffers[2].salaryFrom}
+                  salaryTo={jobOffers[2].salaryTo}
+                  province={jobOffers[2].company.adress.province}
+                  city={jobOffers[2].company.adress.city}
+                  logo={jobOffers[2].company.imageUrl}
+                  jobTitle={jobOffers[2].jobTitle}
+                />
+                <JobTile
+                  key={jobOffers[3].id}
+                  jobOfferId={jobOffers[3].id}
+                  company={jobOffers[3].company.name}
+                  salaryFrom={jobOffers[3].salaryFrom}
+                  salaryTo={jobOffers[3].salaryTo}
+                  province={jobOffers[3].company.adress.province}
+                  city={jobOffers[3].company.adress.city}
+                  logo={jobOffers[3].company.imageUrl}
+                  jobTitle={jobOffers[3].jobTitle}
+                />
+              </div>
+            </aside>
+          </>
+        )}
       </div>
     </section>
   );
 };
 
-export default CompanyProfile;
+CompanyProfile.propTypes = {
+  companies: PropTypes.object.isRequired,
+  jobOffers: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  return { companies: state.company, jobOffers: state.jobOffer };
+};
+
+export default connect(mapStateToProps)(CompanyProfile);

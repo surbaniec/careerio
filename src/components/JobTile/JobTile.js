@@ -80,7 +80,7 @@ const JobTile = ({
 };
 
 JobTile.propTypes = {
-  jobOfferId: PropTypes.number.isRequired,
+  jobOfferId: PropTypes.number,
   company: PropTypes.string.isRequired,
   salaryFrom: PropTypes.number.isRequired,
   salaryTo: PropTypes.number,
