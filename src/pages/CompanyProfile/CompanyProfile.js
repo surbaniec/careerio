@@ -50,7 +50,7 @@ const CompanyProfile = ({
                       {selectedCompany.name}
                     </h2>
                     <span className='company-profile__company-desc'>
-                      {selectedCompany.description}
+                      {selectedCompany.shortDescription}
                     </span>
                   </div>
                 </div>
@@ -108,15 +108,21 @@ const CompanyProfile = ({
                     <HiFire style={{ width: '15px', height: '15px' }} />
                   </div>
                   <span className='company-profile__info-title'>Branża:</span>
-                  <span className='company-profile__info'>Digital Agency</span>
+                  <span className='company-profile__info'>
+                    {selectedCompany.industry}
+                  </span>
                 </div>
 
                 <div className='company-profile__info-wrapper'>
                   <div className='company-profile__info-icon-container'>
                     <HiFire style={{ width: '15px', height: '15px' }} />
                   </div>
-                  <span className='company-profile__info-title'>Założona</span>
-                  <span className='company-profile__info'>2015</span>
+                  <span className='company-profile__info-title'>
+                    Rok założenia
+                  </span>
+                  <span className='company-profile__info'>
+                    {selectedCompany.dateOfStarting}
+                  </span>
                 </div>
                 <div className='company-profile__info-wrapper'>
                   <div className='company-profile__info-icon-container'>
@@ -126,9 +132,15 @@ const CompanyProfile = ({
                     Pracujemy z branżami:
                   </span>
                   <span className='company-profile__badges-container'>
-                    <div className='company-profile__badge'>Retail</div>
-                    <div className='company-profile__badge'>Fintech</div>
-                    <div className='company-profile__badge'>Banking</div>
+                    {selectedCompany.relatedIndustries.allIndustries.map(
+                      (industry) => {
+                        return (
+                          <div className='company-profile__badge'>
+                            {industry}
+                          </div>
+                        );
+                      }
+                    )}
                   </span>
                 </div>
               </div>
@@ -169,11 +181,15 @@ const CompanyProfile = ({
                   Technologie i oprogramowanie
                 </h2>
                 <div className='company-profile__badges-container'>
-                  <div className='company-profile__badge'>Figma</div>
-                  <div className='company-profile__badge'>UxPin</div>
-                  <div className='company-profile__badge'>Jira</div>
-                  <div className='company-profile__badge'>Adobe Xd</div>
-                  <div className='company-profile__badge'>Adobe Photoshop</div>
+                  {selectedCompany.technologies.allTechnologies.map(
+                    (technology) => {
+                      return (
+                        <div className='company-profile__badge'>
+                          {technology}
+                        </div>
+                      );
+                    }
+                  )}
                 </div>
               </div>
               <div className='company-profile__section'>

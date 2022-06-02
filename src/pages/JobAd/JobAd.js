@@ -108,12 +108,14 @@ const JobAd = ({ jobOffers: { jobOffers, loading } }) => {
                     }
                   </span>
                 </div>
-                <div className='job-ad__info-wrapper'>
-                  <div className='job-ad__info-icon-container'>
-                    <HiFire style={{ width: '15px', height: '15px' }} />
+                {selectedJobOffer.remoteRecruitment.isRemoteRecruitment && (
+                  <div className='job-ad__info-wrapper'>
+                    <div className='job-ad__info-icon-container'>
+                      <HiFire style={{ width: '15px', height: '15px' }} />
+                    </div>
+                    <span className='job-ad__info'>rekrutacja zdalna</span>
                   </div>
-                  <span className='job-ad__info'>rekrutacja zdalna</span>
-                </div>
+                )}
                 <div className='job-ad__info-wrapper'>
                   <div className='job-ad__info-icon-container'>
                     <HiFire style={{ width: '15px', height: '15px' }} />
