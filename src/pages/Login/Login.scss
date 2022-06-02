@@ -64,6 +64,10 @@
   margin-top: 15px;
 }
 
+input:focus {
+  outline-color: var(--accent-color);
+}
+
 input.login-name,
 input.login-password {
   font-size: 10px;

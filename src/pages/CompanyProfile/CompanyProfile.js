@@ -8,6 +8,10 @@ import { FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
 import { MdChevronRight } from 'react-icons/md';
 import { HiFire } from 'react-icons/hi';
 import JobTile from '../../components/JobTile/JobTile';
+import store from '../../store';
+import { fetchCompanies } from '../../actions/companyActions';
+
+store.dispatch(fetchCompanies());
 
 const CompanyProfile = ({
   jobOffers: { jobOffers },
@@ -41,11 +45,13 @@ const CompanyProfile = ({
               <header className='company-profile__header'>
                 <div className='company-profile__header-company-info'>
                   <div className='company-profile__header-logo-wrapper'>
-                    <img
-                      src={selectedCompany.imageUrl}
-                      alt={selectedCompany.name}
-                      className='company-profile__logo'
-                    />
+                    {selectedCompany.imageUrl && (
+                      <img
+                        src={selectedCompany.imageUrl}
+                        alt={selectedCompany.name}
+                        className='company-profile__logo'
+                      />
+                    )}
                   </div>
 
                   <div className='company-profile__header-company-name-wrapper'>
@@ -62,12 +68,15 @@ const CompanyProfile = ({
                     Subskrybuj oferty
                   </Link>
                   <div className='company-profile__controls'>
-                    <Link
-                      className='company-profile__link'
-                      to={selectedCompany.url}
-                    >
-                      <FiLink />
-                    </Link>
+                    {selectedCompany.url && (
+                      <Link
+                        className='company-profile__link'
+                        to={selectedCompany.url}
+                      >
+                        <FiLink />
+                      </Link>
+                    )}
+
                     <Link className='company-profile__link' to='/'>
                       <FaFacebookF />
                     </Link>
@@ -95,57 +104,68 @@ const CompanyProfile = ({
                     {selectedCompany.adress.province}
                   </span>
                 </div>
-                <div className='company-profile__info-wrapper'>
-                  <div className='company-profile__info-icon-container'>
-                    <HiFire style={{ width: '15px', height: '15px' }} />
-                  </div>
-                  <span className='company-profile__info-title'>
-                    Wielkość firmy
-                  </span>
-                  <span className='company-profile__info'>
-                    {selectedCompany.numberOfEmployees}
-                  </span>
-                </div>
-                <div className='company-profile__info-wrapper'>
-                  <div className='company-profile__info-icon-container'>
-                    <HiFire style={{ width: '15px', height: '15px' }} />
-                  </div>
-                  <span className='company-profile__info-title'>Branża:</span>
-                  <span className='company-profile__info'>
-                    {selectedCompany.industry}
-                  </span>
-                </div>
 
-                <div className='company-profile__info-wrapper'>
-                  <div className='company-profile__info-icon-container'>
-                    <HiFire style={{ width: '15px', height: '15px' }} />
+                {selectedCompany.numberOfEmployees && (
+                  <div className='company-profile__info-wrapper'>
+                    <div className='company-profile__info-icon-container'>
+                      <HiFire style={{ width: '15px', height: '15px' }} />
+                    </div>
+                    <span className='company-profile__info-title'>
+                      Wielkość firmy
+                    </span>
+                    <span className='company-profile__info'>
+                      {selectedCompany.numberOfEmployees}
+                    </span>
                   </div>
-                  <span className='company-profile__info-title'>
-                    Rok założenia
-                  </span>
-                  <span className='company-profile__info'>
-                    {selectedCompany.dateOfStarting}
-                  </span>
-                </div>
-                <div className='company-profile__info-wrapper'>
-                  <div className='company-profile__info-icon-container'>
-                    <HiFire style={{ width: '15px', height: '15px' }} />
+                )}
+
+                {selectedCompany.industry && (
+                  <div className='company-profile__info-wrapper'>
+                    <div className='company-profile__info-icon-container'>
+                      <HiFire style={{ width: '15px', height: '15px' }} />
+                    </div>
+                    <span className='company-profile__info-title'>Branża:</span>
+                    <span className='company-profile__info'>
+                      {selectedCompany.industry}
+                    </span>
                   </div>
-                  <span className='company-profile__info-title'>
-                    Pracujemy z branżami:
-                  </span>
-                  <span className='company-profile__badges-container'>
-                    {selectedCompany.relatedIndustries.allIndustries.map(
-                      (industry) => {
-                        return (
-                          <div className='company-profile__badge'>
-                            {industry}
-                          </div>
-                        );
-                      }
-                    )}
-                  </span>
-                </div>
+                )}
+
+                {selectedCompany.dateOfStarting && (
+                  <div className='company-profile__info-wrapper'>
+                    <div className='company-profile__info-icon-container'>
+                      <HiFire style={{ width: '15px', height: '15px' }} />
+                    </div>
+                    <span className='company-profile__info-title'>
+                      Rok założenia
+                    </span>
+                    <span className='company-profile__info'>
+                      {selectedCompany.dateOfStarting}
+                    </span>
+                  </div>
+                )}
+
+                {selectedCompany.relatedIndustries.allIndustries && (
+                  <div className='company-profile__info-wrapper'>
+                    <div className='company-profile__info-icon-container'>
+                      <HiFire style={{ width: '15px', height: '15px' }} />
+                    </div>
+                    <span className='company-profile__info-title'>
+                      Pracujemy z branżami:
+                    </span>
+                    <span className='company-profile__badges-container'>
+                      {selectedCompany.relatedIndustries.allIndustries.map(
+                        (industry) => {
+                          return (
+                            <div className='company-profile__badge'>
+                              {industry}
+                            </div>
+                          );
+                        }
+                      )}
+                    </span>
+                  </div>
+                )}
               </div>
               <div className='company-profile__section'>
                 <h2 className='company-profile__section-title'>O firmie</h2>
@@ -179,33 +199,41 @@ const CompanyProfile = ({
                   </p>
                 </div>
               </div>
-              <div className='company-profile__section'>
-                <h2 className='company-profile__section-title'>
-                  Technologie i oprogramowanie
-                </h2>
-                <div className='company-profile__badges-container'>
-                  {selectedCompany.technologies.allTechnologies.map(
-                    (technology) => {
+
+              {selectedCompany.technologies.allTechnologies && (
+                <div className='company-profile__section'>
+                  <h2 className='company-profile__section-title'>
+                    Technologie i oprogramowanie
+                  </h2>
+                  <div className='company-profile__badges-container'>
+                    {selectedCompany.technologies.allTechnologies.map(
+                      (technology) => {
+                        return (
+                          <div className='company-profile__badge'>
+                            {technology}
+                          </div>
+                        );
+                      }
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {selectedCompany.benefits.benefit && (
+                <div className='company-profile__section'>
+                  <h2 className='company-profile__section-title'>
+                    Benefity i udogodnienia
+                  </h2>
+                  <div className='company-profile__badges-container'>
+                    {selectedCompany.benefits.benefit.map((benefit) => {
                       return (
-                        <div className='company-profile__badge'>
-                          {technology}
-                        </div>
+                        <div className='company-profile__badge'>{benefit}</div>
                       );
-                    }
-                  )}
+                    })}
+                  </div>
                 </div>
-              </div>
-              <div className='company-profile__section'>
-                <h2 className='company-profile__section-title'>
-                  Benefity i udogodnienia
-                </h2>
-                <div className='company-profile__badges-container'>
-                  <div className='company-profile__badge'>Praca zdalna</div>
-                  <div className='company-profile__badge'>Darmowa kawa</div>
-                  <div className='company-profile__badge'>Kuchnia</div>
-                  <div className='company-profile__badge'>Parking</div>
-                </div>
-              </div>
+              )}
+
               <div className='company-profile__section'>
                 <h2 className='company-profile__section-title'>
                   Galeria firmy

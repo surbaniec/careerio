@@ -43,11 +43,13 @@ const JobAd = ({ jobOffers: { jobOffers, loading } }) => {
               <header className='job-ad__header'>
                 <div className='job-ad__header-company-info'>
                   <div className='job-ad__header-logo-wrapper'>
-                    <img
-                      src={selectedJobOffer.company.imageUrl}
-                      alt={selectedJobOffer.company.name}
-                      className='job-ad__logo'
-                    />
+                    {selectedJobOffer.company.imageUrl && (
+                      <img
+                        src={selectedJobOffer.company.imageUrl}
+                        alt={selectedJobOffer.company.name}
+                        className='job-ad__logo'
+                      />
+                    )}
                   </div>
 
                   <div className='job-ad__header-company-name-wrapper'>
@@ -92,25 +94,35 @@ const JobAd = ({ jobOffers: { jobOffers, loading } }) => {
                     {selectedJobOffer.company.adress.province}
                   </span>
                 </div>
-                <div className='job-ad__info-wrapper'>
-                  <div className='job-ad__info-icon-container'>
-                    <HiFire style={{ width: '15px', height: '15px' }} />
+                {selectedJobOffer.typeOfContract && (
+                  <div className='job-ad__info-wrapper'>
+                    <div className='job-ad__info-icon-container'>
+                      <HiFire style={{ width: '15px', height: '15px' }} />
+                    </div>
+                    <span className='job-ad__info'>
+                      {
+                        selectedJobOffer.typeOfContract
+                          .typeOfContractDescription
+                      }
+                    </span>
                   </div>
-                  <span className='job-ad__info'>
-                    {selectedJobOffer.typeOfContract.typeOfContractDescription}
-                  </span>
-                </div>
-                <div className='job-ad__info-wrapper'>
-                  <div className='job-ad__info-icon-container'>
-                    <HiFire style={{ width: '15px', height: '15px' }} />
+                )}
+
+                {selectedJobOffer.experienceLevel
+                  .experienceLevelDescription && (
+                  <div className='job-ad__info-wrapper'>
+                    <div className='job-ad__info-icon-container'>
+                      <HiFire style={{ width: '15px', height: '15px' }} />
+                    </div>
+                    <span className='job-ad__info'>
+                      {
+                        selectedJobOffer.experienceLevel
+                          .experienceLevelDescription
+                      }
+                    </span>
                   </div>
-                  <span className='job-ad__info'>
-                    {
-                      selectedJobOffer.experienceLevel
-                        .experienceLevelDescription
-                    }
-                  </span>
-                </div>
+                )}
+
                 {selectedJobOffer.remoteRecruitment.isRemoteRecruitment && (
                   <div className='job-ad__info-wrapper'>
                     <div className='job-ad__info-icon-container'>
@@ -119,6 +131,7 @@ const JobAd = ({ jobOffers: { jobOffers, loading } }) => {
                     <span className='job-ad__info'>rekrutacja zdalna</span>
                   </div>
                 )}
+
                 <div className='job-ad__info-wrapper'>
                   <div className='job-ad__info-icon-container'>
                     <HiFire style={{ width: '15px', height: '15px' }} />
@@ -127,14 +140,18 @@ const JobAd = ({ jobOffers: { jobOffers, loading } }) => {
                     ważne jeszcze 11 dni - do: 27 marca 2022
                   </span>
                 </div>
-                <div className='job-ad__info-wrapper'>
-                  <div className='job-ad__info-icon-container'>
-                    <HiFire style={{ width: '15px', height: '15px' }} />
+
+                {selectedJobOffer.workingHours.workingHoursDescription && (
+                  <div className='job-ad__info-wrapper'>
+                    <div className='job-ad__info-icon-container'>
+                      <HiFire style={{ width: '15px', height: '15px' }} />
+                    </div>
+                    <span className='job-ad__info'>
+                      {selectedJobOffer.workingHours.workingHoursDescription}
+                    </span>
                   </div>
-                  <span className='job-ad__info'>
-                    {selectedJobOffer.workingHours.workingHoursDescription}
-                  </span>
-                </div>
+                )}
+
                 <div className='job-ad__info-wrapper'>
                   <div className='job-ad__info-icon-container'>
                     <HiFire style={{ width: '15px', height: '15px' }} />
@@ -142,40 +159,49 @@ const JobAd = ({ jobOffers: { jobOffers, loading } }) => {
                   <span className='job-ad__info'>praca zdalna</span>
                 </div>
               </div>
-              <div className='duties__container'>
-                <h2 className='duties__title'>Twój zakres obowiązków</h2>
-                <div className='duties__wrapper'>
-                  {selectedJobOffer.responsibilities.allResponsibilities.map(
-                    (responsibility, i) => {
-                      return <ListItem key={i} text={responsibility} />;
-                    }
-                  )}
+
+              {selectedJobOffer.responsibilities.allResponsibilities && (
+                <div className='duties__container'>
+                  <h2 className='duties__title'>Twój zakres obowiązków</h2>
+                  <div className='duties__wrapper'>
+                    {selectedJobOffer.responsibilities.allResponsibilities.map(
+                      (responsibility, i) => {
+                        return <ListItem key={i} text={responsibility} />;
+                      }
+                    )}
+                  </div>
                 </div>
-              </div>
-              <div className='requirements__container'>
-                <h2 className='requirements__title'>
-                  Nasze wymagania wobec Ciebie
-                </h2>
-                <div className='requirements__wrapper'>
-                  {selectedJobOffer.requirements.allRequirements.map(
-                    (requirement, i) => {
-                      return <ListItem key={i} text={requirement} />;
-                    }
-                  )}
+              )}
+
+              {selectedJobOffer.requirements.allRequirements && (
+                <div className='requirements__container'>
+                  <h2 className='requirements__title'>
+                    Nasze wymagania wobec Ciebie
+                  </h2>
+                  <div className='requirements__wrapper'>
+                    {selectedJobOffer.requirements.allRequirements.map(
+                      (requirement, i) => {
+                        return <ListItem key={i} text={requirement} />;
+                      }
+                    )}
+                  </div>
                 </div>
-              </div>
-              <div className='benefits__container'>
-                <h2 className='benefits__title'>
-                  Benefity oferowane przez firmę
-                </h2>
-                <div className='benefits__wrapper'>
-                  {selectedJobOffer.company.benefits.benefit.map(
-                    (benefit, i) => {
-                      return <ListItem key={i} text={benefit} />;
-                    }
-                  )}
+              )}
+
+              {selectedJobOffer.company.benefits.benefit && (
+                <div className='benefits__container'>
+                  <h2 className='benefits__title'>
+                    Benefity oferowane przez firmę
+                  </h2>
+                  <div className='benefits__wrapper'>
+                    {selectedJobOffer.company.benefits.benefit.map(
+                      (benefit, i) => {
+                        return <ListItem key={i} text={benefit} />;
+                      }
+                    )}
+                  </div>
                 </div>
-              </div>
+              )}
             </section>
 
             <aside className='similar-ads'>

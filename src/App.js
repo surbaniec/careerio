@@ -5,7 +5,6 @@ import { createContext, useState } from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
 import { fetchJobOffers } from './actions/jobOfferActions';
-import { fetchCompanies } from './actions/companyActions';
 
 import Header from './layout/Header/Header';
 import Home from './pages/Home/Home';
@@ -21,7 +20,6 @@ import NotFound from './pages/NotFound/NotFound';
 
 //Dispatch the fetchJobOffers() beofre our root component renders
 store.dispatch(fetchJobOffers());
-store.dispatch(fetchCompanies());
 
 export const SubmenuOpenContext = createContext({
   submenuOpen: false,
