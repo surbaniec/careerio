@@ -40,23 +40,26 @@ const CompanyProfile = ({
             <div className='company-profile'>
               <header className='company-profile__header'>
                 <div className='company-profile__header-company-info'>
-                  <img
-                    src={selectedCompany.imageUrl}
-                    alt={selectedCompany.name}
-                    className='company-profile__logo'
-                  />
+                  <div className='company-profile__header-logo-wrapper'>
+                    <img
+                      src={selectedCompany.imageUrl}
+                      alt={selectedCompany.name}
+                      className='company-profile__logo'
+                    />
+                  </div>
+
                   <div className='company-profile__header-company-name-wrapper'>
                     <h2 className='company-profile__company-name'>
                       {selectedCompany.name}
                     </h2>
                     <span className='company-profile__company-desc'>
-                      {selectedCompany.shortDescription}
+                      Lorem ipsum dolor sit amet.
                     </span>
                   </div>
                 </div>
                 <div className='company-profile__controls-wrapper'>
                   <Link className='company-profile__link' to='/'>
-                    Subskrybuj oferty firmy
+                    Subskrybuj oferty
                   </Link>
                   <div className='company-profile__controls'>
                     <Link
@@ -86,9 +89,9 @@ const CompanyProfile = ({
                     Lokalizacja:
                   </span>
                   <span className='company-profile__info'>
-                    {selectedCompany.adress.street}
-                    {selectedCompany.adress.city}
-                    {selectedCompany.adress.postCode}
+                    {selectedCompany.adress.street}, <span> </span>
+                    {selectedCompany.adress.city}, <span> </span>
+                    {selectedCompany.adress.postCode}, <span> </span>
                     {selectedCompany.adress.province}
                   </span>
                 </div>

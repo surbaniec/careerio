@@ -50,9 +50,12 @@
       padding-left: 40px;
     }
 
-    &__categories-wrapper,
+    &__categories-wrapper {
+      padding: 40px 0px 40px 40px;
+    }
+
     &__posts-wrapper {
-      padding: 40px 0 40px 40px;
+      padding: 40px 0 40px 5px;
     }
   }
 }

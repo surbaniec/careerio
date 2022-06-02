@@ -33,18 +33,28 @@
     display: flex;
   }
 
+  &__header-logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 25%;
+  }
+
   &__logo {
-    margin-right: 10px;
+    width: 100%;
+    height: 100%;
   }
 
   &__header-company-name-wrapper {
     height: 100%;
+    margin-left: 10px;
   }
 
   &__company-name {
     font-weight: 700;
     font-size: 1.2rem;
-    line-height: 1.25rem;
+    line-height: 1rem;
     margin-bottom: 2px;
   }
 
@@ -132,6 +142,7 @@
   .duties__container,
   .requirements__container,
   .benefits__container {
+    width: 100%;
     padding: 20px 0 10px 20px;
     overflow-x: hidden;
   }

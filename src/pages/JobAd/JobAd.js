@@ -42,11 +42,14 @@ const JobAd = ({ jobOffers: { jobOffers, loading } }) => {
             <section className='job-ad'>
               <header className='job-ad__header'>
                 <div className='job-ad__header-company-info'>
-                  <img
-                    src={selectedJobOffer.company.imageUrl}
-                    alt={selectedJobOffer.company.name}
-                    className='job-ad__logo'
-                  />
+                  <div className='job-ad__header-logo-wrapper'>
+                    <img
+                      src={selectedJobOffer.company.imageUrl}
+                      alt={selectedJobOffer.company.name}
+                      className='job-ad__logo'
+                    />
+                  </div>
+
                   <div className='job-ad__header-company-name-wrapper'>
                     <h2 className='job-ad__company-name'>
                       {selectedJobOffer.company.name}
@@ -61,12 +64,12 @@ const JobAd = ({ jobOffers: { jobOffers, loading } }) => {
                     className='job-ad__link'
                     to={`/profil-firmy/${selectedJobOffer.companyId}`}
                   >
-                    <IoPersonOutline style={{ marginRight: '3px' }} /> Odwiedź
-                    profil firmy
+                    <IoPersonOutline style={{ marginRight: '3px' }} />
+                    Profil firmy
                   </Link>
                   <div className='job-ad__controls'>
                     <button className='job-ad__btn'>
-                      Aplikuj teraz <MdChevronRight />
+                      Aplikuj <MdChevronRight />
                     </button>
                     <button className='job-ad__btn' onClick={toggleFavourite}>
                       <FiHeart className='heart-icon' />
@@ -83,9 +86,9 @@ const JobAd = ({ jobOffers: { jobOffers, loading } }) => {
                     <HiFire style={{ width: '15px', height: '15px' }} />
                   </div>
                   <span className='job-ad__info'>
-                    {selectedJobOffer.company.adress.street},
-                    {selectedJobOffer.company.adress.city},
-                    {selectedJobOffer.company.adress.postCode},
+                    {selectedJobOffer.company.adress.street}, <span> </span>
+                    {selectedJobOffer.company.adress.city}, <span> </span>
+                    {selectedJobOffer.company.adress.postCode}, <span> </span>
                     {selectedJobOffer.company.adress.province}
                   </span>
                 </div>

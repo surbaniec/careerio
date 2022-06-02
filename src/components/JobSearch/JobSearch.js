@@ -19,7 +19,7 @@ const selectStyles = {
     color: '#575757',
 
     '@media(min-width: 768px)': {
-      fontSize: '1.8rem',
+      fontSize: '1.6rem',
     },
   }),
   control: () => ({
