@@ -59,6 +59,7 @@ const YourActivity = ({ jobOffers: { jobOffers, loading } }) => {
             <>
               <JobTile
                 key={jobOffers[0].id}
+                jobOfferId={jobOffers[0].id}
                 company={jobOffers[0].company.name}
                 salaryFrom={jobOffers[0].salaryFrom}
                 salaryTo={jobOffers[0].salaryTo}
@@ -69,6 +70,7 @@ const YourActivity = ({ jobOffers: { jobOffers, loading } }) => {
               />
               <JobTile
                 key={jobOffers[1].id}
+                jobOfferId={jobOffers[1].id}
                 company={jobOffers[1].company.name}
                 salaryFrom={jobOffers[1].salaryFrom}
                 salaryTo={jobOffers[1].salaryTo}
@@ -79,6 +81,7 @@ const YourActivity = ({ jobOffers: { jobOffers, loading } }) => {
               />
               <JobTile
                 key={jobOffers[2].id}
+                jobOfferId={jobOffers[2].id}
                 company={jobOffers[2].company.name}
                 salaryFrom={jobOffers[2].salaryFrom}
                 salaryTo={jobOffers[2].salaryTo}
@@ -89,6 +92,7 @@ const YourActivity = ({ jobOffers: { jobOffers, loading } }) => {
               />
               <JobTile
                 key={jobOffers[3].id}
+                jobOfferId={jobOffers[3].id}
                 company={jobOffers[3].company.name}
                 salaryFrom={jobOffers[3].salaryFrom}
                 salaryTo={jobOffers[3].salaryTo}

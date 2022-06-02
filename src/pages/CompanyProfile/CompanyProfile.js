@@ -10,8 +10,8 @@ import { HiFire } from 'react-icons/hi';
 import JobTile from '../../components/JobTile/JobTile';
 
 const CompanyProfile = ({
-  companies: { companies, loading },
   jobOffers: { jobOffers },
+  companies: { companies, loading },
 }) => {
   const { companyId } = useParams();
   const [selectedCompany, setSelectedCompany] = useState(null);
@@ -35,7 +35,7 @@ const CompanyProfile = ({
         />
       </div>
       <div className='company-profile__wrapper'>
-        {!loading && selectedCompany !== null && (
+        {!loading && selectedCompany !== null && jobOffers.length > 0 && (
           <>
             <div className='company-profile'>
               <header className='company-profile__header'>
@@ -311,12 +311,12 @@ const CompanyProfile = ({
 };
 
 CompanyProfile.propTypes = {
-  companies: PropTypes.object.isRequired,
   jobOffers: PropTypes.object.isRequired,
+  companies: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => {
-  return { companies: state.company, jobOffers: state.jobOffer };
+  return { jobOffers: state.jobOffer, companies: state.company };
 };
 
 export default connect(mapStateToProps)(CompanyProfile);

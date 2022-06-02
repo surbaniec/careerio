@@ -10,7 +10,7 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  jobOffers: null,
+  jobOffers: [],
   loading: true,
   error: null,
 };

@@ -10,7 +10,7 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  companies: null,
+  companies: [],
   loading: true,
   error: null,
 };

@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import JobTile from '../../../components/JobTile/JobTile';
 import './RecommendedJobs.scss';
 
@@ -58,6 +59,10 @@ const RecommendedJobs = ({ jobOffers: { jobOffers, loading } }) => {
       </div>
     </section>
   );
+};
+
+RecommendedJobs.propTypes = {
+  jobOffers: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => {
