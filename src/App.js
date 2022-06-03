@@ -1,7 +1,7 @@
 import 'normalize.css';
 import './App.scss';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { createContext, useState } from 'react';
+import React, { createContext, useState, Suspense } from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
 import { fetchJobOffers } from './actions/jobOfferActions';
@@ -15,8 +15,12 @@ import ScrollToTop from './utils/ScrollToTop';
 import JobAd from './pages/JobAd/JobAd';
 import CompanyProfile from './pages/CompanyProfile/CompanyProfile';
 import Login from './pages/Login/Login';
-import EmployersPage from './pages/EmployersPage/EmployersPage';
+// import EmployersPage from './pages/EmployersPage/EmployersPage';
 import NotFound from './pages/NotFound/NotFound';
+
+const EmployersPage = React.lazy(() =>
+  import('./pages/EmployersPage/EmployersPage')
+);
 
 //Dispatch the fetchJobOffers() beofre our root component renders
 store.dispatch(fetchJobOffers());
@@ -33,26 +37,28 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        <>
-          <ScrollToTop />
-          <SubmenuOpenContext.Provider value={submenuValue}>
-            <Header />
-            <DesktopSubmenu />
-          </SubmenuOpenContext.Provider>
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/wyszukiwarka' element={<SearchPage />} />
-            <Route path='/ogloszenie/:jobOfferId' element={<JobAd />} />
-            <Route
-              path='/profil-firmy/:companyId'
-              element={<CompanyProfile />}
-            />
-            <Route path='/logowanie' element={<Login />} />
-            <Route path='/panel-pracodawcy' element={<EmployersPage />} />
-            <Route path='*' element={<NotFound />} />
-          </Routes>
-          <Footer />
-        </>
+        <Suspense fallback={<p>Loading...</p>}>
+          <>
+            <ScrollToTop />
+            <SubmenuOpenContext.Provider value={submenuValue}>
+              <Header />
+              <DesktopSubmenu />
+            </SubmenuOpenContext.Provider>
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/wyszukiwarka' element={<SearchPage />} />
+              <Route path='/ogloszenie/:jobOfferId' element={<JobAd />} />
+              <Route
+                path='/profil-firmy/:companyId'
+                element={<CompanyProfile />}
+              />
+              <Route path='/logowanie' element={<Login />} />
+              <Route path='/panel-pracodawcy' element={<EmployersPage />} />
+              <Route path='*' element={<NotFound />} />
+            </Routes>
+            <Footer />
+          </>
+        </Suspense>
       </Router>
     </Provider>
   );
