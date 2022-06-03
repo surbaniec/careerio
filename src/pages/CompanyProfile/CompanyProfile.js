@@ -155,9 +155,9 @@ const CompanyProfile = ({
                     </span>
                     <span className='company-profile__badges-container'>
                       {selectedCompany.relatedIndustries.allIndustries.map(
-                        (industry) => {
+                        (industry, i) => {
                           return (
-                            <div className='company-profile__badge'>
+                            <div className='company-profile__badge' key={i}>
                               {industry}
                             </div>
                           );
@@ -207,9 +207,9 @@ const CompanyProfile = ({
                   </h2>
                   <div className='company-profile__badges-container'>
                     {selectedCompany.technologies.allTechnologies.map(
-                      (technology) => {
+                      (technology, i) => {
                         return (
-                          <div className='company-profile__badge'>
+                          <div className='company-profile__badge' key={i}>
                             {technology}
                           </div>
                         );
@@ -225,9 +225,11 @@ const CompanyProfile = ({
                     Benefity i udogodnienia
                   </h2>
                   <div className='company-profile__badges-container'>
-                    {selectedCompany.benefits.benefit.map((benefit) => {
+                    {selectedCompany.benefits.benefit.map((benefit, i) => {
                       return (
-                        <div className='company-profile__badge'>{benefit}</div>
+                        <div className='company-profile__badge' key={i}>
+                          {benefit}
+                        </div>
                       );
                     })}
                   </div>

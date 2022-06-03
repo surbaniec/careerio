@@ -15,7 +15,6 @@ import ScrollToTop from './utils/ScrollToTop';
 import JobAd from './pages/JobAd/JobAd';
 import CompanyProfile from './pages/CompanyProfile/CompanyProfile';
 import Login from './pages/Login/Login';
-// import EmployersPage from './pages/EmployersPage/EmployersPage';
 import NotFound from './pages/NotFound/NotFound';
 
 const EmployersPage = React.lazy(() =>

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import './JobAd.scss';
 import { FiHeart } from 'react-icons/fi';
-import { MdChevronRight, MdOutlineClose } from 'react-icons/md';
+import { MdChevronRight } from 'react-icons/md';
 import { IoPersonOutline } from 'react-icons/io5';
 import { HiFire } from 'react-icons/hi';
 import ListItem from '../../components/ListItem/ListItem';
@@ -70,14 +70,14 @@ const JobAd = ({ jobOffers: { jobOffers, loading } }) => {
                     Profil firmy
                   </Link>
                   <div className='job-ad__controls'>
-                    <button className='job-ad__btn'>
-                      Aplikuj <MdChevronRight />
+                    <button
+                      className='job-ad__btn'
+                      onClick={() => (window.location = `mailto:`)}
+                    >
+                      Aplikuj teraz <MdChevronRight />
                     </button>
                     <button className='job-ad__btn' onClick={toggleFavourite}>
                       <FiHeart className='heart-icon' />
-                    </button>
-                    <button className='job-ad__btn'>
-                      <MdOutlineClose />
                     </button>
                   </div>
                 </div>

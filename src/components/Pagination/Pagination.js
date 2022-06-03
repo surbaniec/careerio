@@ -87,7 +87,7 @@ const Pagination = ({ data, RenderComponent, pageLimit, dataLimit }) => {
 };
 
 Pagination.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.array.isRequired,
   RenderComponent: PropTypes.func.isRequired,
   pageLimit: PropTypes.number.isRequired,
   dataLimit: PropTypes.number.isRequired,
