@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import FilteredJob from '../../views/Jobs/FilteredJob/FilteredJob';
 import JobFilters from '../../views/Jobs/JobFilters/JobFilters';
 import JobSearch from '../../components/JobSearch/JobSearch';
 import MobileFilters from '../../views/Jobs/MobileJobFilters/MobileFilters';
 import './SearchPage.scss';
-import { jobAdvertisements } from '../../data';
 import Pagination from '../../components/Pagination/Pagination';
 
-const SearchPage = () => {
+const SearchPage = ({ jobOffers: { jobOffers, loading } }) => {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   const toggleMobileFilters = () => {
@@ -34,16 +35,26 @@ const SearchPage = () => {
           oczekiwań.
         </p>
         <div className='search-page__recommended-jobs'>
-          <Pagination
-            data={jobAdvertisements}
-            RenderComponent={FilteredJob}
-            pageLimit={3}
-            dataLimit={3}
-          />
+          {!loading && jobOffers !== null && (
+            <Pagination
+              data={jobOffers}
+              RenderComponent={FilteredJob}
+              pageLimit={3}
+              dataLimit={5}
+            />
+          )}
         </div>
       </section>
     </section>
   );
 };
 
-export default SearchPage;
+SearchPage.propTypes = {
+  jobOffers: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  return { jobOffers: state.jobOffer };
+};
+
+export default connect(mapStateToProps)(SearchPage);

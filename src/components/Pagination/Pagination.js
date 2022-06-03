@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import './Pagination.scss';
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 
@@ -83,6 +84,13 @@ const Pagination = ({ data, RenderComponent, pageLimit, dataLimit }) => {
       </div>
     </div>
   );
+};
+
+Pagination.propTypes = {
+  data: PropTypes.object.isRequired,
+  RenderComponent: PropTypes.func.isRequired,
+  pageLimit: PropTypes.number.isRequired,
+  dataLimit: PropTypes.number.isRequired,
 };
 
 export default Pagination;
