@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import './JobSearch.scss';
 import { IoSearch } from 'react-icons/io5';
 import { FaChevronRight } from 'react-icons/fa';
@@ -55,14 +56,15 @@ const selectStyles = {
   },
 };
 
-const JobSearch = () => {
-  const [employmentOption, setEmploymentOption] = useState();
+const JobSearch = ({
+  setKeywordOption,
+  setAddressOption,
+  setEmploymentOption,
+  filterOffers,
+}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-  };
-
-  const changeEmploymentOption = (e) => {
-    setEmploymentOption({ value: e.value, label: e.label });
+    filterOffers();
   };
 
   return (
@@ -79,7 +81,8 @@ const JobSearch = () => {
             className='job-search__input'
             name='job-keyword'
             type='text'
-            placeholder='stanowisko, firma, slowo kluczowe...'
+            placeholder='stanowisko lub firma...'
+            onChange={(e) => setKeywordOption(e.target.value)}
           />
         </li>
         <li>
@@ -87,7 +90,8 @@ const JobSearch = () => {
             className='job-search__input'
             name='job-address'
             type='text'
-            placeholder='miejscowość, województwo lub kraj...'
+            placeholder='miejscowość lub kraj...'
+            onChange={(e) => setAddressOption(e.target.value)}
           />
         </li>
         <li>
@@ -98,8 +102,9 @@ const JobSearch = () => {
               IndicatorSeparator: () => null,
             }}
             defaultValue={{ label: 'Rodzaj umowy', value: null }}
-            value={employmentOption}
-            onChange={changeEmploymentOption}
+            onChange={(e) =>
+              setEmploymentOption({ value: e.value, label: e.label })
+            }
           />
           <button className='job-search__input job-search__btn' type='submit'>
             Szukaj
@@ -109,6 +114,13 @@ const JobSearch = () => {
       </ul>
     </form>
   );
+};
+
+JobSearch.propTypes = {
+  setKeywordOption: PropTypes.func.isRequired,
+  setAddressOption: PropTypes.func.isRequired,
+  setEmploymentOption: PropTypes.func.isRequired,
+  filterOffers: PropTypes.func,
 };
 
 export default JobSearch;

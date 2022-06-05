@@ -5,7 +5,15 @@ import React, { createContext, useState, Suspense } from 'react';
 import { Provider } from 'react-redux';
 import store from './store';
 import { fetchJobOffers } from './actions/jobOfferActions';
-
+import {
+  HOME,
+  SEARCH_PAGE,
+  JOB_AD,
+  COMPANY_PROFILE,
+  LOGIN,
+  DASHBOARD,
+  NOT_FOUND,
+} from './Routes/routes';
 import Header from './layout/Header/Header';
 import Home from './pages/Home/Home';
 import DesktopSubmenu from './layout/DesktopSubmenu/DesktopSubmenu';
@@ -21,7 +29,7 @@ const EmployersPage = React.lazy(() =>
   import('./pages/EmployersPage/EmployersPage')
 );
 
-//Dispatch the fetchJobOffers() beofre our root component renders
+//Dispatch the fetchJobOffers() before our root component renders
 store.dispatch(fetchJobOffers());
 
 export const SubmenuOpenContext = createContext({
@@ -44,16 +52,13 @@ function App() {
               <DesktopSubmenu />
             </SubmenuOpenContext.Provider>
             <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='/wyszukiwarka' element={<SearchPage />} />
-              <Route path='/ogloszenie/:jobOfferId' element={<JobAd />} />
-              <Route
-                path='/profil-firmy/:companyId'
-                element={<CompanyProfile />}
-              />
-              <Route path='/logowanie' element={<Login />} />
-              <Route path='/panel-pracodawcy' element={<EmployersPage />} />
-              <Route path='*' element={<NotFound />} />
+              <Route path={HOME} element={<Home />} />
+              <Route path={SEARCH_PAGE} element={<SearchPage />} />
+              <Route path={JOB_AD} element={<JobAd />} />
+              <Route path={COMPANY_PROFILE} element={<CompanyProfile />} />
+              <Route path={LOGIN} element={<Login />} />
+              <Route path={DASHBOARD} element={<EmployersPage />} />
+              <Route path={NOT_FOUND} element={<NotFound />} />
             </Routes>
             <Footer />
           </>

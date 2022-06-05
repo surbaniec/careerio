@@ -2,29 +2,144 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FilteredJob from '../../views/Jobs/FilteredJob/FilteredJob';
-import JobFilters from '../../views/Jobs/JobFilters/JobFilters';
 import JobSearch from '../../components/JobSearch/JobSearch';
-import MobileFilters from '../../views/Jobs/MobileJobFilters/MobileFilters';
 import './SearchPage.scss';
 import Pagination from '../../components/Pagination/Pagination';
 
 const SearchPage = ({ jobOffers: { jobOffers, loading } }) => {
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [keywordOption, setKeywordOption] = useState('');
+  const [addressOption, setAddressOption] = useState('');
+  const [employmentOption, setEmploymentOption] = useState(null);
 
-  const toggleMobileFilters = () => {
-    setMobileFiltersOpen(!mobileFiltersOpen);
+  const [filteredOffers, setFilteredOffers] = useState(null);
+
+  const filterOffers = () => {
+    // change the data type to get ability to use array methods (filter)
+    const jobOffersArray = Array.from(jobOffers);
+    let jobFilterResults;
+
+    if (
+      keywordOption !== '' &&
+      addressOption !== '' &&
+      employmentOption !== null
+    ) {
+      jobFilterResults = jobOffersArray.filter((jobOffer) => {
+        return (
+          (jobOffer.jobTitle
+            .toUpperCase()
+            .includes(keywordOption.toUpperCase()) ||
+            jobOffer.company.name
+              .toUpperCase()
+              .includes(keywordOption.toUpperCase()) ||
+            jobOffer.experienceLevel.experienceLevelDescription
+              .toUpperCase()
+              .includes(keywordOption.toUpperCase())) &&
+          (jobOffer.company.adress?.city
+            .toUpperCase()
+            .includes(addressOption.toUpperCase()) ||
+            jobOffer.company.adress?.country
+              .toUpperCase()
+              .includes(addressOption.toUpperCase())) &&
+          jobOffer.typeOfContract?.typeOfContractDescription
+            .toUpperCase()
+            .includes(employmentOption.label.toUpperCase())
+        );
+      });
+    } else if (keywordOption !== '' && addressOption !== '') {
+      jobFilterResults = jobOffersArray.filter((jobOffer) => {
+        return (
+          (jobOffer.jobTitle
+            .toUpperCase()
+            .includes(keywordOption.toUpperCase()) ||
+            jobOffer.company.name
+              .toUpperCase()
+              .includes(keywordOption.toUpperCase()) ||
+            jobOffer.experienceLevel.experienceLevelDescription
+              .toUpperCase()
+              .includes(keywordOption.toUpperCase())) &&
+          (jobOffer.company.adress?.city
+            .toUpperCase()
+            .includes(addressOption.toUpperCase()) ||
+            jobOffer.company.adress?.country
+              .toUpperCase()
+              .includes(addressOption.toUpperCase()))
+        );
+      });
+    } else if (keywordOption !== '' && employmentOption !== null) {
+      jobFilterResults = jobOffersArray.filter((jobOffer) => {
+        return (
+          (jobOffer.jobTitle
+            .toUpperCase()
+            .includes(keywordOption.toUpperCase()) ||
+            jobOffer.company.name
+              .toUpperCase()
+              .includes(keywordOption.toUpperCase()) ||
+            jobOffer.experienceLevel.experienceLevelDescription
+              .toUpperCase()
+              .includes(keywordOption.toUpperCase())) &&
+          jobOffer.typeOfContract?.typeOfContractDescription
+            .toUpperCase()
+            .includes(employmentOption.label.toUpperCase())
+        );
+      });
+    } else if (addressOption && employmentOption) {
+      jobFilterResults = jobOffersArray.filter((jobOffer) => {
+        return (
+          (jobOffer.company.adress?.city
+            .toUpperCase()
+            .includes(addressOption.toUpperCase()) ||
+            jobOffer.company.adress?.country
+              .toUpperCase()
+              .includes(addressOption.toUpperCase())) &&
+          jobOffer.typeOfContract?.typeOfContractDescription
+            .toUpperCase()
+            .includes(employmentOption.label.toUpperCase())
+        );
+      });
+    } else if (keywordOption !== '') {
+      jobFilterResults = jobOffersArray.filter((jobOffer) => {
+        return (
+          jobOffer.jobTitle
+            .toUpperCase()
+            .includes(keywordOption.toUpperCase()) ||
+          jobOffer.experienceLevel.experienceLevelDescription
+            .toUpperCase()
+            .includes(keywordOption.toUpperCase()) ||
+          jobOffer.company.name
+            .toUpperCase()
+            .includes(keywordOption.toUpperCase())
+        );
+      });
+    } else if (addressOption !== '') {
+      jobFilterResults = jobOffersArray.filter((jobOffer) => {
+        return (
+          jobOffer.company.adress.city
+            .toUpperCase()
+            .includes(addressOption.toUpperCase()) ||
+          jobOffer.company.adress.country
+            .toUpperCase()
+            .includes(addressOption.toUpperCase())
+        );
+      });
+    } else if (employmentOption !== null) {
+      jobFilterResults = jobOffersArray.filter((jobOffer) => {
+        return jobOffer.typeOfContract?.typeOfContractDescription
+          .toUpperCase()
+          .includes(employmentOption.label.toUpperCase());
+      });
+    }
+    setFilteredOffers(jobFilterResults);
   };
 
   return (
     <section className='search-page'>
       <section className='search-page__hero'>
-        <JobSearch />
-      </section>
-      <section className='search-page__filters'>
-        <JobFilters toggleMobileFilters={toggleMobileFilters} />
-        {mobileFiltersOpen ? (
-          <MobileFilters toggleMobileFilters={toggleMobileFilters} />
-        ) : null}
+        <JobSearch
+          setKeywordOption={setKeywordOption}
+          setAddressOption={setAddressOption}
+          setEmploymentOption={setEmploymentOption}
+          filterOffers={filterOffers}
+        />
       </section>
       <section className='search-page__recommended'>
         <h2 className='search-page__recommended-title'>
@@ -35,7 +150,16 @@ const SearchPage = ({ jobOffers: { jobOffers, loading } }) => {
           oczekiwań.
         </p>
         <div className='search-page__recommended-jobs'>
-          {!loading && jobOffers !== null && (
+          {filteredOffers && (
+            <Pagination
+              data={filteredOffers}
+              RenderComponent={FilteredJob}
+              pageLimit={3}
+              dataLimit={5}
+            />
+          )}
+
+          {!loading && jobOffers !== null && filteredOffers === null && (
             <Pagination
               data={jobOffers}
               RenderComponent={FilteredJob}
