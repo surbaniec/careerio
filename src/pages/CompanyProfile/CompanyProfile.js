@@ -58,9 +58,6 @@ const CompanyProfile = ({
                     <h2 className='company-profile__company-name'>
                       {selectedCompany.name}
                     </h2>
-                    <span className='company-profile__company-desc'>
-                      Lorem ipsum dolor sit amet.
-                    </span>
                   </div>
                 </div>
                 <div className='company-profile__controls-wrapper'>
@@ -171,31 +168,7 @@ const CompanyProfile = ({
                 <h2 className='company-profile__section-title'>O firmie</h2>
                 <div className='company-profile__about'>
                   <p className='company-profile__about-text'>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Magnam adipisci rem perspiciatis eaque unde in neque
-                    molestiae facilis eos quis? Sint voluptas, vero delectus
-                    magni assumenda asperiores alias repudiandae dolorum
-                    dignissimos, impedit aliquam qui, sunt omnis obcaecati nobis
-                    expedita illum eum ex. Voluptates ipsa error blanditiis est
-                    officia quaerat unde?
-                  </p>
-                  <p className='company-profile__about-text'>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Magnam adipisci rem perspiciatis eaque unde in neque
-                    molestiae facilis eos quis? Sint voluptas, vero delectus
-                    magni assumenda asperiores alias repudiandae dolorum
-                    dignissimos, impedit aliquam qui, sunt omnis obcaecati nobis
-                    expedita illum eum ex. Voluptates ipsa error blanditiis est
-                    officia quaerat unde?
-                  </p>
-                  <p className='company-profile__about-text'>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Magnam adipisci rem perspiciatis eaque unde in neque
-                    molestiae facilis eos quis? Sint voluptas, vero delectus
-                    magni assumenda asperiores alias repudiandae dolorum
-                    dignissimos, impedit aliquam qui, sunt omnis obcaecati nobis
-                    expedita illum eum ex. Voluptates ipsa error blanditiis est
-                    officia quaerat unde?
+                    {selectedCompany.longDescription}
                   </p>
                 </div>
               </div>

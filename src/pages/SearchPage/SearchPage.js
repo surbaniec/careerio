@@ -40,9 +40,9 @@ const SearchPage = ({ jobOffers: { jobOffers, loading } }) => {
             jobOffer.company.adress?.country
               .toUpperCase()
               .includes(addressOption.toUpperCase())) &&
-          jobOffer.typeOfContract?.typeOfContractDescription
+          jobOffer.typeOfContract?.shortcut
             .toUpperCase()
-            .includes(employmentOption.label.toUpperCase())
+            .includes(employmentOption.value.toUpperCase())
         );
       });
     } else if (keywordOption !== '' && addressOption !== '') {
@@ -77,9 +77,9 @@ const SearchPage = ({ jobOffers: { jobOffers, loading } }) => {
             jobOffer.experienceLevel.experienceLevelDescription
               .toUpperCase()
               .includes(keywordOption.toUpperCase())) &&
-          jobOffer.typeOfContract?.typeOfContractDescription
+          jobOffer.typeOfContract?.shortcut
             .toUpperCase()
-            .includes(employmentOption.label.toUpperCase())
+            .includes(employmentOption.value.toUpperCase())
         );
       });
     } else if (addressOption && employmentOption) {
@@ -91,9 +91,9 @@ const SearchPage = ({ jobOffers: { jobOffers, loading } }) => {
             jobOffer.company.adress?.country
               .toUpperCase()
               .includes(addressOption.toUpperCase())) &&
-          jobOffer.typeOfContract?.typeOfContractDescription
+          jobOffer.typeOfContract?.shortcut
             .toUpperCase()
-            .includes(employmentOption.label.toUpperCase())
+            .includes(employmentOption.value.toUpperCase())
         );
       });
     } else if (keywordOption !== '') {
@@ -123,9 +123,9 @@ const SearchPage = ({ jobOffers: { jobOffers, loading } }) => {
       });
     } else if (employmentOption !== null) {
       jobFilterResults = jobOffersArray.filter((jobOffer) => {
-        return jobOffer.typeOfContract?.typeOfContractDescription
+        return jobOffer.typeOfContract?.shortcut
           .toUpperCase()
-          .includes(employmentOption.label.toUpperCase());
+          .includes(employmentOption.value.toUpperCase());
       });
     }
     setFilteredOffers(jobFilterResults);

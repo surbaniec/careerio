@@ -9,6 +9,9 @@
   }
 
   &__badge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: var(--secondary-color);
     border: 1px solid var(--light-color-1);
     border-radius: 5px;
