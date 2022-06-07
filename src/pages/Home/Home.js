@@ -1,7 +1,7 @@
 import React from 'react';
 import './Home.scss';
 import Categories from '../../views/Categories/Categories';
-import JobSearch from '../../components/JobSearch/JobSearch';
+// import JobSearch from '../../components/JobSearch/JobSearch';
 import RecommendedJobs from '../../views/Jobs/RecommendedJobs/RecommendedJobs';
 import YourActivity from '../../views/YourActivity/YourActivity';
 import Advices from '../../views/Advices/Advices';
@@ -20,7 +20,7 @@ const Home = () => {
         <Link to='/wyszukiwarka' className='btn hero__btn'>
           Sprawdź
         </Link>
-        <JobSearch />
+        {/* <JobSearch /> */}
       </section>
       <RecommendedJobs />
       <Categories />
