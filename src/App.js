@@ -2,9 +2,6 @@ import 'normalize.css';
 import './App.scss';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React, { createContext, useState, Suspense } from 'react';
-import { Provider } from 'react-redux';
-import store from './store';
-import { fetchJobOffers } from './actions/jobOfferActions';
 import {
   HOME,
   SEARCH_PAGE,
@@ -24,13 +21,18 @@ import JobAd from './pages/JobAd/JobAd';
 import CompanyProfile from './pages/CompanyProfile/CompanyProfile';
 import Login from './pages/Login/Login';
 import NotFound from './pages/NotFound/NotFound';
+import CompaniesState from './context/companies/CompaniesState';
+import JobOffersState from './context/jobOffers/JobOffersState';
+// import setAuthToken from './utils/setAuthToken';
+// import { loadUser } from './actions/authActions';
 
 const EmployersPage = React.lazy(() =>
   import('./pages/EmployersPage/EmployersPage')
 );
 
-//Dispatch the fetchJobOffers() before our root component renders
-store.dispatch(fetchJobOffers());
+// if (localStorage.token) {
+//   setAuthToken(localStorage.token);
+// }
 
 export const SubmenuOpenContext = createContext({
   submenuOpen: false,
@@ -38,33 +40,40 @@ export const SubmenuOpenContext = createContext({
 });
 
 function App() {
+  // check if user is authenticated
+  // useEffect(() => {
+  //   loadUser();
+  // }, []);
+
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const submenuValue = { submenuOpen, setSubmenuOpen };
 
   return (
-    <Provider store={store}>
-      <Router>
-        <Suspense fallback={<p>Loading...</p>}>
-          <>
-            <ScrollToTop />
-            <SubmenuOpenContext.Provider value={submenuValue}>
-              <Header />
-              <DesktopSubmenu />
-            </SubmenuOpenContext.Provider>
-            <Routes>
-              <Route path={HOME} element={<Home />} />
-              <Route path={SEARCH_PAGE} element={<SearchPage />} />
-              <Route path={JOB_AD} element={<JobAd />} />
-              <Route path={COMPANY_PROFILE} element={<CompanyProfile />} />
-              <Route path={LOGIN} element={<Login />} />
-              <Route path={DASHBOARD} element={<EmployersPage />} />
-              <Route path={NOT_FOUND} element={<NotFound />} />
-            </Routes>
-            <Footer />
-          </>
-        </Suspense>
-      </Router>
-    </Provider>
+    <CompaniesState>
+      <JobOffersState>
+        <Router>
+          <Suspense fallback={<p>Loading...</p>}>
+            <>
+              <ScrollToTop />
+              <SubmenuOpenContext.Provider value={submenuValue}>
+                <Header />
+                <DesktopSubmenu />
+              </SubmenuOpenContext.Provider>
+              <Routes>
+                <Route path={HOME} element={<Home />} />
+                <Route path={SEARCH_PAGE} element={<SearchPage />} />
+                <Route path={JOB_AD} element={<JobAd />} />
+                <Route path={COMPANY_PROFILE} element={<CompanyProfile />} />
+                <Route path={LOGIN} element={<Login />} />
+                <Route path={DASHBOARD} element={<EmployersPage />} />
+                <Route path={NOT_FOUND} element={<NotFound />} />
+              </Routes>
+              <Footer />
+            </>
+          </Suspense>
+        </Router>
+      </JobOffersState>
+    </CompaniesState>
   );
 }
 

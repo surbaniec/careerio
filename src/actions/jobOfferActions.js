@@ -29,7 +29,7 @@ export const fetchJobOffers = () => {
     } catch (err) {
       dispatch({
         type: JOB_OFFERS_ERROR,
-        payload: err.response.statusText,
+        payload: err,
       });
     }
   };
