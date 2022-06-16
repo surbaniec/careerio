@@ -1,77 +1,121 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './Login.scss';
+// import { register } from '../../actions/authActions';
 
-const Login = () => {
-  const [login, setLogin] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordRepeat, setPasswordRepeat] = useState('');
-  const [email, setEmail] = useState('');
+const Login = (props, { isAuthenticated }) => {
+  const { history } = props;
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push('/dashboard');
+    }
+  }, [isAuthenticated, history]);
+
+  // register form
+  const [user, setUser] = useState({
+    login: '',
+    email: '',
+    password: '',
+    password2: '',
+  });
+
+  const { login, email, password, password2 } = user;
+
+  // login form
+  const [loggingUser, setLoggingUser] = useState({
+    email: '',
+    password: '',
+  });
+
+  // errors
   const [loginError, setLoginError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordRepeatError, setPasswordRepeatError] = useState('');
 
-  const handleLoginInput = (e) => {
-    setLogin(e.target.value);
+  const onRegisterInputChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const handleEmailInput = (e) => {
-    setEmail(e.target.value);
-  };
+  const registerFormValidation = () => {
+    setLoginError('');
+    setPasswordError('');
+    setEmailError('');
+    setPasswordRepeatError('');
 
-  const handlePasswordInput = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handlePasswordRepeat = (e) => {
-    setPasswordRepeat(e.target.value);
-  };
-
-  const handleRegister = (e) => {
-    e.preventDefault();
     if (login === '') {
       setLoginError('Proszę wprowadzić login');
+      return false;
     }
 
     if (email === '') {
       setEmailError('Proszę wprowadzić adres e-mail');
+      return false;
     }
 
     if (password === '') {
       setPasswordError('Proszę wprowadzić hasło');
+      return false;
     }
 
-    if (password && password !== passwordRepeat) {
+    if (password && password !== password2) {
       setPasswordRepeatError('Podane hasła się różnią');
+      return false;
     }
 
     if (login) {
       const loginValid = login.match(/^([A-Za-z0-9]){4,20}$/gm);
-      loginValid
-        ? setLoginError('')
-        : setLoginError(
-            'Login musi składać się z 4-20 znaków oraz nie może zawierać znaków specjalnych'
-          );
+
+      if (loginValid) {
+        setLoginError('');
+      } else {
+        setLoginError(
+          'Login musi składać się z 4-20 znaków oraz nie może zawierać znaków specjalnych'
+        );
+        return false;
+      }
     }
 
     if (email) {
       const emailValid = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-      emailValid
-        ? setEmailError('')
-        : setEmailError('Podany adres e-mail jest niepoprawny');
+
+      if (emailValid) {
+        setEmailError('');
+      } else {
+        setEmailError('Podany adres e-mail jest niepoprawny');
+        return false;
+      }
     }
 
     if (password) {
       const passwordValid = password.match(
         /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/
       );
-      passwordValid
-        ? setPasswordError('')
-        : setPasswordError(
-            'Hasło musi składać się z 7-15 znaków zawierających przynajmniej jedną cyfrę i znak specjalny'
-          );
+      if (passwordValid) {
+        setPasswordError('');
+      } else {
+        setPasswordError(
+          'Hasło musi składać się z 7-15 znaków zawierających przynajmniej jedną cyfrę i znak specjalny'
+        );
+        return false;
+      }
+    }
+    return true;
+  };
+
+  const onRegisterSubmit = (e) => {
+    e.preventDefault();
+    const isValid = registerFormValidation();
+
+    if (isValid) {
+      console.log('rejestrowanie...');
+      // register({
+      //   login,
+      //   email,
+      //   password,
+      // });
     }
   };
 
@@ -110,15 +154,16 @@ const Login = () => {
           <div className='login-title'>
             <h2>Utwórz konto</h2>
           </div>
-          <form className='form-wrapper'>
+          <form className='form-wrapper' onSubmit={onRegisterSubmit}>
             <div className='input-wrapper'>
               <p>Login</p>
               <input
                 className='login-name'
                 type='text'
                 placeholder='Wpisz login...'
+                name='login'
                 value={login}
-                onChange={handleLoginInput}
+                onChange={onRegisterInputChange}
               />
               {loginError && <small className='error'>{loginError}</small>}
             </div>
@@ -129,8 +174,9 @@ const Login = () => {
                 className='login-name'
                 type='text'
                 placeholder='Wpisz email...'
+                name='email'
                 value={email}
-                onChange={handleEmailInput}
+                onChange={onRegisterInputChange}
               />
               {emailError && <small className='error'>{emailError}</small>}
             </div>
@@ -142,8 +188,9 @@ const Login = () => {
                 className='login-password'
                 type='password'
                 placeholder='Wpisz hasło...'
+                name='password'
                 value={password}
-                onChange={handlePasswordInput}
+                onChange={onRegisterInputChange}
               />
               {passwordError && (
                 <small className='error'>{passwordError}</small>
@@ -157,18 +204,16 @@ const Login = () => {
                 className='login-password'
                 type='password'
                 placeholder='Wpisz ponownie hasło...'
-                onChange={handlePasswordRepeat}
+                name='password2'
+                value={password2}
+                onChange={onRegisterInputChange}
               />
               {passwordRepeatError && (
                 <small className='error'>{passwordRepeatError}</small>
               )}
             </div>
 
-            <button
-              className='register-submit'
-              type='submit'
-              onClick={handleRegister}
-            >
+            <button className='register-submit' type='submit'>
               Zarejestruj się
             </button>
           </form>
@@ -178,4 +223,8 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapStateToProps = (state) => {
+  return { auth: state.isAuthenticated };
+};
+
+export default connect(mapStateToProps)(Login);

@@ -6,8 +6,21 @@ import RecommendedJobs from '../../views/Jobs/RecommendedJobs/RecommendedJobs';
 import YourActivity from '../../views/YourActivity/YourActivity';
 import Advices from '../../views/Advices/Advices';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useContext } from 'react';
+import CompaniesContext from '../../context/companies/companiesContext';
+import JobOffersContext from '../../context/jobOffers/jobOffersContext';
 
 const Home = () => {
+  const companiesContext = useContext(CompaniesContext);
+  const jobOffersContext = useContext(JobOffersContext);
+
+  useEffect(() => {
+    companiesContext.getCompanies();
+    jobOffersContext.getJobOffers();
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <>
       <section className='hero'>

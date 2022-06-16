@@ -1,11 +1,49 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import './YourActivity.scss';
 import { IoPhonePortraitOutline } from 'react-icons/io5';
 import { FiStar, FiSend } from 'react-icons/fi';
 import JobTile from '../../components/JobTile/JobTile';
+import { useContext } from 'react';
+import JobOffersContext from '../../context/jobOffers/jobOffersContext';
+import CompaniesContext from '../../context/companies/companiesContext';
 
-const YourActivity = ({ jobOffers: { jobOffers, loading } }) => {
+const YourActivity = () => {
+  const jobOffersContext = useContext(JobOffersContext);
+  const companiesContext = useContext(CompaniesContext);
+
+  const { jobOffers, loading } = jobOffersContext;
+  const companies = companiesContext.companies;
+
+  const jobOffersToRender = [];
+
+  const createJobOffersToRender = () => {
+    const jobOffersAmount = jobOffers.length;
+    let companyName = '';
+    let currentCompany;
+
+    for (let i = jobOffersAmount - 1; i >= jobOffersAmount - 4; i--) {
+      companyName = jobOffers[i].companyName;
+      currentCompany = companies.find(
+        (company) => company.name === companyName
+      );
+
+      jobOffersToRender.push({
+        jobOfferId: jobOffers[i].id,
+        companyName,
+        salaryFrom: jobOffers[i].salaryFrom,
+        salaryTo: jobOffers[i].salaryTo,
+        city: currentCompany.city,
+        province: currentCompany.province,
+        logo: currentCompany.imageUrl,
+        jobTitle: jobOffers[i].jobTitle,
+      });
+    }
+  };
+
+  if (!loading && jobOffers !== null && companies !== null) {
+    createJobOffersToRender();
+  }
+
   // add & remove 'active' class on clicked btn
   const changeActiveBtn = (e) => {
     const buttons = [...document.querySelectorAll('.your-activity__btn')];
@@ -55,61 +93,27 @@ const YourActivity = ({ jobOffers: { jobOffers, loading } }) => {
 
       <div className='your-activity__tiles'>
         <div className='your-activity__tiles-wrapper'>
-          {!loading && jobOffers !== null && (
-            <>
-              <JobTile
-                key={jobOffers[0].id}
-                jobOfferId={jobOffers[0].id}
-                company={jobOffers[0].company.name}
-                salaryFrom={jobOffers[0].salaryFrom}
-                salaryTo={jobOffers[0].salaryTo}
-                province={jobOffers[0].company.adress.province}
-                city={jobOffers[0].company.adress.city}
-                logo={jobOffers[0].company.imageUrl}
-                jobTitle={jobOffers[0].jobTitle}
-              />
-              <JobTile
-                key={jobOffers[1].id}
-                jobOfferId={jobOffers[1].id}
-                company={jobOffers[1].company.name}
-                salaryFrom={jobOffers[1].salaryFrom}
-                salaryTo={jobOffers[1].salaryTo}
-                province={jobOffers[1].company.adress.province}
-                city={jobOffers[1].company.adress.city}
-                logo={jobOffers[1].company.imageUrl}
-                jobTitle={jobOffers[1].jobTitle}
-              />
-              <JobTile
-                key={jobOffers[2].id}
-                jobOfferId={jobOffers[2].id}
-                company={jobOffers[2].company.name}
-                salaryFrom={jobOffers[2].salaryFrom}
-                salaryTo={jobOffers[2].salaryTo}
-                province={jobOffers[2].company.adress.province}
-                city={jobOffers[2].company.adress.city}
-                logo={jobOffers[2].company.imageUrl}
-                jobTitle={jobOffers[2].jobTitle}
-              />
-              <JobTile
-                key={jobOffers[3].id}
-                jobOfferId={jobOffers[3].id}
-                company={jobOffers[3].company.name}
-                salaryFrom={jobOffers[3].salaryFrom}
-                salaryTo={jobOffers[3].salaryTo}
-                province={jobOffers[3].company.adress.province}
-                city={jobOffers[3].company.adress.city}
-                logo={jobOffers[3].company.imageUrl}
-                jobTitle={jobOffers[3].jobTitle}
-              />
-            </>
-          )}
+          {!loading &&
+            jobOffersToRender.length > 0 &&
+            jobOffersToRender.map((jobOffer, i) => {
+              return (
+                <JobTile
+                  key={i}
+                  jobOfferId={jobOffer.jobOfferId}
+                  companyName={jobOffer.companyName}
+                  salaryFrom={jobOffer.salaryFrom}
+                  salaryTo={jobOffer.salaryTo}
+                  city={jobOffer.city}
+                  province={jobOffer.province}
+                  logo={jobOffer.logo}
+                  jobTitle={jobOffer.jobTitle}
+                />
+              );
+            })}
         </div>
       </div>
     </section>
   );
 };
-const mapStateToProps = (state) => {
-  return { jobOffers: state.jobOffer };
-};
 
-export default connect(mapStateToProps)(YourActivity);
+export default YourActivity;

@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import './JobAd.scss';
 import { FiHeart } from 'react-icons/fi';
@@ -9,23 +7,101 @@ import { IoPersonOutline } from 'react-icons/io5';
 import { HiFire } from 'react-icons/hi';
 import ListItem from '../../components/ListItem/ListItem';
 import JobTile from '../../components/JobTile/JobTile';
+import { useContext } from 'react';
+import JobOffersContext from '../../context/jobOffers/jobOffersContext';
+import CompaniesContext from '../../context/companies/companiesContext';
 
-const JobAd = ({ jobOffers: { jobOffers, loading } }) => {
+const JobAd = () => {
+  const jobOffersContext = useContext(JobOffersContext);
+  const companiesContext = useContext(CompaniesContext);
+  const jobOffers = jobOffersContext.jobOffers;
+  const jobOffersLoading = jobOffersContext.loading;
+  const companies = companiesContext.companies;
+  const companiesLoading = companiesContext.loading;
   const { jobOfferId } = useParams();
-  const [selectedJobOffer, setSelectedJobOffer] = useState(null);
+
+  const [currentJobOffer, setCurrentJobOffer] = useState(null);
+  const [currentCompany, setCurrentCompany] = useState(null);
+
+  // job offers to display on sidebar
+  const jobOffersToRender = [];
 
   useEffect(() => {
-    if (loading === false) {
-      setSelectedJobOffer(
-        jobOffers.find((jobOffer) => jobOffer.id === parseInt(jobOfferId))
-      );
+    if (jobOffersLoading || companiesLoading) {
+      jobOffersContext.getJobOffers();
+      companiesContext.getCompanies();
     }
+
+    if (jobOffersLoading === false && companiesLoading === false) {
+      const resJobOffer = jobOffers.find((jobOffer) => {
+        return jobOffer.id === parseInt(jobOfferId);
+      });
+
+      const companyName = resJobOffer.companyName;
+      const resCompany = companies.find((company) => {
+        return company.name === companyName;
+      });
+
+      setCurrentJobOffer({
+        id: resJobOffer.id,
+        experience: resJobOffer.experienceLevelDescription,
+        isRemoteRecruitment: resJobOffer.isRemoteRecruitment,
+        jobTitle: resJobOffer.jobTitle,
+        requirements: resJobOffer.requirements,
+        responsibilities: resJobOffer.responsibilities,
+        salaryFrom: resJobOffer.salaryFrom,
+        salaryTo: resJobOffer.salaryTo,
+        typeOfContract: resJobOffer.typeOfContractDescription,
+        workingHours: resJobOffer.workingHoursDescription,
+      });
+
+      setCurrentCompany({
+        companyId: resCompany.id,
+        companyName: resCompany.name,
+        city: resCompany.city,
+        postCode: resCompany.postCode,
+        province: resCompany.province,
+        street: resCompany.street,
+        imageUrl: resCompany.imageUrl,
+        benefits: resCompany.benefits,
+        companyEmail: resCompany.email,
+      });
+    }
+
     //eslint-disable-next-line
-  }, [loading, jobOfferId]);
+  }, [jobOfferId, companies, jobOffers]);
 
   const toggleFavourite = () => {
     document.querySelector('.heart-icon').classList.toggle('favourite');
   };
+
+  const createJobOffersToRender = () => {
+    const jobOffersAmount = jobOffers.length;
+    let companyName = '';
+    let currentCompany;
+
+    for (let i = jobOffersAmount - 1; i >= jobOffersAmount - 4; i--) {
+      companyName = jobOffers[i].companyName;
+      currentCompany = companies.find(
+        (company) => company.name === companyName
+      );
+
+      jobOffersToRender.push({
+        jobOfferId: jobOffers[i].id,
+        companyName,
+        salaryFrom: jobOffers[i].salaryFrom,
+        salaryTo: jobOffers[i].salaryTo,
+        city: currentCompany.city,
+        province: currentCompany.province,
+        logo: currentCompany.imageUrl,
+        jobTitle: jobOffers[i].jobTitle,
+      });
+    }
+  };
+
+  if (jobOffers !== null && companies !== null) {
+    createJobOffersToRender();
+  }
 
   return (
     <section className='job-ad__container'>
@@ -37,16 +113,16 @@ const JobAd = ({ jobOffers: { jobOffers, loading } }) => {
         />
       </div>
       <div className='job-ad__wrapper'>
-        {!loading && selectedJobOffer !== null && (
+        {currentJobOffer !== null && currentCompany !== null && (
           <>
             <section className='job-ad'>
               <header className='job-ad__header'>
                 <div className='job-ad__header-company-info'>
                   <div className='job-ad__header-logo-wrapper'>
-                    {selectedJobOffer.company.imageUrl && (
+                    {currentCompany.imageUrl && (
                       <img
-                        src={selectedJobOffer.company.imageUrl}
-                        alt={selectedJobOffer.company.name}
+                        src={currentCompany.imageUrl}
+                        alt={currentCompany.companyName}
                         className='job-ad__logo'
                       />
                     )}
@@ -54,17 +130,17 @@ const JobAd = ({ jobOffers: { jobOffers, loading } }) => {
 
                   <div className='job-ad__header-company-name-wrapper'>
                     <h2 className='job-ad__company-name'>
-                      {selectedJobOffer.company.name}
+                      {currentCompany.companyName}
                     </h2>
                     <span className='job-ad__job-title'>
-                      {selectedJobOffer.jobTitle}
+                      {currentJobOffer.jobTitle}
                     </span>
                   </div>
                 </div>
                 <div className='job-ad__controls-wrapper'>
                   <Link
                     className='job-ad__link'
-                    to={`/profil-firmy/${selectedJobOffer.companyId}`}
+                    to={`/profil-firmy/${currentCompany.companyId}`}
                   >
                     <IoPersonOutline style={{ marginRight: '3px' }} />
                     Profil firmy
@@ -72,7 +148,9 @@ const JobAd = ({ jobOffers: { jobOffers, loading } }) => {
                   <div className='job-ad__controls'>
                     <button
                       className='job-ad__btn'
-                      onClick={() => (window.location = `mailto:`)}
+                      onClick={() =>
+                        (window.location.href = `mailto:${currentCompany.companyEmail}`)
+                      }
                     >
                       Aplikuj teraz <MdChevronRight />
                     </button>
@@ -88,42 +166,35 @@ const JobAd = ({ jobOffers: { jobOffers, loading } }) => {
                     <HiFire style={{ width: '15px', height: '15px' }} />
                   </div>
                   <span className='job-ad__info'>
-                    {selectedJobOffer.company.adress.street}, <span> </span>
-                    {selectedJobOffer.company.adress.city}, <span> </span>
-                    {selectedJobOffer.company.adress.postCode}, <span> </span>
-                    {selectedJobOffer.company.adress.province}
+                    {currentCompany.street}, <span> </span>
+                    {currentCompany.city}, <span> </span>
+                    {currentCompany.postCode}, <span> </span>
+                    {currentCompany.province}
                   </span>
                 </div>
-                {selectedJobOffer.typeOfContract && (
+                {currentJobOffer.typeOfContract && (
                   <div className='job-ad__info-wrapper'>
                     <div className='job-ad__info-icon-container'>
                       <HiFire style={{ width: '15px', height: '15px' }} />
                     </div>
                     <span className='job-ad__info'>
-                      {
-                        selectedJobOffer.typeOfContract
-                          .typeOfContractDescription
-                      }
+                      {currentJobOffer.typeOfContract}
                     </span>
                   </div>
                 )}
 
-                {selectedJobOffer.experienceLevel
-                  .experienceLevelDescription && (
+                {currentJobOffer.experienceLevel && (
                   <div className='job-ad__info-wrapper'>
                     <div className='job-ad__info-icon-container'>
                       <HiFire style={{ width: '15px', height: '15px' }} />
                     </div>
                     <span className='job-ad__info'>
-                      {
-                        selectedJobOffer.experienceLevel
-                          .experienceLevelDescription
-                      }
+                      {currentJobOffer.experienceLevel}
                     </span>
                   </div>
                 )}
 
-                {selectedJobOffer.remoteRecruitment.isRemoteRecruitment && (
+                {currentJobOffer.isRemoteRecruitment && (
                   <div className='job-ad__info-wrapper'>
                     <div className='job-ad__info-icon-container'>
                       <HiFire style={{ width: '15px', height: '15px' }} />
@@ -141,13 +212,13 @@ const JobAd = ({ jobOffers: { jobOffers, loading } }) => {
                   </span>
                 </div>
 
-                {selectedJobOffer.workingHours.workingHoursDescription && (
+                {currentJobOffer.workingHours && (
                   <div className='job-ad__info-wrapper'>
                     <div className='job-ad__info-icon-container'>
                       <HiFire style={{ width: '15px', height: '15px' }} />
                     </div>
                     <span className='job-ad__info'>
-                      {selectedJobOffer.workingHours.workingHoursDescription}
+                      {currentJobOffer.workingHours}
                     </span>
                   </div>
                 )}
@@ -160,11 +231,11 @@ const JobAd = ({ jobOffers: { jobOffers, loading } }) => {
                 </div>
               </div>
 
-              {selectedJobOffer.responsibilities.allResponsibilities && (
+              {currentJobOffer.responsibilities && (
                 <div className='duties__container'>
                   <h2 className='duties__title'>Twój zakres obowiązków</h2>
                   <div className='duties__wrapper'>
-                    {selectedJobOffer.responsibilities.allResponsibilities.map(
+                    {currentJobOffer.responsibilities.map(
                       (responsibility, i) => {
                         return <ListItem key={i} text={responsibility} />;
                       }
@@ -173,32 +244,28 @@ const JobAd = ({ jobOffers: { jobOffers, loading } }) => {
                 </div>
               )}
 
-              {selectedJobOffer.requirements.allRequirements && (
+              {currentJobOffer.requirements && (
                 <div className='requirements__container'>
                   <h2 className='requirements__title'>
                     Nasze wymagania wobec Ciebie
                   </h2>
                   <div className='requirements__wrapper'>
-                    {selectedJobOffer.requirements.allRequirements.map(
-                      (requirement, i) => {
-                        return <ListItem key={i} text={requirement} />;
-                      }
-                    )}
+                    {currentJobOffer.requirements.map((requirement, i) => {
+                      return <ListItem key={i} text={requirement} />;
+                    })}
                   </div>
                 </div>
               )}
 
-              {selectedJobOffer.company.benefits.benefit && (
+              {currentCompany.benefits && (
                 <div className='benefits__container'>
                   <h2 className='benefits__title'>
                     Benefity oferowane przez firmę
                   </h2>
                   <div className='benefits__wrapper'>
-                    {selectedJobOffer.company.benefits.benefit.map(
-                      (benefit, i) => {
-                        return <ListItem key={i} text={benefit} />;
-                      }
-                    )}
+                    {currentCompany.benefits.map((benefit, i) => {
+                      return <ListItem key={i} text={benefit} />;
+                    })}
                   </div>
                 </div>
               )}
@@ -207,50 +274,21 @@ const JobAd = ({ jobOffers: { jobOffers, loading } }) => {
             <aside className='similar-ads'>
               <h2 className='similar-ads__title'>Sprawdź podobne</h2>
               <div className='similar-ads__container'>
-                <JobTile
-                  key={jobOffers[0].id}
-                  jobOfferId={jobOffers[0].id}
-                  company={jobOffers[0].company.name}
-                  salaryFrom={jobOffers[0].salaryFrom}
-                  salaryTo={jobOffers[0].salaryTo}
-                  province={jobOffers[0].company.adress.province}
-                  city={jobOffers[0].company.adress.city}
-                  logo={jobOffers[0].company.imageUrl}
-                  jobTitle={jobOffers[1].jobTitle}
-                />
-                <JobTile
-                  key={jobOffers[1].id}
-                  jobOfferId={jobOffers[1].id}
-                  company={jobOffers[1].company.name}
-                  salaryFrom={jobOffers[1].salaryFrom}
-                  salaryTo={jobOffers[1].salaryTo}
-                  province={jobOffers[1].company.adress.province}
-                  city={jobOffers[1].company.adress.city}
-                  logo={jobOffers[1].company.imageUrl}
-                  jobTitle={jobOffers[1].jobTitle}
-                />
-                <JobTile
-                  key={jobOffers[2].id}
-                  jobOfferId={jobOffers[2].id}
-                  company={jobOffers[2].company.name}
-                  salaryFrom={jobOffers[2].salaryFrom}
-                  salaryTo={jobOffers[2].salaryTo}
-                  province={jobOffers[2].company.adress.province}
-                  city={jobOffers[2].company.adress.city}
-                  logo={jobOffers[2].company.imageUrl}
-                  jobTitle={jobOffers[2].jobTitle}
-                />
-                <JobTile
-                  key={jobOffers[3].id}
-                  jobOfferId={jobOffers[3].id}
-                  company={jobOffers[3].company.name}
-                  salaryFrom={jobOffers[3].salaryFrom}
-                  salaryTo={jobOffers[3].salaryTo}
-                  province={jobOffers[3].company.adress.province}
-                  city={jobOffers[3].company.adress.city}
-                  logo={jobOffers[3].company.imageUrl}
-                  jobTitle={jobOffers[3].jobTitle}
-                />
+                {jobOffersToRender.map((jobOffer, i) => {
+                  return (
+                    <JobTile
+                      key={i}
+                      jobOfferId={jobOffer.jobOfferId}
+                      companyName={jobOffer.companyName}
+                      salaryFrom={jobOffer.salaryFrom}
+                      salaryTo={jobOffer.salaryTo}
+                      city={jobOffer.city}
+                      province={jobOffer.province}
+                      logo={jobOffer.logo}
+                      jobTitle={jobOffer.jobTitle}
+                    />
+                  );
+                })}
               </div>
             </aside>
           </>
@@ -260,12 +298,4 @@ const JobAd = ({ jobOffers: { jobOffers, loading } }) => {
   );
 };
 
-JobAd.propTypes = {
-  jobOffers: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = (state) => {
-  return { jobOffers: state.jobOffer };
-};
-
-export default connect(mapStateToProps)(JobAd);
+export default JobAd;

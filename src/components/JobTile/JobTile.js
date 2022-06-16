@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 const JobTile = ({
   jobOfferId,
-  company,
+  companyName,
   salaryFrom,
   salaryTo,
   province,
@@ -30,10 +30,10 @@ const JobTile = ({
     <div className='job-tile'>
       <div className='job-tile__info'>
         <div className='job-tile__img-wrapper'>
-          <img className='job-tile__logo' src={logo} alt={company} />
+          <img className='job-tile__logo' src={logo} alt={companyName} />
         </div>
         <div className='job-tile__desc-wrapper'>
-          <h2 className='job-tile__company-name'>{company}</h2>
+          <h2 className='job-tile__company-name'>{companyName}</h2>
           <h3 className='job-tile__position'>{jobTitle}</h3>
           <div className='job-tile__salary-wrapper'>
             <span className='job-tile__salary-from'>{salaryFrom}</span>
@@ -81,7 +81,7 @@ const JobTile = ({
 
 JobTile.propTypes = {
   jobOfferId: PropTypes.number,
-  company: PropTypes.string.isRequired,
+  companyName: PropTypes.string.isRequired,
   salaryFrom: PropTypes.number.isRequired,
   salaryTo: PropTypes.number,
   province: PropTypes.string.isRequired,
