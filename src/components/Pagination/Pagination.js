@@ -4,8 +4,12 @@ import './Pagination.scss';
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 
 const Pagination = ({ data, RenderComponent, pageLimit, dataLimit }) => {
-  const [pages] = useState(Math.round(data.length / dataLimit));
+  const [pages, setPages] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    setPages(Math.ceil(data.length / dataLimit));
+  }, [data]);
 
   useEffect(() => {
     window.scrollTo({ behavior: 'smooth', top: '0' });
@@ -40,7 +44,7 @@ const Pagination = ({ data, RenderComponent, pageLimit, dataLimit }) => {
 
   return (
     <div className='pagination-wrapper'>
-      {/* show the posts, 3 posts at a time */}
+      {/* show the posts, 5 posts at a time */}
       <div className='dataContainer'>
         {getPaginatedData().map((d, idx) => (
           <RenderComponent key={idx} data={d} />
