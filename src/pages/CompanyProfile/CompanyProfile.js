@@ -56,10 +56,16 @@ const CompanyProfile = () => {
   }, [companyId, companies, jobOffers]);
 
   const createCompanyOffers = () => {
-    const res = jobOffers.find(
+    const res = jobOffers.filter(
       (jobOffer) => jobOffer.companyName === selectedCompany.companyName
     );
-    console.log(res);
+
+    res.forEach((offer, i) => {
+      if (i > 5) {
+        return;
+      }
+      companyOffers.push(offer);
+    });
   };
 
   if (jobOffers !== null && selectedCompany !== null) {
@@ -320,7 +326,23 @@ const CompanyProfile = () => {
               </div>
               <aside className='company-profile__section'>
                 <h2 className='company-profile__section-title'>Oferty Firmy</h2>
-                <div className='company-profile__ads-container'></div>
+                <div className='company-profile__ads-container'>
+                  {companyOffers.map((jobOffer, i) => {
+                    return (
+                      <JobTile
+                        key={i}
+                        jobOfferId={jobOffer.id}
+                        companyName={jobOffer.companyName}
+                        salaryFrom={jobOffer.salaryFrom}
+                        salaryTo={jobOffer.salaryTo}
+                        city={selectedCompany.city}
+                        province={selectedCompany.province}
+                        logo={selectedCompany.imageUrl}
+                        jobTitle={jobOffer.jobTitle}
+                      />
+                    );
+                  })}
+                </div>
               </aside>
             </>
           )}
