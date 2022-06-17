@@ -192,8 +192,9 @@ const SearchPage = () => {
           .toUpperCase()
           .includes(employmentOption.label.toUpperCase());
       });
+    } else {
+      jobFilterResults = jobOffersToRender;
     }
-
     setFilteredOffers(jobFilterResults);
   };
 
