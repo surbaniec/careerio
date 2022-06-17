@@ -81,6 +81,9 @@ const JobAd = () => {
     let currentCompany;
 
     for (let i = jobOffersAmount - 1; i >= jobOffersAmount - 4; i--) {
+      if (jobOffers[i].id === parseInt(jobOfferId)) {
+        continue;
+      }
       companyName = jobOffers[i].companyName;
       currentCompany = companies.find(
         (company) => company.name === companyName
