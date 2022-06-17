@@ -53,6 +53,7 @@ const CompanyProfile = () => {
         technologies: resCompany.technologies,
       });
     }
+    //eslint-disable-next-line
   }, [companyId, companies, jobOffers]);
 
   const createCompanyOffers = () => {
@@ -189,7 +190,8 @@ const CompanyProfile = () => {
                       </span>
                     </div>
                   )}
-
+                </div>
+                <div className='company-profile__info-industries'>
                   {selectedCompany.relatedIndustries && (
                     <div className='company-profile__info-wrapper'>
                       <div className='company-profile__info-icon-container'>
@@ -259,69 +261,28 @@ const CompanyProfile = () => {
                   <h2 className='company-profile__section-title'>
                     Galeria firmy
                   </h2>
-                  <div className='company-profile__gallery'>
-                    <img
-                      className='company-profile__gallery-img'
-                      src='../../../assets/company-gallery-1.png'
-                      alt=''
-                    />
-                    <img
-                      className='company-profile__gallery-img'
-                      src='../../../assets/company-gallery-2.png'
-                      alt=''
-                    />
-                    <img
-                      className='company-profile__gallery-img'
-                      src='../../../assets/company-gallery-3.png'
-                      alt=''
-                    />
-                    <img
-                      className='company-profile__gallery-img'
-                      src='../../../assets/company-gallery-4.png'
-                      alt=''
-                    />
-                    <img
-                      className='company-profile__gallery-img'
-                      src='../../../assets/company-gallery-5.png'
-                      alt=''
-                    />
-                    <img
-                      className='company-profile__gallery-img'
-                      src='../../../assets/company-gallery-6.png'
-                      alt=''
-                    />
-                    <img
-                      className='company-profile__gallery-img'
-                      src='../../../assets/company-gallery-7.png'
-                      alt=''
-                    />
-                    <img
-                      className='company-profile__gallery-img'
-                      src='../../../assets/company-gallery-8.png'
-                      alt=''
-                    />
-                    <img
-                      className='company-profile__gallery-img'
-                      src='../../../assets/company-gallery-9.png'
-                      alt=''
-                    />
-                    <img
-                      className='company-profile__gallery-img'
-                      src='../../../assets/company-gallery-10.png'
-                      alt=''
-                    />
-                    <img
-                      className='company-profile__gallery-img'
-                      src='../../../assets/company-gallery-11.png'
-                      alt=''
-                    />
-                    <button className='company-profile__gallery-btn'>
-                      Pokaż wszystkie{' '}
-                      <MdChevronRight
-                        style={{ width: '20px', height: '20px' }}
-                      />
-                    </button>
-                  </div>
+                  {selectedCompany.companyGallery && (
+                    <div className='company-profile__gallery'>
+                      {selectedCompany.companyGallery.map((photo, i) => {
+                        return (
+                          <img
+                            key={i}
+                            className='company-profile__gallery-img'
+                            src={photo}
+                            alt=''
+                          />
+                        );
+                      })}
+                      {selectedCompany.companyGallery.length > 11 && (
+                        <button className='company-profile__gallery-btn'>
+                          Pokaż wszystkie{' '}
+                          <MdChevronRight
+                            style={{ width: '20px', height: '20px' }}
+                          />
+                        </button>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
               <aside className='company-profile__section'>
