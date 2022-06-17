@@ -6,6 +6,8 @@ import JobTile from '../../components/JobTile/JobTile';
 import { useContext } from 'react';
 import JobOffersContext from '../../context/jobOffers/jobOffersContext';
 import CompaniesContext from '../../context/companies/companiesContext';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const YourActivity = () => {
   const jobOffersContext = useContext(JobOffersContext);
@@ -93,8 +95,7 @@ const YourActivity = () => {
 
       <div className='your-activity__tiles'>
         <div className='your-activity__tiles-wrapper'>
-          {!loading &&
-            jobOffersToRender.length > 0 &&
+          {!loading && jobOffersToRender.length > 0 ? (
             jobOffersToRender.map((jobOffer, i) => {
               return (
                 <JobTile
@@ -109,7 +110,43 @@ const YourActivity = () => {
                   jobTitle={jobOffer.jobTitle}
                 />
               );
-            })}
+            })
+          ) : (
+            <>
+              <Skeleton
+                sx={{ bgcolor: 'grey.500' }}
+                animation='wave'
+                variant='rectangular'
+                width={210}
+                height={118}
+                style={{ margin: '0 50px' }}
+              />
+              <Skeleton
+                sx={{ bgcolor: 'grey.500' }}
+                animation='wave'
+                variant='rectangular'
+                width={210}
+                height={118}
+                style={{ margin: '0 50px' }}
+              />
+              <Skeleton
+                sx={{ bgcolor: 'grey.500' }}
+                animation='wave'
+                variant='rectangular'
+                width={210}
+                height={118}
+                style={{ margin: '0 50px' }}
+              />
+              <Skeleton
+                sx={{ bgcolor: 'grey.500' }}
+                animation='wave'
+                variant='rectangular'
+                width={210}
+                height={118}
+                style={{ margin: '0 50px' }}
+              />
+            </>
+          )}
         </div>
       </div>
     </section>

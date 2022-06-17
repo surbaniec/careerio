@@ -23,6 +23,7 @@ import Login from './pages/Login/Login';
 import NotFound from './pages/NotFound/NotFound';
 import CompaniesState from './context/companies/CompaniesState';
 import JobOffersState from './context/jobOffers/JobOffersState';
+import AuthState from './context/auth/AuthState';
 // import setAuthToken from './utils/setAuthToken';
 // import { loadUser } from './actions/authActions';
 
@@ -49,31 +50,33 @@ function App() {
   const submenuValue = { submenuOpen, setSubmenuOpen };
 
   return (
-    <CompaniesState>
-      <JobOffersState>
-        <Router>
-          <Suspense fallback={<p>Loading...</p>}>
-            <>
-              <ScrollToTop />
-              <SubmenuOpenContext.Provider value={submenuValue}>
-                <Header />
-                <DesktopSubmenu />
-              </SubmenuOpenContext.Provider>
-              <Routes>
-                <Route path={HOME} element={<Home />} />
-                <Route path={SEARCH_PAGE} element={<SearchPage />} />
-                <Route path={JOB_AD} element={<JobAd />} />
-                <Route path={COMPANY_PROFILE} element={<CompanyProfile />} />
-                <Route path={LOGIN} element={<Login />} />
-                <Route path={DASHBOARD} element={<EmployersPage />} />
-                <Route path={NOT_FOUND} element={<NotFound />} />
-              </Routes>
-              <Footer />
-            </>
-          </Suspense>
-        </Router>
-      </JobOffersState>
-    </CompaniesState>
+    <AuthState>
+      <CompaniesState>
+        <JobOffersState>
+          <Router>
+            <Suspense fallback={<p>Loading...</p>}>
+              <>
+                <ScrollToTop />
+                <SubmenuOpenContext.Provider value={submenuValue}>
+                  <Header />
+                  <DesktopSubmenu />
+                </SubmenuOpenContext.Provider>
+                <Routes>
+                  <Route path={HOME} element={<Home />} />
+                  <Route path={SEARCH_PAGE} element={<SearchPage />} />
+                  <Route path={JOB_AD} element={<JobAd />} />
+                  <Route path={COMPANY_PROFILE} element={<CompanyProfile />} />
+                  <Route path={LOGIN} element={<Login />} />
+                  <Route path={DASHBOARD} element={<EmployersPage />} />
+                  <Route path={NOT_FOUND} element={<NotFound />} />
+                </Routes>
+                <Footer />
+              </>
+            </Suspense>
+          </Router>
+        </JobOffersState>
+      </CompaniesState>
+    </AuthState>
   );
 }
 

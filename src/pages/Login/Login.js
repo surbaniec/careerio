@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Login.scss';
-// import { register } from '../../actions/authActions';
+import AuthContext from '../../context/auth/authContext';
+import { useContext } from 'react';
 
 const Login = (props) => {
+  const authContext = useContext(AuthContext);
+  const { register } = authContext;
+
   const { history } = props;
 
   // register form
@@ -104,11 +108,11 @@ const Login = (props) => {
 
     if (isValid) {
       console.log('rejestrowanie...');
-      // register({
-      //   login,
-      //   email,
-      //   password,
-      // });
+      register({
+        login,
+        email,
+        password,
+      });
     }
   };
 

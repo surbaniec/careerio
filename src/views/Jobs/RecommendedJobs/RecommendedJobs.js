@@ -3,6 +3,8 @@ import JobTile from '../../../components/JobTile/JobTile';
 import CompaniesContext from '../../../context/companies/companiesContext';
 import JobOffersContext from '../../../context/jobOffers/jobOffersContext';
 import './RecommendedJobs.scss';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const RecommendedJobs = () => {
   const jobOffersContext = useContext(JobOffersContext);
@@ -44,8 +46,7 @@ const RecommendedJobs = () => {
     <section className='recommended-jobs'>
       <h2 className='recommended-jobs__title'>Oferty wybrane dla Ciebie</h2>
       <div className='recommended-jobs__wrapper'>
-        {!loading &&
-          jobOffersToRender.length > 0 &&
+        {!loading && jobOffersToRender.length > 0 ? (
           jobOffersToRender.map((jobOffer, i) => {
             return (
               <JobTile
@@ -60,7 +61,43 @@ const RecommendedJobs = () => {
                 jobTitle={jobOffer.jobTitle}
               />
             );
-          })}
+          })
+        ) : (
+          <>
+            <Skeleton
+              sx={{ bgcolor: 'grey.500' }}
+              animation='wave'
+              variant='rectangular'
+              width={210}
+              height={118}
+              style={{ margin: '0 50px' }}
+            />
+            <Skeleton
+              sx={{ bgcolor: 'grey.500' }}
+              animation='wave'
+              variant='rectangular'
+              width={210}
+              height={118}
+              style={{ margin: '0 50px' }}
+            />
+            <Skeleton
+              sx={{ bgcolor: 'grey.500' }}
+              animation='wave'
+              variant='rectangular'
+              width={210}
+              height={118}
+              style={{ margin: '0 50px' }}
+            />
+            <Skeleton
+              sx={{ bgcolor: 'grey.500' }}
+              animation='wave'
+              variant='rectangular'
+              width={210}
+              height={118}
+              style={{ margin: '0 50px' }}
+            />
+          </>
+        )}
       </div>
     </section>
   );
