@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './JobSearch.scss';
 import { IoSearch } from 'react-icons/io5';
 import { FaChevronRight } from 'react-icons/fa';
@@ -114,13 +113,6 @@ const JobSearch = ({
       </ul>
     </form>
   );
-};
-
-JobSearch.propTypes = {
-  setKeywordOption: PropTypes.func.isRequired,
-  setAddressOption: PropTypes.func.isRequired,
-  setEmploymentOption: PropTypes.func.isRequired,
-  filterOffers: PropTypes.func,
 };
 
 export default JobSearch;

@@ -183,13 +183,13 @@ const JobAd = () => {
                   </div>
                 )}
 
-                {currentJobOffer.experienceLevel && (
+                {currentJobOffer.experience && (
                   <div className='job-ad__info-wrapper'>
                     <div className='job-ad__info-icon-container'>
                       <HiFire style={{ width: '15px', height: '15px' }} />
                     </div>
                     <span className='job-ad__info'>
-                      {currentJobOffer.experienceLevel}
+                      {currentJobOffer.experience}
                     </span>
                   </div>
                 )}

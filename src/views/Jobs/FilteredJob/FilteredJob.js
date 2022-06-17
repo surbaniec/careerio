@@ -10,12 +10,19 @@ const FilteredJob = ({ data }) => {
   const navigate = useNavigate();
   const [favourite, setFavourite] = useState(false);
 
-  const { imageUrl, name } = data.company;
-  const { city, province } = data.company.adress;
-  const { salaryFrom, salaryTo, id } = data;
+  const {
+    city,
+    companyName,
+    jobOfferId,
+    jobTitle,
+    logo,
+    province,
+    salaryFrom,
+    salaryTo,
+  } = data;
 
   const handleRedirect = () => {
-    navigate(`/ogloszenie/${id}`);
+    navigate(`/ogloszenie/${jobOfferId}`);
   };
 
   const toggleFavourite = () => {
@@ -26,11 +33,11 @@ const FilteredJob = ({ data }) => {
     <div className='filtered-job'>
       <div className='filtered-job__details' onClick={handleRedirect}>
         <div className='filtered-job__img-wrapper'>
-          <img className='filtered-job__logo' src={imageUrl} alt={name} />
+          <img className='filtered-job__logo' src={logo} alt={companyName} />
         </div>
         <div className='filtered-job__info'>
-          <h2 className='filtered-job__company-name'>{name}</h2>
-          <h3 className='filtered-job__position'>{data.jobTitle}</h3>
+          <h2 className='filtered-job__company-name'>{companyName}</h2>
+          <h3 className='filtered-job__position'>{jobTitle}</h3>
           <div className='filtered-job__address-wrapper'>
             <HiOutlineLocationMarker style={{ marginRight: '5px' }} />
             <span className='filtered-job__address-province'>{province}</span>

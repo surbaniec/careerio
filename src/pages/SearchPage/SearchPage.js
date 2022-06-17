@@ -1,21 +1,96 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { useContext, useState } from 'react';
 import FilteredJob from '../../views/Jobs/FilteredJob/FilteredJob';
 import JobSearch from '../../components/JobSearch/JobSearch';
 import './SearchPage.scss';
 import Pagination from '../../components/Pagination/Pagination';
+import JobOffersContext from '../../context/jobOffers/jobOffersContext';
+import CompaniesContext from '../../context/companies/companiesContext';
+import { useEffect } from 'react';
 
-const SearchPage = ({ jobOffers: { jobOffers, loading } }) => {
+const SearchPage = () => {
+  const jobOffersContext = useContext(JobOffersContext);
+  const companiesContext = useContext(CompaniesContext);
+
+  const { jobOffers, filtered } = jobOffersContext;
+  const companies = companiesContext.companies;
+
+  const [jobOffersToRender, setJobOffersToRender] = useState([]);
+
   const [keywordOption, setKeywordOption] = useState('');
   const [addressOption, setAddressOption] = useState('');
   const [employmentOption, setEmploymentOption] = useState(null);
 
   const [filteredOffers, setFilteredOffers] = useState(null);
 
+  useEffect(() => {
+    if (jobOffers === null) {
+      jobOffersContext.getJobOffers();
+    }
+
+    if (companiesContext === null) {
+      companiesContext.getCompanies();
+    }
+
+    if (
+      jobOffersContext.loading === false &&
+      companiesContext.loading === false
+    ) {
+      createJobOffersToRender();
+    }
+
+    // eslint-disable-next-line
+  }, [jobOffersContext.loading, companiesContext.loading, filtered]);
+
+  const createJobOffersToRender = () => {
+    const tempJobOffers = [];
+    let companyName = '';
+    let currentCompany;
+
+    if (filtered !== null) {
+      filtered.forEach((jobOffer) => {
+        companyName = jobOffer.companyName;
+        currentCompany = companies.find(
+          (company) => company.name === companyName
+        );
+
+        tempJobOffers.push({
+          jobOfferId: jobOffer.id,
+          companyName,
+          salaryFrom: jobOffer.salaryFrom,
+          salaryTo: jobOffer.salaryTo,
+          city: currentCompany.city,
+          province: currentCompany.province,
+          logo: currentCompany.imageUrl,
+          jobTitle: jobOffer.jobTitle,
+        });
+      });
+    } else {
+      jobOffers.forEach((jobOffer) => {
+        companyName = jobOffer.companyName;
+        currentCompany = companies.find(
+          (company) => company.name === companyName
+        );
+
+        tempJobOffers.push({
+          jobOfferId: jobOffer.id,
+          companyName,
+          salaryFrom: jobOffer.salaryFrom,
+          salaryTo: jobOffer.salaryTo,
+          city: currentCompany.city,
+          province: currentCompany.province,
+          logo: currentCompany.imageUrl,
+          jobTitle: jobOffer.jobTitle,
+          typeOfContract: jobOffer.typeOfContractDescription,
+          experienceLevel: jobOffer.experienceLevelDescription,
+        });
+      });
+    }
+
+    setJobOffersToRender(tempJobOffers);
+  };
+
   const filterOffers = () => {
     // change the data type to get ability to use array methods (filter)
-    const jobOffersArray = Array.from(jobOffers);
     let jobFilterResults;
 
     if (
@@ -23,111 +98,102 @@ const SearchPage = ({ jobOffers: { jobOffers, loading } }) => {
       addressOption !== '' &&
       employmentOption !== null
     ) {
-      jobFilterResults = jobOffersArray.filter((jobOffer) => {
+      jobFilterResults = jobOffersToRender.filter((jobOffer) => {
         return (
           (jobOffer.jobTitle
             .toUpperCase()
             .includes(keywordOption.toUpperCase()) ||
-            jobOffer.company.name
+            jobOffer.companyName
               .toUpperCase()
               .includes(keywordOption.toUpperCase()) ||
-            jobOffer.experienceLevel.experienceLevelDescription
+            jobOffer.experienceLevel
               .toUpperCase()
               .includes(keywordOption.toUpperCase())) &&
-          (jobOffer.company.adress?.city
-            .toUpperCase()
-            .includes(addressOption.toUpperCase()) ||
-            jobOffer.company.adress?.country
+          (jobOffer.city.toUpperCase().includes(addressOption.toUpperCase()) ||
+            jobOffer.province
               .toUpperCase()
               .includes(addressOption.toUpperCase())) &&
-          jobOffer.typeOfContract?.shortcut
+          jobOffer.typeOfContract
             .toUpperCase()
-            .includes(employmentOption.value.toUpperCase())
+            .includes(employmentOption.label.toUpperCase())
         );
       });
     } else if (keywordOption !== '' && addressOption !== '') {
-      jobFilterResults = jobOffersArray.filter((jobOffer) => {
+      jobFilterResults = jobOffersToRender.filter((jobOffer) => {
         return (
           (jobOffer.jobTitle
             .toUpperCase()
             .includes(keywordOption.toUpperCase()) ||
-            jobOffer.company.name
+            jobOffer.companyName
               .toUpperCase()
               .includes(keywordOption.toUpperCase()) ||
-            jobOffer.experienceLevel.experienceLevelDescription
+            jobOffer.experienceLevel
               .toUpperCase()
               .includes(keywordOption.toUpperCase())) &&
-          (jobOffer.company.adress?.city
-            .toUpperCase()
-            .includes(addressOption.toUpperCase()) ||
-            jobOffer.company.adress?.country
+          (jobOffer.city.toUpperCase().includes(addressOption.toUpperCase()) ||
+            jobOffer.province
               .toUpperCase()
               .includes(addressOption.toUpperCase()))
         );
       });
     } else if (keywordOption !== '' && employmentOption !== null) {
-      jobFilterResults = jobOffersArray.filter((jobOffer) => {
+      jobFilterResults = jobOffersToRender.filter((jobOffer) => {
         return (
           (jobOffer.jobTitle
             .toUpperCase()
             .includes(keywordOption.toUpperCase()) ||
-            jobOffer.company.name
+            jobOffer.companyName
               .toUpperCase()
               .includes(keywordOption.toUpperCase()) ||
-            jobOffer.experienceLevel.experienceLevelDescription
+            jobOffer.experienceLevel
               .toUpperCase()
               .includes(keywordOption.toUpperCase())) &&
-          jobOffer.typeOfContract?.shortcut
+          jobOffer.typeOfContract
             .toUpperCase()
-            .includes(employmentOption.value.toUpperCase())
+            .includes(employmentOption.label.toUpperCase())
         );
       });
     } else if (addressOption && employmentOption) {
-      jobFilterResults = jobOffersArray.filter((jobOffer) => {
+      jobFilterResults = jobOffersToRender.filter((jobOffer) => {
         return (
-          (jobOffer.company.adress?.city
-            .toUpperCase()
-            .includes(addressOption.toUpperCase()) ||
-            jobOffer.company.adress?.country
+          (jobOffer.city.toUpperCase().includes(addressOption.toUpperCase()) ||
+            jobOffer.province
               .toUpperCase()
               .includes(addressOption.toUpperCase())) &&
-          jobOffer.typeOfContract?.shortcut
+          jobOffer.typeOfContract
             .toUpperCase()
-            .includes(employmentOption.value.toUpperCase())
+            .includes(employmentOption.label.toUpperCase())
         );
       });
     } else if (keywordOption !== '') {
-      jobFilterResults = jobOffersArray.filter((jobOffer) => {
+      jobFilterResults = jobOffersToRender.filter((jobOffer) => {
         return (
           jobOffer.jobTitle
             .toUpperCase()
             .includes(keywordOption.toUpperCase()) ||
-          jobOffer.experienceLevel.experienceLevelDescription
+          jobOffer.experienceLevel
             .toUpperCase()
             .includes(keywordOption.toUpperCase()) ||
-          jobOffer.company.name
+          jobOffer.companyName
             .toUpperCase()
             .includes(keywordOption.toUpperCase())
         );
       });
     } else if (addressOption !== '') {
-      jobFilterResults = jobOffersArray.filter((jobOffer) => {
+      jobFilterResults = jobOffersToRender.filter((jobOffer) => {
         return (
-          jobOffer.company.adress.city
-            .toUpperCase()
-            .includes(addressOption.toUpperCase()) ||
-          jobOffer.company.adress.country
-            .toUpperCase()
-            .includes(addressOption.toUpperCase())
+          jobOffer.city.toUpperCase().includes(addressOption.toUpperCase()) ||
+          jobOffer.province.toUpperCase().includes(addressOption.toUpperCase())
         );
       });
     } else if (employmentOption !== null) {
-      jobFilterResults = jobOffersArray.filter((jobOffer) => {
-        return jobOffer.typeOfContract?.shortcut
+      jobFilterResults = jobOffersToRender.filter((jobOffer) => {
+        return jobOffer.typeOfContract
           .toUpperCase()
-          .includes(employmentOption.value.toUpperCase());
+          .includes(employmentOption.label.toUpperCase());
       });
     }
+
     setFilteredOffers(jobFilterResults);
   };
 
@@ -150,18 +216,16 @@ const SearchPage = ({ jobOffers: { jobOffers, loading } }) => {
           oczekiwań.
         </p>
         <div className='search-page__recommended-jobs'>
-          {filteredOffers && (
+          {filteredOffers !== null ? (
             <Pagination
               data={filteredOffers}
               RenderComponent={FilteredJob}
               pageLimit={3}
               dataLimit={5}
             />
-          )}
-
-          {!loading && jobOffers !== null && filteredOffers === null && (
+          ) : (
             <Pagination
-              data={jobOffers}
+              data={jobOffersToRender}
               RenderComponent={FilteredJob}
               pageLimit={3}
               dataLimit={5}
@@ -173,12 +237,4 @@ const SearchPage = ({ jobOffers: { jobOffers, loading } }) => {
   );
 };
 
-SearchPage.propTypes = {
-  jobOffers: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = (state) => {
-  return { jobOffers: state.jobOffer };
-};
-
-export default connect(mapStateToProps)(SearchPage);
+export default SearchPage;
