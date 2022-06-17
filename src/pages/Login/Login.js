@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './Login.scss';
 // import { register } from '../../actions/authActions';
 
-const Login = (props, { isAuthenticated }) => {
+const Login = (props) => {
   const { history } = props;
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      history.push('/dashboard');
-    }
-  }, [isAuthenticated, history]);
 
   // register form
   const [user, setUser] = useState({
@@ -223,8 +216,4 @@ const Login = (props, { isAuthenticated }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return { auth: state.isAuthenticated };
-};
-
-export default connect(mapStateToProps)(Login);
+export default Login;
