@@ -11,8 +11,8 @@ const SearchPage = () => {
   const jobOffersContext = useContext(JobOffersContext);
   const companiesContext = useContext(CompaniesContext);
 
-  const { jobOffers, filtered } = jobOffersContext;
-  const companies = companiesContext.companies;
+  const { jobOffers, getJobOffers } = jobOffersContext;
+  const { companies, getCompanies } = companiesContext;
 
   const [jobOffersToRender, setJobOffersToRender] = useState([]);
 
@@ -23,14 +23,8 @@ const SearchPage = () => {
   const [filteredOffers, setFilteredOffers] = useState(null);
 
   useEffect(() => {
-    if (jobOffers === null) {
-      jobOffersContext.getJobOffers();
-    }
-
-    if (companiesContext === null) {
-      companiesContext.getCompanies();
-    }
-
+    getJobOffers();
+    getCompanies();
     if (
       jobOffersContext.loading === false &&
       companiesContext.loading === false
@@ -39,15 +33,15 @@ const SearchPage = () => {
     }
 
     // eslint-disable-next-line
-  }, [jobOffersContext.loading, companiesContext.loading, filtered]);
+  }, [jobOffersContext.loading, companiesContext.loading]);
 
   const createJobOffersToRender = () => {
     const tempJobOffers = [];
     let companyName = '';
     let currentCompany;
 
-    if (filtered !== null) {
-      filtered.forEach((jobOffer) => {
+    if (filteredOffers !== null) {
+      filteredOffers.forEach((jobOffer) => {
         companyName = jobOffer.companyName;
         currentCompany = companies.find(
           (company) => company.name === companyName

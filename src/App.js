@@ -1,7 +1,7 @@
 import 'normalize.css';
 import './App.scss';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import React, { createContext, useState, Suspense } from 'react';
+import React, { createContext, useState, Suspense, useEffect } from 'react';
 import {
   HOME,
   SEARCH_PAGE,
@@ -24,16 +24,15 @@ import NotFound from './pages/NotFound/NotFound';
 import CompaniesState from './context/companies/CompaniesState';
 import JobOffersState from './context/jobOffers/JobOffersState';
 import AuthState from './context/auth/AuthState';
-// import setAuthToken from './utils/setAuthToken';
-// import { loadUser } from './actions/authActions';
+import setAuthToken from './utils/setAuthToken';
 
 const EmployersPage = React.lazy(() =>
   import('./pages/EmployersPage/EmployersPage')
 );
 
-// if (localStorage.token) {
-//   setAuthToken(localStorage.token);
-// }
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 export const SubmenuOpenContext = createContext({
   submenuOpen: false,
@@ -41,11 +40,6 @@ export const SubmenuOpenContext = createContext({
 });
 
 function App() {
-  // check if user is authenticated
-  // useEffect(() => {
-  //   loadUser();
-  // }, []);
-
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const submenuValue = { submenuOpen, setSubmenuOpen };
 

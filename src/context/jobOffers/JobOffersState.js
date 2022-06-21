@@ -15,7 +15,6 @@ import {
 const JobOffersState = (props) => {
   const initialState = {
     jobOffers: null,
-    filtered: null,
     loading: true,
     error: null,
   };
@@ -48,7 +47,6 @@ const JobOffersState = (props) => {
     <JobOffersContext.Provider
       value={{
         jobOffers: state.jobOffers,
-        filtered: state.filtered,
         error: state.error,
         loading: state.loading,
         getJobOffers,

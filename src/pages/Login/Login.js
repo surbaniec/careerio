@@ -3,12 +3,30 @@ import { Link } from 'react-router-dom';
 import './Login.scss';
 import AuthContext from '../../context/auth/authContext';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { DASHBOARD } from '../../Routes/routes';
 
-const Login = (props) => {
+const Login = () => {
   const authContext = useContext(AuthContext);
-  const { register } = authContext;
+  const { register, error, clearErrors, isAuthenticated } = authContext;
+  let navigate = useNavigate();
 
-  const { history } = props;
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate(DASHBOARD);
+    }
+
+    if (error?.Email) {
+      setEmailError('Email jest już zajęty');
+      clearErrors();
+    }
+
+    if (error?.Login) {
+      setLoginError('Login jest już zajęty');
+      clearErrors();
+    }
+    // eslint-disable-next-line
+  }, [error, isAuthenticated]);
 
   // register form
   const [user, setUser] = useState({
@@ -107,7 +125,6 @@ const Login = (props) => {
     const isValid = registerFormValidation();
 
     if (isValid) {
-      console.log('rejestrowanie...');
       register({
         login,
         email,
