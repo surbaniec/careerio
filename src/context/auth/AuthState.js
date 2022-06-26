@@ -55,7 +55,6 @@ const AuthState = (props) => {
         formData,
         config
       );
-      console.log(res);
 
       dispatch({
         type: REGISTER_SUCCESS,
@@ -69,7 +68,33 @@ const AuthState = (props) => {
   };
 
   // Login User
+  const loginUser = async (formData) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
 
+    try {
+      const res = await axios.post(
+        `https://careerio.azurewebsites.net/Account/login`,
+        formData,
+        config
+      );
+
+      console.log(res);
+
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data,
+      });
+
+      loadUser();
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: LOGIN_FAIL, payload: error.response });
+    }
+  };
   // Logout
 
   // Clear Errors
@@ -86,6 +111,7 @@ const AuthState = (props) => {
         register,
         clearErrors,
         loadUser,
+        loginUser,
       }}
     >
       {props.children}

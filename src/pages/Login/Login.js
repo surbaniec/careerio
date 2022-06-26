@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react';
 import './Login.scss';
 import AuthContext from '../../context/auth/authContext';
-import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { DASHBOARD } from '../../Routes/routes';
 
 const Login = () => {
   const authContext = useContext(AuthContext);
-  const { register, error, clearErrors, isAuthenticated } = authContext;
+  const { register, error, clearErrors, isAuthenticated, loginUser } =
+    authContext;
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -40,9 +39,12 @@ const Login = () => {
 
   // login form
   const [loggingUser, setLoggingUser] = useState({
-    email: '',
+    login: '',
     password: '',
   });
+
+  const loggingLogin = loggingUser.login;
+  const loggingPassword = loggingUser.password;
 
   // errors
   const [loginError, setLoginError] = useState('');
@@ -133,6 +135,17 @@ const Login = () => {
     }
   };
 
+  const onLoginInputChange = (e) => {
+    setLoggingUser({ ...loggingUser, [e.target.name]: e.target.value });
+  };
+
+  const onLoginSubmit = (e) => {
+    e.preventDefault();
+    const login = loggingLogin;
+    const password = loggingPassword;
+    loginUser({ login, password });
+  };
+
   return (
     <>
       <section className='hero'>
@@ -143,12 +156,15 @@ const Login = () => {
           <div className='login-title'>
             <h2>Dane logowania</h2>
           </div>
-          <form className='form-wrapper'>
+          <form className='form-wrapper' onSubmit={onLoginSubmit}>
             <p>Login</p>
             <input
               className='login-name'
               type='text'
               placeholder='Wpisz login...'
+              name='login'
+              value={loggingUser.login}
+              onChange={onLoginInputChange}
               required
             />
             <p>Hasło</p>
@@ -156,11 +172,14 @@ const Login = () => {
               className='login-password'
               type='password'
               placeholder='Wpisz hasło...'
+              name='password'
+              value={loggingUser.password}
+              onChange={onLoginInputChange}
               required
             />
-            <Link to='/panel-pracodawcy' className='login-submit' type='submit'>
+            <button className='login-submit' type='submit'>
               Zaloguj
-            </Link>
+            </button>
           </form>
         </div>
 
