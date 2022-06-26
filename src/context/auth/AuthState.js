@@ -82,8 +82,6 @@ const AuthState = (props) => {
         config
       );
 
-      console.log(res);
-
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
@@ -91,7 +89,6 @@ const AuthState = (props) => {
 
       loadUser();
     } catch (error) {
-      console.log(error);
       dispatch({ type: LOGIN_FAIL, payload: error.response });
     }
   };
