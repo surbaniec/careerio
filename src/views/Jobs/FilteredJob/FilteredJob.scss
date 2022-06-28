@@ -1,5 +1,5 @@
 .filtered-job {
-  height: 90px;
+  height: 100px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -8,22 +8,26 @@
   border: 1px solid var(--light-color-1);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
-  margin: 20px 0;
-  padding: 10px;
+  margin: 30px 0;
+  padding: 15px 15px;
   color: var(--font-dark-color);
   letter-spacing: 0.025em;
-  cursor: pointer;
 
   &__link {
+    color: var(--font-dark-color);
     text-decoration: none;
+    cursor: pointer;
   }
 
   &__details {
     display: flex;
     align-items: center;
+    cursor: pointer;
   }
 
   &__img-wrapper {
+    width: 25%;
+    height: 100%;
     margin-right: 10px;
   }
 
@@ -38,7 +42,7 @@
   }
 
   &__company-name {
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 700;
     line-height: 1.25rem;
     margin: 0;
@@ -46,7 +50,7 @@
   }
 
   &__position {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: 400;
     line-height: 1.5rem;
     margin: 0;
@@ -61,7 +65,7 @@
   &__job-type-wrapper {
     display: flex;
     align-items: center;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 400;
     line-height: 1.25rem;
   }
@@ -87,6 +91,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    z-index: 1;
   }
 }
 
@@ -96,7 +101,7 @@
 
 @media (min-width: 768px) {
   .filtered-job {
-    width: 90%;
+    width: 100%;
     height: 180px;
     padding: 25px 30px;
 
@@ -122,7 +127,7 @@
 
     &__address-wrapper,
     &__job-type-wrapper {
-      font-size: 1.3rem;
+      font-size: 1.6rem;
       line-height: 1.625rem;
     }
 
@@ -136,7 +141,7 @@
     }
 
     &__controls-favourite {
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       line-height: 1.75rem;
     }
   }
@@ -145,5 +150,14 @@
 @media (min-width: 1200px) {
   .filtered-job {
     width: 100%;
+    height: 150px;
+
+    &__company-name {
+      font-size: 2rem;
+    }
+
+    &__position {
+      font-size: 1.8rem;
+    }
   }
 }

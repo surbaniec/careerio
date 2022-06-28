@@ -25,8 +25,8 @@
     border: 1px solid var(--light-color-1);
     border-radius: var(--btn-border-radius);
     margin: 0 2px;
-    padding: 15px 7px;
-    font-size: 1rem;
+    padding: 10px 10px;
+    font-size: 1.2rem;
     font-weight: 600;
     line-height: 1.2rem;
     cursor: pointer;
@@ -50,6 +50,7 @@
     margin: 20px 0;
     padding: 20px;
     overflow-x: scroll;
+    white-space: nowrap;
   }
 }
 
@@ -68,7 +69,11 @@
 
 @media (min-width: 768px) {
   .your-activity {
-    padding: 50px 0;
+    padding: 80px 0;
+
+    &__wrapper {
+      margin-bottom: -70px;
+    }
 
     &__title {
       padding-left: 40px;
@@ -84,7 +89,7 @@
 
     &__btn {
       margin-right: 20px;
-      font-size: 1.4rem;
+      font-size: 1.8rem;
       line-height: 1.75rem;
       padding: 20px;
     }
@@ -106,6 +111,7 @@
     &__wrapper {
       width: 1300px;
       margin: 0 auto;
+      margin-bottom: -70px;
     }
 
     &__title {
@@ -114,6 +120,10 @@
 
     &__controls {
       padding: 0;
+    }
+
+    &__btn {
+      font-size: 1.6rem;
     }
 
     &__tiles {

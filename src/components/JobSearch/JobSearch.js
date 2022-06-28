@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './JobSearch.scss';
 import { IoSearch } from 'react-icons/io5';
 import { FaChevronRight } from 'react-icons/fa';
@@ -17,6 +17,10 @@ const selectStyles = {
     paddingTop: '15px',
     paddingBottom: '15px',
     color: '#575757',
+
+    '@media(min-width: 768px)': {
+      fontSize: '1.6rem',
+    },
   }),
   control: () => ({
     // none of react-select's styles are passed to <Control />
@@ -31,23 +35,35 @@ const selectStyles = {
     lineHeight: '1.75rem',
     color: '#575757',
     cursor: 'pointer',
+
+    '@media(min-width: 768px)': {
+      fontSize: '1.8rem',
+      width: '250px',
+    },
+
+    '@media(min-width: 1200px)': {
+      fontSize: '1.6rem',
+      width: '200px',
+    },
   }),
   singleValue: (provided, state) => {
     const opacity = state.isDisabled ? 0.5 : 1;
     const transition = 'opacity 300ms';
+    const color = '#575757';
 
-    return { ...provided, opacity, transition };
+    return { ...provided, opacity, transition, color };
   },
 };
 
-const JobSearch = () => {
-  const [employmentOption, setEmploymentOption] = useState();
+const JobSearch = ({
+  setKeywordOption,
+  setAddressOption,
+  setEmploymentOption,
+  filterOffers,
+}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-  };
-
-  const changeEmploymentOption = (e) => {
-    setEmploymentOption({ value: e.value, label: e.label });
+    filterOffers();
   };
 
   return (
@@ -64,7 +80,8 @@ const JobSearch = () => {
             className='job-search__input'
             name='job-keyword'
             type='text'
-            placeholder='stanowisko, firma, slowo kluczowe...'
+            placeholder='stanowisko lub firma...'
+            onChange={(e) => setKeywordOption(e.target.value)}
           />
         </li>
         <li>
@@ -72,7 +89,8 @@ const JobSearch = () => {
             className='job-search__input'
             name='job-address'
             type='text'
-            placeholder='miejscowość, województwo lub kraj...'
+            placeholder='miejscowość lub kraj...'
+            onChange={(e) => setAddressOption(e.target.value)}
           />
         </li>
         <li>
@@ -83,8 +101,9 @@ const JobSearch = () => {
               IndicatorSeparator: () => null,
             }}
             defaultValue={{ label: 'Rodzaj umowy', value: null }}
-            value={employmentOption}
-            onChange={changeEmploymentOption}
+            onChange={(e) =>
+              setEmploymentOption({ value: e.value, label: e.label })
+            }
           />
           <button className='job-search__input job-search__btn' type='submit'>
             Szukaj

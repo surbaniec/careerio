@@ -1,17 +1,40 @@
 import 'normalize.css';
 import './App.scss';
-import Header from './components/layout/Header/Header';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { createContext, useState, Suspense, useEffect } from 'react';
+import {
+  HOME,
+  SEARCH_PAGE,
+  JOB_AD,
+  COMPANY_PROFILE,
+  LOGIN,
+  OFFERSFORM,
+  DASHBOARD,
+  NOT_FOUND,
+} from './Routes/routes';
+import Header from './layout/Header/Header';
 import Home from './pages/Home/Home';
-import DesktopSubmenu from './components/layout/DesktopSubmenu/DesktopSubmenu';
-import { createContext, useState } from 'react';
-import Footer from './components/layout/Footer/Footer';
+import DesktopSubmenu from './layout/DesktopSubmenu/DesktopSubmenu';
+import Footer from './layout/Footer/Footer';
 import SearchPage from './pages/SearchPage/SearchPage';
 import ScrollToTop from './utils/ScrollToTop';
 import JobAd from './pages/JobAd/JobAd';
+import OffersForm from './pages/OffersForm/OffersForm';
 import CompanyProfile from './pages/CompanyProfile/CompanyProfile';
 import Login from './pages/Login/Login';
-import EmployersPage from './pages/EmployersPage/EmployersPage';
+import NotFound from './pages/NotFound/NotFound';
+import CompaniesState from './context/companies/CompaniesState';
+import JobOffersState from './context/jobOffers/JobOffersState';
+import AuthState from './context/auth/AuthState';
+import setAuthToken from './utils/setAuthToken';
+
+const EmployersPage = React.lazy(() =>
+  import('./pages/EmployersPage/EmployersPage')
+);
+
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 export const SubmenuOpenContext = createContext({
   submenuOpen: false,
@@ -23,24 +46,34 @@ function App() {
   const submenuValue = { submenuOpen, setSubmenuOpen };
 
   return (
-    <Router>
-      <>
-        <ScrollToTop />
-        <SubmenuOpenContext.Provider value={submenuValue}>
-          <Header />
-          <DesktopSubmenu />
-        </SubmenuOpenContext.Provider>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/wyszukiwarka' element={<SearchPage />} />
-          <Route path='/ogloszenie' element={<JobAd />} />
-          <Route path='/profil-firmy' element={<CompanyProfile />} />
-          <Route path='/logowanie' element={<Login />} />
-          <Route path='/panel-pracodawcy' element={<EmployersPage />} />
-        </Routes>
-        <Footer />
-      </>
-    </Router>
+    <AuthState>
+      <CompaniesState>
+        <JobOffersState>
+          <Router>
+            <Suspense fallback={<p>Loading...</p>}>
+              <>
+                <ScrollToTop />
+                <SubmenuOpenContext.Provider value={submenuValue}>
+                  <Header />
+                  <DesktopSubmenu />
+                </SubmenuOpenContext.Provider>
+                <Routes>
+                  <Route path={HOME} element={<Home />} />
+                  <Route path={SEARCH_PAGE} element={<SearchPage />} />
+                  <Route path={JOB_AD} element={<JobAd />} />
+                  <Route path={COMPANY_PROFILE} element={<CompanyProfile />} />
+                  <Route path={LOGIN} element={<Login />} />
+                  <Route path={DASHBOARD} element={<EmployersPage />} />
+                  <Route path={OFFERSFORM} element={<OffersForm />} />
+                  <Route path={NOT_FOUND} element={<NotFound />} />
+                </Routes>
+                <Footer />
+              </>
+            </Suspense>
+          </Router>
+        </JobOffersState>
+      </CompaniesState>
+    </AuthState>
   );
 }
 

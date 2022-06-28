@@ -1,0 +1,132 @@
+.nav {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav span {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--font-dark-color);
+}
+
+.dropdown-menu {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 40px;
+  height: 100vh;
+  width: 100%;
+  padding-bottom: 80px;
+  padding-top: 20px;
+  padding-left: 0;
+  list-style-type: none;
+  z-index: 999;
+  background-color: var(--primary-color);
+  &__item {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    background-color: var(--light-color-1);
+    border-radius: var(--btn-border-radius);
+    padding: 20px 40px;
+    width: 80%;
+  }
+
+  &__link {
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: var(--font-dark-color);
+    cursor: pointer;
+  }
+
+  &__item--blue {
+    background-color: var(--accent-color);
+  }
+  &__link--blue {
+    color: var(--font-light-color);
+  }
+}
+
+.dropdown-menu.show-menu {
+  display: flex;
+}
+
+.nav-desktop {
+  display: none;
+  &__menu {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style-type: none;
+  }
+
+  &__item {
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    margin: 0 15px;
+    cursor: pointer;
+
+    &--bg {
+      background-color: var(--light-color-2);
+      padding: 20px 40px;
+      border: 1px solid var(--secondary-color);
+      border-radius: var(--btn-border-radius);
+    }
+  }
+  &__item span {
+    transition: 0.2s;
+  }
+
+  &__item span:hover {
+    color: var(--font-placeholder-color);
+  }
+
+  &__link {
+    color: var(--font-dark-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s;
+
+    &:hover {
+      color: var(--font-placeholder-color);
+    }
+  }
+}
+
+.active {
+  color: var(--font-placeholder-color);
+}
+
+@media (min-width: 768px) {
+  .nav span {
+    font-size: 2rem;
+  }
+
+  .dropdown-menu {
+    padding-top: 30px;
+    top: 80px;
+    &__item {
+      margin: 15px 0;
+      padding: 35px 40px;
+    }
+
+    &__link {
+      font-size: 1.8rem;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .nav {
+    display: none;
+  }
+
+  .nav-desktop {
+    display: block;
+  }
+}

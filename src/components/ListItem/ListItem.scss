@@ -2,35 +2,33 @@
   display: flex;
   align-items: center;
   margin: 10px 0;
-  margin-left: -25px;
 
   &__icon-wrapper {
     margin-right: 10px;
     background-color: var(--accent-color);
     border: 1px solid var(--accent-color);
     border-radius: 5px;
-    padding: 2px;
+    padding: 5px;
   }
 
   &__text {
     font-weight: 600;
-    font-size: 1rem;
-    line-height: 1rem;
+    font-size: 1.2rem;
+    line-height: 1.2rem;
   }
 }
 
 @media (min-width: 768px) {
   .listItem {
     margin: 20px 0;
-    margin-left: -25px;
   }
 
   .listItem__icon-wrapper {
-    padding: 8px;
+    padding: 7px;
   }
 
   .listItem__text {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     line-height: 1.75rem;
   }
 }

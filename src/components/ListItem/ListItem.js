@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './ListItem.scss';
 import { IoMdCheckmark } from 'react-icons/io';
 
-const ListItem = () => {
+const ListItem = ({ text }) => {
   return (
     <div className='listItem'>
       <div className='listItem__icon-wrapper'>
@@ -10,12 +11,13 @@ const ListItem = () => {
           style={{ color: '#fff', width: '15px', height: '15px' }}
         />
       </div>
-      <div className='listItem__text'>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi
-        earum explicabo vitae blanditiis distinctio esse eveniet
-      </div>
+      <div className='listItem__text'>{text}</div>
     </div>
   );
+};
+
+ListItem.propTypes = {
+  text: PropTypes.string.isRequired,
 };
 
 export default ListItem;

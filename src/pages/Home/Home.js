@@ -1,12 +1,26 @@
 import React from 'react';
 import './Home.scss';
 import Categories from '../../views/Categories/Categories';
-import JobSearch from '../../components/JobSearch/JobSearch';
+// import JobSearch from '../../components/JobSearch/JobSearch';
 import RecommendedJobs from '../../views/Jobs/RecommendedJobs/RecommendedJobs';
 import YourActivity from '../../views/YourActivity/YourActivity';
 import Advices from '../../views/Advices/Advices';
+import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useContext } from 'react';
+import CompaniesContext from '../../context/companies/companiesContext';
+import JobOffersContext from '../../context/jobOffers/jobOffersContext';
 
 const Home = () => {
+  const companiesContext = useContext(CompaniesContext);
+  const jobOffersContext = useContext(JobOffersContext);
+
+  useEffect(() => {
+    companiesContext.getCompanies();
+    jobOffersContext.getJobOffers();
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <>
       <section className='hero'>
@@ -16,8 +30,10 @@ const Home = () => {
         <p className='hero__text'>
           Przygotowaliśmy dla Ciebie <span>124 784</span> oferty pracy!
         </p>
-        <button className='btn hero__btn'>Sprawdź</button>
-        <JobSearch />
+        <Link to='/wyszukiwarka' className='btn hero__btn'>
+          Sprawdź
+        </Link>
+        {/* <JobSearch /> */}
       </section>
       <RecommendedJobs />
       <Categories />
