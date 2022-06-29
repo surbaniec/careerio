@@ -14,7 +14,7 @@ import {
 } from 'react-icons/md';
 import { SubmenuOpenContext } from '../../App';
 import AuthContext from '../../context/auth/authContext';
-import { LOGIN } from '../../Routes/routes';
+import { LOGIN, OFFERSFORM, SEARCH_PAGE } from '../../Routes/routes';
 
 const Nav = () => {
   const authContext = useContext(AuthContext);
@@ -59,7 +59,7 @@ const Nav = () => {
           <li className='dropdown-menu__item'>
             <BsBriefcase style={iconStyle} />
             <NavLink
-              to='/wyszukiwarka'
+              to={SEARCH_PAGE}
               className={({ isActive }) =>
                 isActive ? 'dropdown-menu__link active' : 'dropdown-menu__link'
               }
@@ -137,7 +137,7 @@ const Nav = () => {
               }}
             />
             <NavLink
-              to='/dodaj-ogloszenie'
+              to={OFFERSFORM}
               className={({ isActive }) =>
                 isActive
                   ? 'dropdown-menu__link dropdown-menu__link--blue active'
@@ -197,7 +197,7 @@ const Nav = () => {
               }}
             />
             <NavLink
-              to='/dodaj-ogloszenie'
+              to={OFFERSFORM}
               className={({ isActive }) =>
                 isActive ? 'nav-desktop__link active' : 'nav-desktop__link'
               }
@@ -207,7 +207,7 @@ const Nav = () => {
           </li>
           <li className='nav-desktop__item nav-desktop__item--bg'>
             <NavLink
-              to='/logowanie'
+              to={LOGIN}
               onClick={handleLogin}
               className={({ isActive }) =>
                 isActive ? 'nav-desktop__link active' : 'nav-desktop__link'

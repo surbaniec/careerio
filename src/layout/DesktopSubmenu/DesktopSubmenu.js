@@ -8,6 +8,7 @@ import { FiMessageSquare, FiUsers } from 'react-icons/fi';
 import { CgFileDocument } from 'react-icons/cg';
 import { HiOutlineCog } from 'react-icons/hi';
 import { SubmenuOpenContext } from '../../App';
+import { SEARCH_PAGE } from '../../Routes/routes';
 
 const DesktopSubmenu = () => {
   const { submenuOpen, setSubmenuOpen } = useContext(SubmenuOpenContext);
@@ -16,7 +17,7 @@ const DesktopSubmenu = () => {
     <ul className={`desktop-submenu ${submenuOpen ? 'show-submenu' : ''}`}>
       <li className='desktop-submenu__item'>
         <NavLink
-          to='/wyszukiwarka'
+          to={SEARCH_PAGE}
           className={({ isActive }) =>
             isActive ? 'desktop-submenu__link active' : 'desktop-submenu__link'
           }
