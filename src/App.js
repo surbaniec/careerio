@@ -27,6 +27,7 @@ import CompaniesState from './context/companies/CompaniesState';
 import JobOffersState from './context/jobOffers/JobOffersState';
 import AuthState from './context/auth/AuthState';
 import setAuthToken from './utils/setAuthToken';
+import RequireAuth from './utils/requireAuth';
 
 const EmployersPage = React.lazy(() =>
   import('./pages/EmployersPage/EmployersPage')
@@ -63,8 +64,10 @@ function App() {
                   <Route path={JOB_AD} element={<JobAd />} />
                   <Route path={COMPANY_PROFILE} element={<CompanyProfile />} />
                   <Route path={LOGIN} element={<Login />} />
-                  <Route path={DASHBOARD} element={<EmployersPage />} />
-                  <Route path={OFFERSFORM} element={<OffersForm />} />
+                  <Route element={<RequireAuth />}>
+                    <Route path={DASHBOARD} element={<EmployersPage />} />
+                    <Route path={OFFERSFORM} element={<OffersForm />} />
+                  </Route>
                   <Route path={NOT_FOUND} element={<NotFound />} />
                 </Routes>
                 <Footer />
