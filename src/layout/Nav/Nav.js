@@ -14,7 +14,7 @@ import {
 } from 'react-icons/md';
 import { SubmenuOpenContext } from '../../App';
 import AuthContext from '../../context/auth/authContext';
-import { LOGIN, OFFERSFORM, SEARCH_PAGE } from '../../Routes/routes';
+import { DASHBOARD, LOGIN, OFFERSFORM, SEARCH_PAGE } from '../../Routes/routes';
 
 const Nav = () => {
   const authContext = useContext(AuthContext);
@@ -116,7 +116,7 @@ const Nav = () => {
           >
             <HiOutlineCog style={iconStyle} />
             <NavLink
-              to='/dla-firm'
+              to={DASHBOARD}
               className={({ isActive }) =>
                 isActive ? 'dropdown-menu__link active' : 'dropdown-menu__link'
               }

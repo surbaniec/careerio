@@ -8,10 +8,13 @@ import { HiFire } from 'react-icons/hi';
 import JobTile from '../../components/JobTile/JobTile';
 import JobOffersContext from '../../context/jobOffers/jobOffersContext';
 import CompaniesContext from '../../context/companies/companiesContext';
+import AuthContext from '../../context/auth/authContext';
 
 const CompanyProfile = () => {
   const jobOffersContext = useContext(JobOffersContext);
   const companiesContext = useContext(CompaniesContext);
+  const authContext = useContext(AuthContext);
+
   const jobOffers = jobOffersContext.jobOffers;
   const jobOffersLoading = jobOffersContext.loading;
   const companies = companiesContext.companies;
@@ -20,6 +23,11 @@ const CompanyProfile = () => {
   const [selectedCompany, setSelectedCompany] = useState(null);
 
   const companyOffers = [];
+
+  useEffect(() => {
+    authContext.loadUser();
+    // eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     if (jobOffersLoading || companiesLoading) {

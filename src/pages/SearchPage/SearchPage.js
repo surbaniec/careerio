@@ -6,10 +6,12 @@ import Pagination from '../../components/Pagination/Pagination';
 import JobOffersContext from '../../context/jobOffers/jobOffersContext';
 import CompaniesContext from '../../context/companies/companiesContext';
 import { useEffect } from 'react';
+import AuthContext from '../../context/auth/authContext';
 
 const SearchPage = () => {
   const jobOffersContext = useContext(JobOffersContext);
   const companiesContext = useContext(CompaniesContext);
+  const authContext = useContext(AuthContext);
 
   const { jobOffers, getJobOffers } = jobOffersContext;
   const { companies, getCompanies } = companiesContext;
@@ -21,6 +23,11 @@ const SearchPage = () => {
   const [employmentOption, setEmploymentOption] = useState(null);
 
   const [filteredOffers, setFilteredOffers] = useState(null);
+
+  useEffect(() => {
+    authContext.loadUser();
+    // eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     getJobOffers();

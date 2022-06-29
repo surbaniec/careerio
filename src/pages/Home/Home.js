@@ -10,14 +10,17 @@ import { useEffect } from 'react';
 import { useContext } from 'react';
 import CompaniesContext from '../../context/companies/companiesContext';
 import JobOffersContext from '../../context/jobOffers/jobOffersContext';
+import AuthContext from '../../context/auth/authContext';
 
 const Home = () => {
   const companiesContext = useContext(CompaniesContext);
   const jobOffersContext = useContext(JobOffersContext);
+  const authContext = useContext(AuthContext);
 
   useEffect(() => {
     companiesContext.getCompanies();
     jobOffersContext.getJobOffers();
+    authContext.loadUser();
     // eslint-disable-next-line
   }, []);
 

@@ -43,29 +43,32 @@ const EmployersPage = () => {
                   className='login-name'
                   type='text'
                   placeholder='Wpisz nazwę firmy...'
+                  maxLength={20}
                 />
                 <p>Adres WWW</p>
                 <input
                   className='login-name'
                   type='text'
                   placeholder='Wpisz adres www firmy...'
+                  maxLength={20}
                 />
                 <p>Lokalizacja</p>
                 <input
                   className='login-name'
                   type='text'
                   placeholder='Wpisz lokalizację firmy...'
+                  maxLength={30}
                 />
                 <p>Data założenia</p>
                 <input
                   className='login-name'
-                  type='text'
+                  type='date'
                   placeholder='Wpisz datę założenia firmy...'
                 />
                 <p>Wielkość firmy</p>
                 <input
                   className='login-name'
-                  type='text'
+                  type='number'
                   placeholder='Wpisz wielkość firmy...'
                 />
                 <button className='login-submit' type='submit'>
