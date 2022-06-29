@@ -7,7 +7,6 @@ const EmployersPage = () => {
 
   useEffect(() => {
     authContext.loadUser();
-
     // eslint-disable-next-line
   }, []);
 

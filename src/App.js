@@ -1,7 +1,7 @@
 import 'normalize.css';
 import './App.scss';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import React, { createContext, useState, Suspense, useEffect } from 'react';
+import React, { createContext, useState, Suspense } from 'react';
 import {
   HOME,
   SEARCH_PAGE,

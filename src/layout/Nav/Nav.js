@@ -1,17 +1,28 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './Nav.scss';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 // react icons
 import { BsBriefcase, BsPlusCircle } from 'react-icons/bs';
 import { FiMenu, FiMessageSquare, FiUsers } from 'react-icons/fi';
 import { CgFileDocument } from 'react-icons/cg';
 import { HiOutlineCog } from 'react-icons/hi';
-import { MdOutlineKeyboardArrowDown, MdOutlineClose } from 'react-icons/md';
+import {
+  MdOutlineKeyboardArrowDown,
+  MdOutlineClose,
+  MdLogout,
+  MdLogin,
+} from 'react-icons/md';
 import { SubmenuOpenContext } from '../../App';
+import AuthContext from '../../context/auth/authContext';
+import { LOGIN } from '../../Routes/routes';
 
 const Nav = () => {
+  const authContext = useContext(AuthContext);
+  let navigate = useNavigate();
   const [navbarOpen, setNavbarOpen] = useState(false);
   const { submenuOpen, setSubmenuOpen } = useContext(SubmenuOpenContext);
+
+  const { isAuthenticated, logout, user } = authContext;
 
   // disable background scrolling when mobile menu is active
   useEffect(() => {
@@ -25,6 +36,14 @@ const Nav = () => {
 
   const handleSubmenuToggle = () => {
     setSubmenuOpen(!submenuOpen);
+  };
+
+  const handleLogin = () => {
+    if (isAuthenticated) {
+      logout();
+    } else {
+      navigate(LOGIN);
+    }
   };
 
   return (
@@ -132,23 +151,35 @@ const Nav = () => {
             className='dropdown-menu__item dropdown-menu__item--blue'
             onClick={() => setNavbarOpen(!navbarOpen)}
           >
-            <MdOutlineKeyboardArrowDown
-              style={{
-                color: '#fff',
-                width: '25px',
-                height: 'auto',
-                marginRight: '10px',
-              }}
-            />
+            {isAuthenticated ? (
+              <MdLogout
+                style={{
+                  color: '#fff',
+                  width: '25px',
+                  height: 'auto',
+                  marginRight: '10px',
+                }}
+              />
+            ) : (
+              <MdLogin
+                style={{
+                  color: '#fff',
+                  width: '25px',
+                  height: 'auto',
+                  marginRight: '10px',
+                }}
+              />
+            )}
             <NavLink
-              to='/logowanie'
+              to=''
+              onClick={handleLogin}
               className={({ isActive }) =>
                 isActive
                   ? 'dropdown-menu__link dropdown-menu__link--blue active'
                   : 'dropdown-menu__link dropdown-menu__link--blue'
               }
             >
-              Zaloguj się
+              {isAuthenticated ? 'Wyloguj się' : 'Zaloguj się'}
             </NavLink>
           </li>
         </ul>
@@ -177,20 +208,32 @@ const Nav = () => {
           <li className='nav-desktop__item nav-desktop__item--bg'>
             <NavLink
               to='/logowanie'
+              onClick={handleLogin}
               className={({ isActive }) =>
                 isActive ? 'nav-desktop__link active' : 'nav-desktop__link'
               }
             >
-              Zaloguj się
+              {isAuthenticated ? 'Wyloguj się' : 'Zaloguj się'}
             </NavLink>
-            <MdOutlineKeyboardArrowDown
-              style={{
-                color: '#575757',
-                width: '20px',
-                height: 'auto',
-                marginLeft: '5px',
-              }}
-            />
+            {isAuthenticated ? (
+              <MdLogout
+                style={{
+                  color: '#575757',
+                  width: '20px',
+                  height: 'auto',
+                  marginLeft: '10px',
+                }}
+              />
+            ) : (
+              <MdLogin
+                style={{
+                  color: '#575757',
+                  width: '20px',
+                  height: 'auto',
+                  marginLeft: '10px',
+                }}
+              />
+            )}
           </li>
           <li
             className='nav-desktop__item'
