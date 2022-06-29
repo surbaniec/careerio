@@ -8,6 +8,7 @@ import {
   JOB_AD,
   COMPANY_PROFILE,
   LOGIN,
+  OFFERSFORM,
   DASHBOARD,
   NOT_FOUND,
 } from './Routes/routes';
@@ -18,6 +19,7 @@ import Footer from './layout/Footer/Footer';
 import SearchPage from './pages/SearchPage/SearchPage';
 import ScrollToTop from './utils/ScrollToTop';
 import JobAd from './pages/JobAd/JobAd';
+import OffersForm from './pages/OffersForm/OffersForm';
 import CompanyProfile from './pages/CompanyProfile/CompanyProfile';
 import Login from './pages/Login/Login';
 import NotFound from './pages/NotFound/NotFound';
@@ -62,6 +64,7 @@ function App() {
                   <Route path={COMPANY_PROFILE} element={<CompanyProfile />} />
                   <Route path={LOGIN} element={<Login />} />
                   <Route path={DASHBOARD} element={<EmployersPage />} />
+                  <Route path={OFFERSFORM} element={<OffersForm />} />
                   <Route path={NOT_FOUND} element={<NotFound />} />
                 </Routes>
                 <Footer />
