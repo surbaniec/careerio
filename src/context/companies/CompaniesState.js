@@ -15,7 +15,9 @@ import {
 const CompaniesState = (props) => {
   const initialState = {
     companies: null,
+    currentCompany: null,
     loading: true,
+    company: null,
     error: null,
   };
 
@@ -32,10 +34,62 @@ const CompaniesState = (props) => {
   };
 
   // Get Company
+  const getCompany = async (userId) => {
+    try {
+      const res = await axios.get(
+        `https://careerio.azurewebsites.net/Company/userId=${userId}`
+      );
+      dispatch({ type: GET_COMPANY, payload: res.data });
+    } catch (error) {
+      dispatch({ type: COMPANY_ERROR, payload: error });
+    }
+  };
 
   // Add Company
+  const addCompany = async (formData) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Access-Control-Allow-Origin': '*',
+      },
+    };
 
+    try {
+      const res = await axios.post(
+        'https://careerio.azurewebsites.net/Company',
+        formData,
+        config
+      );
+
+      dispatch({ type: ADD_COMPANY, payload: res.data });
+    } catch (error) {
+      dispatch({ type: COMPANY_ERROR, payload: error });
+    }
+  };
   // Update Company
+  const updateCompany = async (companyId, company) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Access-Control-Allow-Origin': '*',
+      },
+    };
+
+    try {
+      console.log(companyId, company);
+      const res = await axios.put(
+        `https://careerio.azurewebsites.net/Company/${companyId}`,
+        company,
+        config
+      );
+
+      dispatch({ type: UPDATE_COMPANY, payload: res.data });
+    } catch (error) {
+      dispatch({ type: COMPANY_ERROR, payload: error });
+    }
+  };
 
   // Delete Company
 
@@ -47,7 +101,11 @@ const CompaniesState = (props) => {
         companies: state.companies,
         error: state.error,
         loading: state.loading,
+        currentCompany: state.currentCompany,
         getCompanies,
+        getCompany,
+        addCompany,
+        updateCompany,
       }}
     >
       {props.children}
