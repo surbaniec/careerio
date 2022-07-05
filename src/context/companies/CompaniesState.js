@@ -78,7 +78,6 @@ const CompaniesState = (props) => {
     };
 
     try {
-      console.log(companyId, company);
       const res = await axios.put(
         `https://careerio.azurewebsites.net/Company/${companyId}`,
         company,

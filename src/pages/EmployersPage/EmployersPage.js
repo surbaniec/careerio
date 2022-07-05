@@ -3,6 +3,10 @@ import './EmployersPage.scss';
 import AuthContext from '../../context/auth/authContext';
 import { useState } from 'react';
 import CompaniesContext from '../../context/companies/companiesContext';
+import { Link } from 'react-router-dom';
+import { MdOutlineSpaceDashboard, MdListAlt, MdAdd } from 'react-icons/md';
+import { CgProfile } from 'react-icons/cg';
+import { IoReceiptOutline } from 'react-icons/io5';
 
 const EmployersPage = () => {
   const authContext = useContext(AuthContext);
@@ -171,21 +175,62 @@ const EmployersPage = () => {
       <section className='top'></section>
       <div className='employers-page-wrapper'>
         <div className='left-wrap'>
-          <div className='icon'>
-            <p>Profil pracodawcy</p>
-          </div>
-          <div className='icon'>
-            <p>Panel pracodawcy</p>
-          </div>
-          <div className='icon'>
-            <p>Artykuły</p>
-          </div>
-          <div className='icon'>
-            <p>Oferty pracy</p>
-          </div>
-          <div className='icon'>
-            <p>Faktury</p>
-          </div>
+          <ul className='dashboard-menu'>
+            <li className='dashboard-menu__item'>
+              <Link to='' className='dashboard-menu__link'>
+                <div className='dashboard-menu__tile'>
+                  <MdOutlineSpaceDashboard
+                    style={{ width: '20px', height: 'auto', color: '#fff' }}
+                  />
+                  <span>Panel pracodawcy</span>
+                </div>
+              </Link>
+            </li>
+            <li className='dashboard-menu__item'>
+              <Link
+                to=''
+                className='dashboard-menu__link dashboard-menu__link--active'
+              >
+                <div className='dashboard-menu__tile dashboard-menu__tile--active'>
+                  <CgProfile
+                    style={{ width: '20px', height: 'auto', color: '#575757' }}
+                  />
+                  <span>Profil pracodawcy</span>
+                </div>
+              </Link>
+            </li>
+            <li className='dashboard-menu__item'>
+              <Link to='' className='dashboard-menu__link'>
+                <div className='dashboard-menu__tile'>
+                  <MdListAlt
+                    style={{ width: '20px', height: 'auto', color: '#fff' }}
+                  />
+
+                  <span>Oferty pracy</span>
+                </div>
+              </Link>
+            </li>
+            <li className='dashboard-menu__item'>
+              <Link to='' className='dashboard-menu__link'>
+                <div className='dashboard-menu__tile'>
+                  <MdAdd
+                    style={{ width: '20px', height: 'auto', color: '#fff' }}
+                  />
+                  <span>Dodaj ofertę</span>
+                </div>
+              </Link>
+            </li>
+            <li className='dashboard-menu__item'>
+              <Link to='' className='dashboard-menu__link'>
+                <div className='dashboard-menu__tile'>
+                  <IoReceiptOutline
+                    style={{ width: '20px', height: 'auto', color: '#fff' }}
+                  />
+                  <span>Faktury</span>
+                </div>
+              </Link>
+            </li>
+          </ul>
         </div>
         <div className='right-wrap'>
           <div className='logreg-box2'>
