@@ -6,22 +6,26 @@ import { Link } from 'react-router-dom';
 import { MdOutlineSpaceDashboard, MdListAlt, MdAdd } from 'react-icons/md';
 import { CgProfile } from 'react-icons/cg';
 import { IoReceiptOutline } from 'react-icons/io5';
+import { DASHBOARD, OFFERSFORM } from '../../Routes/routes';
+import CompaniesContext from '../../context/companies/companiesContext';
+import JobOffersContext from '../../context/jobOffers/jobOffersContext';
 
 const employmentTypeOptions = [
-  { value: 'b2b', label: 'B2B' },
-  { value: 'uop', label: 'Umowa o pracę' },
-  { value: 'uz', label: 'Umowa zlecenie' },
+  { value: '1', label: 'B2B' },
+  { value: '3', label: 'Umowa o pracę' },
+  { value: '2', label: 'Umowa zlecenie' },
 ];
 
 const experienceLevelOptions = [
-  { value: 'junior', label: 'Junior' },
-  { value: 'mid', label: 'Mid' },
-  { value: 'Senior', label: 'Senior' },
+  { value: '1', label: 'Intern' },
+  { value: '2', label: 'Junior' },
+  { value: '3', label: 'Mid' },
+  { value: '4', label: 'Senior' },
 ];
 
 const workingHoursOptions = [
-  { value: 'part-time', label: 'Niepełny etat' },
-  { value: 'fulltime', label: 'Pełny etat' },
+  { value: '2', label: 'Niepełny etat' },
+  { value: '1', label: 'Pełny etat' },
 ];
 
 const selectStyles = {
@@ -78,11 +82,84 @@ const selectStyles = {
 
 const OffersForm = () => {
   const authContext = useContext(AuthContext);
+  const companiesContext = useContext(CompaniesContext);
+  const jobOfferContext = useContext(JobOffersContext);
+
+  const [jobOffer, setJobOffer] = useState({
+    experienceLevelId: null,
+    isRemoteRecruitment: false,
+    jobTitle: '',
+    requirements: [''],
+    responsibilities: [''],
+    salaryFrom: 0,
+    salaryTo: 0,
+    typeOfContractId: null,
+    workingHoursID: null,
+  });
 
   useEffect(() => {
     authContext.loadUser();
     // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    if (authContext.user) {
+      companiesContext.getCompany(authContext.user.id);
+    }
+    // eslint-disable-next-line
+  }, [authContext.user]);
+
+  const onOfferInputChange = (e) => {
+    if (e.target.name === 'responsibilities') {
+      const responsibilitiesArray = e.target.value.split(';');
+      setJobOffer({ ...jobOffer, responsibilities: responsibilitiesArray });
+    } else if (e.target.name === 'requirements') {
+      const requirementsArray = e.target.value.split(';');
+      setJobOffer({ ...jobOffer, requirements: requirementsArray });
+    } else {
+      setJobOffer({ ...jobOffer, [e.target.name]: e.target.value });
+    }
+  };
+
+  const onJobOfferSubmit = (e) => {
+    e.preventDefault();
+    const {
+      experienceLevelId,
+      isRemoteRecruitment,
+      jobTitle,
+      requirements,
+      responsibilities,
+      salaryFrom,
+      salaryTo,
+      typeOfContractId,
+      workingHoursID,
+    } = jobOffer;
+
+    if (
+      experienceLevelId !== null &&
+      jobTitle !== '' &&
+      requirements.length > 0 &&
+      responsibilities.length > 0 &&
+      salaryFrom > 0 &&
+      typeOfContractId !== null &&
+      workingHoursID !== null
+    ) {
+      jobOfferContext.addJobOffer({
+        jobTitle,
+        salaryFrom: parseInt(salaryFrom),
+        salaryTo: parseInt(salaryTo),
+        isRemoteRecruitment: isRemoteRecruitment ? 1 : 0,
+        typeOfContractId: parseInt(typeOfContractId),
+        experienceLevelId: parseInt(experienceLevelId),
+        workingHoursID: parseInt(workingHoursID),
+        requirements,
+        responsibilities,
+        companyId: companiesContext.currentCompany.id,
+      });
+    } else {
+      console.log('walidacja niepomyślna');
+    }
+  };
 
   return (
     <>
@@ -101,7 +178,7 @@ const OffersForm = () => {
                 </Link>
               </li>
               <li className='dashboard-menu__item'>
-                <Link to='' className='dashboard-menu__link '>
+                <Link to={DASHBOARD} className='dashboard-menu__link '>
                   <div className='dashboard-menu__tile '>
                     <CgProfile
                       style={{ width: '20px', height: 'auto', color: '#fff' }}
@@ -123,7 +200,7 @@ const OffersForm = () => {
               </li>
               <li className='dashboard-menu__item'>
                 <Link
-                  to=''
+                  to={OFFERSFORM}
                   className='dashboard-menu__link dashboard-menu__link--active'
                 >
                   <div className='dashboard-menu__tile dashboard-menu__tile--active'>
@@ -158,15 +235,17 @@ const OffersForm = () => {
                     Dodaj lub edytuj ogłoszenie
                   </h2>
                 </div>
-                <form className='offers-form__form'>
-                  <label htmlFor='jobPosition' className='offers-form__label'>
+                <form className='offers-form__form' onSubmit={onJobOfferSubmit}>
+                  <label htmlFor='jobTitle' className='offers-form__label'>
                     Nazwa stanowiska
                   </label>
                   <input
                     className='offers-form__input'
                     type='text'
-                    name='jobPosition'
+                    name='jobTitle'
                     placeholder='Wpisz nazwę stanowiska...'
+                    value={jobOffer.jobTitle}
+                    onChange={onOfferInputChange}
                   />
                   <label
                     htmlFor='experienceLevel'
@@ -183,11 +262,14 @@ const OffersForm = () => {
                     }}
                     defaultValue={{
                       label: 'Wybierz poziom doświadczenia',
-                      value: null,
+                      value: '',
                     }}
-                    // onChange={(e) =>
-                    //   setEmploymentOption({ value: e.value, label: e.label })
-                    // }
+                    onChange={(e) => {
+                      setJobOffer({
+                        ...jobOffer,
+                        experienceLevelId: e.value,
+                      });
+                    }}
                   />
                   <label
                     htmlFor='employmentType'
@@ -204,11 +286,14 @@ const OffersForm = () => {
                     }}
                     defaultValue={{
                       label: 'Wybierz rodzaj umowy',
-                      value: null,
+                      value: '',
                     }}
-                    // onChange={(e) =>
-                    //   setEmploymentOption({ value: e.value, label: e.label })
-                    // }
+                    onChange={(e) => {
+                      setJobOffer({
+                        ...jobOffer,
+                        typeOfContractId: e.value,
+                      });
+                    }}
                   />
                   <label htmlFor='workingHours' className='offers-form__label'>
                     Wymiar czasu pracy
@@ -222,11 +307,14 @@ const OffersForm = () => {
                     }}
                     defaultValue={{
                       label: 'Wybierz wymiar czasu pracy',
-                      value: null,
+                      value: '',
                     }}
-                    // onChange={(e) =>
-                    //   setEmploymentOption({ value: e.value, label: e.label })
-                    // }
+                    onChange={(e) => {
+                      setJobOffer({
+                        ...jobOffer,
+                        workingHoursID: e.value,
+                      });
+                    }}
                   />
                   <p className='offers-form__p'>Widełki płacowe</p>
                   <label
@@ -242,6 +330,8 @@ const OffersForm = () => {
                     id='salaryFrom'
                     min={0}
                     max={50000}
+                    value={jobOffer.salaryFrom}
+                    onChange={onOfferInputChange}
                     required
                   />
 
@@ -258,41 +348,53 @@ const OffersForm = () => {
                     id='salaryTo'
                     min={0}
                     max={50000}
+                    value={jobOffer.salaryTo}
+                    onChange={onOfferInputChange}
                   />
 
-                  <label htmlFor='jobDuties' className='offers-form__label'>
+                  <label
+                    htmlFor='responsibilities'
+                    className='offers-form__label'
+                  >
                     Zakres obowiązków
                   </label>
                   <textarea
                     className='offers-form__textarea'
                     type='textarea'
-                    name='jobDuties'
+                    name='responsibilities'
                     placeholder='Wpisz zakres obowiązków, rozdzielając średnikami...'
+                    value={jobOffer.responsibilities}
+                    onChange={onOfferInputChange}
                   />
-                  <label
-                    htmlFor='jobRequirements'
-                    className='offers-form__label'
-                  >
+                  <label htmlFor='requirements' className='offers-form__label'>
                     Wymagania wobec kandydata
                   </label>
                   <textarea
                     className='offers-form__textarea'
                     type='textarea'
-                    name='jobRequirements'
+                    name='requirements'
                     placeholder='Wpisz wymagania wobec kandydata, rozdzielając średnikami...'
+                    value={jobOffer.requirements}
+                    onChange={onOfferInputChange}
                   />
 
                   <label
                     className='offers-form__label inline'
-                    htmlFor='remoteRecruitment'
+                    htmlFor='isRemoteRecruitment'
                   >
                     Rekrutacja zdalna
                   </label>
                   <input
                     className='offers-form__checkbox'
                     type='checkbox'
-                    name='remoteRecruitment'
+                    name='isRemoteRecruitment'
                     id='remoteRecruitment'
+                    onChange={(e) => {
+                      setJobOffer({
+                        ...jobOffer,
+                        isRemoteRecruitment: e.target.checked,
+                      });
+                    }}
                   />
 
                   <button className='offers-form__btn' type='submit'>

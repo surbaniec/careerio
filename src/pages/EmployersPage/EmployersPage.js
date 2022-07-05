@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { MdOutlineSpaceDashboard, MdListAlt, MdAdd } from 'react-icons/md';
 import { CgProfile } from 'react-icons/cg';
 import { IoReceiptOutline } from 'react-icons/io5';
+import { DASHBOARD, OFFERSFORM } from '../../Routes/routes';
 
 const EmployersPage = () => {
   const authContext = useContext(AuthContext);
@@ -135,8 +136,8 @@ const EmployersPage = () => {
       city !== '' &&
       street !== '' &&
       shortDescription !== '' &&
-      benefits !== '' &&
-      technologies !== ''
+      benefits.length > 0 &&
+      technologies.length > 0
     ) {
       if (companiesContext.currentCompany) {
         companiesContext.updateCompany(
@@ -188,7 +189,7 @@ const EmployersPage = () => {
             </li>
             <li className='dashboard-menu__item'>
               <Link
-                to=''
+                to={DASHBOARD}
                 className='dashboard-menu__link dashboard-menu__link--active'
               >
                 <div className='dashboard-menu__tile dashboard-menu__tile--active'>
@@ -211,7 +212,7 @@ const EmployersPage = () => {
               </Link>
             </li>
             <li className='dashboard-menu__item'>
-              <Link to='' className='dashboard-menu__link'>
+              <Link to={OFFERSFORM} className='dashboard-menu__link'>
                 <div className='dashboard-menu__tile'>
                   <MdAdd
                     style={{ width: '20px', height: 'auto', color: '#fff' }}

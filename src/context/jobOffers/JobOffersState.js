@@ -36,6 +36,27 @@ const JobOffersState = (props) => {
   // Get Job Offer
 
   // Add Job Offer
+  const addJobOffer = async (formData) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Access-Control-Allow-Origin': '*',
+      },
+    };
+
+    try {
+      const res = await axios.post(
+        'https://careerio.azurewebsites.net/JobOffer',
+        formData,
+        config
+      );
+
+      dispatch({ type: ADD_JOB_OFFER, payload: res.data });
+    } catch (error) {
+      dispatch({ type: JOB_OFFERS_ERROR, payload: error });
+    }
+  };
 
   // Update Job Offer
 
@@ -50,6 +71,7 @@ const JobOffersState = (props) => {
         error: state.error,
         loading: state.loading,
         getJobOffers,
+        addJobOffer,
       }}
     >
       {props.children}

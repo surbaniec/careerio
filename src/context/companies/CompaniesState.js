@@ -17,7 +17,6 @@ const CompaniesState = (props) => {
     companies: null,
     currentCompany: null,
     loading: true,
-    company: null,
     error: null,
   };
 
