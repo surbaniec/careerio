@@ -295,35 +295,8 @@ textarea.login-name:focus {
     padding-top: 100px;
   }
 
-  .icon {
-    width: 85%;
-    height: 70px;
-    border-radius: 10px 0 0 10px;
-    background-color: #2a95ff;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-  }
-
   .left-wrap {
     align-items: flex-end;
-  }
-
-  .icon:nth-of-type(2) {
-    background-color: white;
-  }
-
-  .icon:nth-of-type(2) p {
-    color: #2a95ff;
-  }
-
-  .icon p {
-    display: block;
-    margin: 0;
-    margin-left: 30px;
-    font-size: 16px;
-    font-weight: 700;
-    color: white;
   }
 
   .dashboard-menu__link {

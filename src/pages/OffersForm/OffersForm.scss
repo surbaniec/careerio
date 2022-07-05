@@ -1,267 +1,267 @@
-.top {
-  width: 100vw;
+.dashboard-menu {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  z-index: -1;
-  color: var(--font-light-color);
-  text-align: center;
-  border-radius: 0 0 25px 25px;
-  height: 10px;
+  list-style-type: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  &__item {
+    margin: 15px 0;
+    cursor: pointer;
+  }
+
+  &__link {
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: var(--font-light-color);
+    cursor: pointer;
+
+    &--active {
+      color: var(--font-dark-color);
+    }
+  }
+
+  &__tile {
+    margin-left: 10px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 15px 0;
+
+    &--active {
+      background-color: var(--font-light-color);
+    }
+  }
 }
 
-.icons {
-  width: 50px;
-  height: 50px;
-  background-color: white;
-  border-radius: 5px;
-  margin-bottom: 30px;
-}
-
-.icons p {
+.dashboard-menu span {
   display: none;
-}
-
-span.light {
-  font-weight: 400;
-}
-
-.offersform-page-wrapper {
-  width: 100%;
-  display: flex;
-  padding-top: 50px;
-}
-
-.left-wrap {
-  width: 20%;
-  background-color: #2a95ff;
-  padding-top: 50px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
-}
-
-.right-wrap {
-  width: 80%;
-  background-color: white;
-}
-
-.big-box2 {
-  display: flex;
-  justify-content: center;
-  margin-top: 50px;
-  flex-wrap: wrap;
-}
-
-.offer-box2,
-.register-box2 {
-  background-color: #f3f3f3;
-  width: 90%;
-  border-radius: 0 0 10px 10px;
-  margin-bottom: 50px;
-}
-
-.login-title {
-  background-color: #2a95ff;
-  color: white;
-  padding: 20px;
-  border-radius: 10px;
-}
-
-.login-title h2 {
-  margin: 0;
-}
-
-.form-wrapper {
-  padding: 15px;
-}
-
-.form-wrapper p {
-  margin: 0;
-  margin-left: 5px;
-  font-size: 12px;
+  margin-left: 10px;
   font-weight: 700;
-  color: #575757;
 }
 
-.form-wrapper p:nth-of-type(2),
-.form-wrapper p:nth-of-type(3),
-.form-wrapper p:nth-of-type(4),
-.form-wrapper p:nth-of-type(5) {
-  margin-top: 15px;
+.offers-form {
+  &__page-wrapper {
+    width: 100%;
+    display: flex;
+    padding-top: 50px;
+  }
+
+  &__left-wrap {
+    width: 20%;
+    background-color: #2a95ff;
+    padding-top: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  &__right-wrap {
+    width: 80%;
+    background-color: white;
+  }
+
+  &__box-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    flex-wrap: wrap;
+  }
+
+  &__box {
+    background-color: #f3f3f3;
+    width: 90%;
+    border-radius: 0 0 10px 10px;
+    margin-bottom: 50px;
+  }
+
+  &__title-wrapper {
+    background-color: #2a95ff;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  &__title {
+    margin: 0;
+  }
+
+  &__form {
+    padding: 15px;
+  }
+
+  &__input {
+    font-size: 10px;
+    width: 100%;
+    height: 40px;
+    background-color: #e8e8e8;
+    border-radius: 10px;
+    border: none;
+    padding: 15px 10px;
+    margin: 5px 0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  &__textarea {
+    font-size: 10px;
+    width: 100%;
+    height: 140px;
+    background-color: #e8e8e8;
+    border-radius: 10px;
+    border: none;
+    padding: 15px 10px;
+    margin: 5px 0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+    &:focus {
+      outline-color: var(--accent-color);
+    }
+  }
+
+  &__btn {
+    display: block;
+    margin-top: 20px;
+    background-color: #2a95ff;
+    color: white;
+    cursor: pointer;
+    border: 2px solid #2a95ff;
+    padding: 10px 30px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  &__label {
+    display: block;
+    font-size: 1.2rem;
+    color: var(--font-dark-color);
+    font-weight: 700;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 10px;
+  }
+
+  &__salary-input {
+    background-color: var(--light-color-1);
+    border: none;
+    border-radius: var(--btn-border-radius);
+    padding: 5px;
+    margin: 5px 5px 15px;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 5%);
+  }
+
+  &__p {
+    font-weight: 700;
+    color: var(--font-dark-color);
+    font-size: 1.2rem;
+    margin-left: 5px;
+  }
 }
 
-input.login-name,
-input.login-password {
-  font-size: 10px;
-  width: 100%;
-  height: 40px;
-  background-color: #e8e8e8;
-  border-radius: 10px;
-  border: none;
-  padding: 15px 10px;
-  margin: 5px 0;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
-}
-
-textarea.login-name {
-  font-size: 10px;
-  width: 100%;
-  height: 140px;
-  background-color: #e8e8e8;
-  border-radius: 10px;
-  border: none;
-  padding: 15px 10px;
-  margin: 5px 0;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
-}
-
-textarea.login-name:focus {
-  outline-color: var(--accent-color);
-}
-
-.login-submit,
-.register-submit {
-  display: block;
-  margin-top: 20px;
-  background-color: #2a95ff;
-  color: white;
-  cursor: pointer;
-  border: 2px solid #2a95ff;
-  padding: 10px 30px;
-  border-radius: 10px;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.offers-form__label {
+.inline {
   display: inline-block;
-  font-size: 1.2rem;
-  color: var(--font-dark-color);
-  font-weight: 700;
-  margin-top: 10px;
-  margin-right: 10px;
 }
 
 @media (min-width: 768px) {
-  .form-wrapper p {
-    font-size: 14px;
+  .offers-form {
+    &__input,
+    &__textarea {
+      font-size: 12px;
+    }
+
+    &__title {
+      font-size: 18px;
+    }
+
+    &__btn {
+      font-size: 14px;
+    }
   }
-  input.login-name,
-  input.login-password,
-  textarea {
-    font-size: 12px;
+
+  .dashboard-menu {
+    &__link {
+      font-size: 1.4rem;
+    }
+
+    &__tile {
+      padding: 20px 0;
+      padding-left: 10px;
+    }
   }
-  .login-title h2 {
-    font-size: 18px;
-  }
-  .login-submit,
-  .register-submit {
-    font-size: 14px;
+
+  .dashboard-menu span {
+    display: inline-block;
+    width: 100%;
   }
 }
 
 @media (min-width: 1200px) {
-  .login-box2,
-  .register-box2 {
-    width: 65%;
-  }
-  .logo-box {
-    width: 25%;
-  }
-  .login-box2 {
-    margin-right: 25px;
+  .offers-form {
+    &__box {
+      width: 80%;
+    }
+
+    &__form {
+      padding: 35px 45px;
+    }
+
+    &__btn {
+      margin-top: 25px;
+    }
+
+    &__title-wrapper {
+      padding: 30px 45px;
+    }
+
+    &__title {
+      font-size: 20px;
+    }
+
+    &__input {
+      font-size: 16px;
+      height: 50px;
+      padding: 20px;
+    }
+
+    &__textarea {
+      font-size: 16px;
+      height: 150px;
+      padding: 20px;
+    }
+
+    &__btn {
+      font-size: 18px;
+    }
+
+    &__box-wrapper {
+      margin-top: 100px;
+      display: flex;
+      justify-content: flex-start;
+      padding-left: 50px;
+    }
+
+    &__left-wrap {
+      padding-top: 100px;
+    }
+
+    &__label {
+      font-size: 1.6rem;
+    }
+
+    &__p {
+      font-size: 1.6rem;
+    }
   }
 
-  .register-box2 {
-    margin-left: 0;
+  .dashboard-menu__link {
+    font-size: 1.6rem;
   }
 
-  .form-wrapper {
-    padding: 35px 45px;
-  }
-  .form-wrapper p:nth-of-type(2),
-  .form-wrapper p:nth-of-type(3),
-  .form-wrapper p:nth-of-type(4),
-  .form-wrapper p:nth-of-type(5),
-  .form-wrapper p:nth-of-type(6) {
-    margin-top: 25px;
-  }
-  .login-submit,
-  .register-submit {
-    margin-top: 25px;
-  }
-  .login-title {
-    padding: 30px 45px;
-  }
-  .form-wrapper p {
-    font-size: 18px;
-  }
-  input.login-name,
-  input.login-password {
-    font-size: 16px;
-    height: 50px;
-    padding: 20px;
-  }
-
-  textarea.login-name {
-    font-size: 16px;
-    height: 150px;
-    padding: 20px;
-  }
-
-  .login-title h2 {
-    font-size: 20px;
-  }
-  .login-submit,
-  .register-submit {
-    font-size: 18px;
-  }
-  .big-box2 {
-    margin-top: 100px;
-    display: flex;
-    justify-content: flex-start;
-    padding-left: 50px;
-  }
-  .left-wrap {
-    padding-top: 100px;
-  }
-  .icons {
-    width: 85%;
-    height: 70px;
-    border-radius: 10px 0 0 10px;
-    background-color: #2a95ff;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-  }
-  .left-wrap {
-    align-items: flex-end;
-  }
-
-  .icons:nth-of-type(4) {
-    background-color: white;
-  }
-
-  .icons:nth-of-type(4) p {
-    color: #2a95ff;
-  }
-
-  .icons p {
-    display: block;
-    margin: 0;
-    margin-left: 30px;
-    font-size: 16px;
-    font-weight: 700;
-    color: white;
-  }
-
-  .offers-form__label {
-    margin-left: 5px;
-    font-size: 1.8rem;
+  .dashboard-menu__tile {
+    padding-left: 20px;
   }
 }
