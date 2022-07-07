@@ -9,6 +9,7 @@ import { IoReceiptOutline } from 'react-icons/io5';
 import { DASHBOARD, EMPLOYER_OFFERS, OFFERSFORM } from '../../Routes/routes';
 import CompaniesContext from '../../context/companies/companiesContext';
 import JobOffersContext from '../../context/jobOffers/jobOffersContext';
+import toast, { Toaster } from 'react-hot-toast';
 
 const employmentTypeOptions = [
   { value: '1', label: 'B2B' },
@@ -158,6 +159,7 @@ const OffersForm = () => {
         requirements,
         responsibilities,
       });
+      toast.success('Oferta pracy dodana pomyślnie!');
       setJobOffer({
         experienceLevelId: null,
         isRemoteRecruitment: false,
@@ -171,11 +173,19 @@ const OffersForm = () => {
       });
     } else {
       console.log('walidacja niepomyślna');
+      toast.error('Dane niepoprawne!');
     }
   };
 
   return (
     <section className='offers-form'>
+      <div>
+        <Toaster
+          toastOptions={{
+            className: 'toaster',
+          }}
+        />
+      </div>
       <div className='offers-form__page-wrapper'>
         <div className='offers-form__left-wrap'>
           <ul className='dashboard-menu'>

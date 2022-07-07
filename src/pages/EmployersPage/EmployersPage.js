@@ -8,6 +8,7 @@ import { MdOutlineSpaceDashboard, MdListAlt, MdAdd } from 'react-icons/md';
 import { CgProfile } from 'react-icons/cg';
 import { IoReceiptOutline } from 'react-icons/io5';
 import { DASHBOARD, EMPLOYER_OFFERS, OFFERSFORM } from '../../Routes/routes';
+import toast, { Toaster } from 'react-hot-toast';
 
 const EmployersPage = () => {
   const authContext = useContext(AuthContext);
@@ -147,6 +148,7 @@ const EmployersPage = () => {
           companiesContext.currentCompany.id,
           company
         );
+        toast.success('Zaktualizowano dane!');
       } else {
         companiesContext.addCompany({
           name,
@@ -168,16 +170,24 @@ const EmployersPage = () => {
           imageUrl,
           relatedIndustries,
         });
+        toast.success('Założono profil firmy!');
       }
     } else {
       console.log('walidacja niepomyslna');
+      toast.error('Dane niepoprawne!');
     }
   };
 
   return (
     <>
-      <section className='top'></section>
       <div className='employers-page-wrapper'>
+        <div>
+          <Toaster
+            toastOptions={{
+              className: 'toaster',
+            }}
+          />
+        </div>
         <div className='left-wrap'>
           <ul className='dashboard-menu'>
             <li className='dashboard-menu__item'>

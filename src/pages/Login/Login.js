@@ -3,11 +3,11 @@ import './Login.scss';
 import AuthContext from '../../context/auth/authContext';
 import { useNavigate } from 'react-router-dom';
 import { DASHBOARD } from '../../Routes/routes';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Login = () => {
   const authContext = useContext(AuthContext);
-  const { register, error, clearErrors, isAuthenticated, loginUser } =
-    authContext;
+  const { register, error, isAuthenticated, loginUser } = authContext;
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -16,13 +16,11 @@ const Login = () => {
     }
 
     if (error?.Email) {
-      setEmailError('Email jest już zajęty');
-      clearErrors();
+      toast.error('Podany email jest już zajęty!');
     }
 
     if (error?.Login) {
-      setLoginError('Login jest już zajęty');
-      clearErrors();
+      toast.error('Podany login jest już zajęty!');
     }
     // eslint-disable-next-line
   }, [error, isAuthenticated]);
@@ -46,49 +44,21 @@ const Login = () => {
   const loggingLogin = loggingUser.login;
   const loggingPassword = loggingUser.password;
 
-  // errors
-  const [loginError, setLoginError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [passwordRepeatError, setPasswordRepeatError] = useState('');
-
   const onRegisterInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
   const registerFormValidation = () => {
-    setLoginError('');
-    setPasswordError('');
-    setEmailError('');
-    setPasswordRepeatError('');
-
-    if (login === '') {
-      setLoginError('Proszę wprowadzić login');
-      return false;
-    }
-
-    if (email === '') {
-      setEmailError('Proszę wprowadzić adres e-mail');
-      return false;
-    }
-
-    if (password === '') {
-      setPasswordError('Proszę wprowadzić hasło');
-      return false;
-    }
-
     if (password && password !== password2) {
-      setPasswordRepeatError('Podane hasła się różnią');
+      toast.error('Podane hasła się różnią!');
       return false;
     }
 
     if (login) {
       const loginValid = login.match(/^([A-Za-z0-9]){4,20}$/gm);
 
-      if (loginValid) {
-        setLoginError('');
-      } else {
-        setLoginError(
+      if (!loginValid) {
+        toast.error(
           'Login musi składać się z 4-20 znaków oraz nie może zawierać znaków specjalnych'
         );
         return false;
@@ -98,10 +68,8 @@ const Login = () => {
     if (email) {
       const emailValid = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
 
-      if (emailValid) {
-        setEmailError('');
-      } else {
-        setEmailError('Podany adres e-mail jest niepoprawny');
+      if (!emailValid) {
+        toast.error('Podany adres e-mail jest niepoprawny');
         return false;
       }
     }
@@ -110,10 +78,8 @@ const Login = () => {
       const passwordValid = password.match(
         /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/
       );
-      if (passwordValid) {
-        setPasswordError('');
-      } else {
-        setPasswordError(
+      if (!passwordValid) {
+        toast.error(
           'Hasło musi składać się z 7-15 znaków zawierających przynajmniej jedną cyfrę i znak specjalny'
         );
         return false;
@@ -149,6 +115,13 @@ const Login = () => {
   return (
     <>
       <section className='hero'>
+        <div>
+          <Toaster
+            toastOptions={{
+              className: 'toaster',
+            }}
+          />
+        </div>
         <h1 className='title'>Logowanie do panelu pracodawcy</h1>
       </section>
       <div className='logreg-box'>
@@ -197,8 +170,8 @@ const Login = () => {
                 name='login'
                 value={login}
                 onChange={onRegisterInputChange}
+                required
               />
-              {loginError && <small className='error'>{loginError}</small>}
             </div>
 
             <div className='input-wrapper'>
@@ -210,8 +183,8 @@ const Login = () => {
                 name='email'
                 value={email}
                 onChange={onRegisterInputChange}
+                required
               />
-              {emailError && <small className='error'>{emailError}</small>}
             </div>
 
             <div className='input-wrapper'>
@@ -224,10 +197,8 @@ const Login = () => {
                 name='password'
                 value={password}
                 onChange={onRegisterInputChange}
+                required
               />
-              {passwordError && (
-                <small className='error'>{passwordError}</small>
-              )}
             </div>
 
             <div className='input-wrapper'>
@@ -240,10 +211,8 @@ const Login = () => {
                 name='password2'
                 value={password2}
                 onChange={onRegisterInputChange}
+                required
               />
-              {passwordRepeatError && (
-                <small className='error'>{passwordRepeatError}</small>
-              )}
             </div>
 
             <button className='register-submit' type='submit'>

@@ -6,15 +6,11 @@ import { BsBriefcase, BsPlusCircle } from 'react-icons/bs';
 import { FiMenu, FiMessageSquare, FiUsers } from 'react-icons/fi';
 import { CgFileDocument } from 'react-icons/cg';
 import { HiOutlineCog } from 'react-icons/hi';
-import {
-  MdOutlineKeyboardArrowDown,
-  MdOutlineClose,
-  MdLogout,
-  MdLogin,
-} from 'react-icons/md';
+import { MdOutlineClose, MdLogout, MdLogin } from 'react-icons/md';
 import { SubmenuOpenContext } from '../../App';
 import AuthContext from '../../context/auth/authContext';
 import { DASHBOARD, LOGIN, OFFERSFORM, SEARCH_PAGE } from '../../Routes/routes';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Nav = () => {
   const authContext = useContext(AuthContext);
@@ -41,6 +37,7 @@ const Nav = () => {
   const handleLogin = () => {
     if (isAuthenticated) {
       logout();
+      toast.success('Wylogowano pomyślnie!');
     } else {
       navigate(LOGIN);
     }
@@ -48,6 +45,13 @@ const Nav = () => {
 
   return (
     <>
+      <div>
+        <Toaster
+          toastOptions={{
+            className: 'toaster',
+          }}
+        />
+      </div>
       <nav className='nav'>
         {navbarOpen ? (
           <MdOutlineClose onClick={handleToggle} style={iconStyle} />

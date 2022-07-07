@@ -12,6 +12,7 @@ import CompaniesContext from '../../context/companies/companiesContext';
 import { useEffect } from 'react';
 import AuthContext from '../../context/auth/authContext';
 import { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 
 const EmployerOffers = () => {
   const jobOffersContext = useContext(JobOffersContext);
@@ -41,18 +42,29 @@ const EmployerOffers = () => {
   }, [companiesContext.currentCompany]);
 
   useEffect(() => {
-    setJobOffers(jobOffersContext.currentJobOffers);
+    if (jobOffersContext.currentJobOffers) {
+      setJobOffers(jobOffersContext.currentJobOffers);
+    }
+
     // eslint-disable-next-line
   }, [jobOffersContext.currentJobOffers]);
 
   const handleDelete = (jobOfferId) => {
     jobOffersContext.deleteJobOffer(jobOfferId);
+    toast.success('Usunięto ofertę pracy');
   };
 
   const handleEdit = (jobOfferId) => {};
 
   return (
     <section className='employer-offers'>
+      <div>
+        <Toaster
+          toastOptions={{
+            className: 'toaster',
+          }}
+        />
+      </div>
       <div className='employer-offers__page-wrapper'>
         <div className='employer-offers__left-wrap'>
           <ul className='dashboard-menu'>
