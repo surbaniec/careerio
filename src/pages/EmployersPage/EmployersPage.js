@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { MdOutlineSpaceDashboard, MdListAlt, MdAdd } from 'react-icons/md';
 import { CgProfile } from 'react-icons/cg';
 import { IoReceiptOutline } from 'react-icons/io5';
-import { DASHBOARD, OFFERSFORM } from '../../Routes/routes';
+import { DASHBOARD, EMPLOYER_OFFERS, OFFERSFORM } from '../../Routes/routes';
 
 const EmployersPage = () => {
   const authContext = useContext(AuthContext);
@@ -36,12 +36,15 @@ const EmployersPage = () => {
   });
 
   useEffect(() => {
-    authContext.loadUser();
+    if (authContext.isAuthenticated === null && authContext.loading === true) {
+      authContext.loadUser();
+    }
+
     // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
-    if (authContext.user) {
+    if (authContext.user && companiesContext.currentCompany === null) {
       companiesContext.getCompany(authContext.user.id);
     }
     // eslint-disable-next-line
@@ -201,7 +204,7 @@ const EmployersPage = () => {
               </Link>
             </li>
             <li className='dashboard-menu__item'>
-              <Link to='' className='dashboard-menu__link'>
+              <Link to={EMPLOYER_OFFERS} className='dashboard-menu__link'>
                 <div className='dashboard-menu__tile'>
                   <MdListAlt
                     style={{ width: '20px', height: 'auto', color: '#fff' }}

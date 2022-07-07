@@ -93,6 +93,14 @@ input.login-password {
   font-size: 12px;
   font-weight: 600;
   text-decoration: none;
+  transition: 0.2s;
+}
+
+.login-submit:hover,
+.register-submit:hover {
+  background-color: transparent;
+  border: 2px solid var(--accent-color);
+  color: var(--accent-color);
 }
 
 .input-wrapper {

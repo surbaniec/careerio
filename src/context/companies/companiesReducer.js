@@ -43,6 +43,11 @@ export default (state, action) => {
         ),
         loading: false,
       };
+    case CLEAR_COMPANIES_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
     default:
       return state;
   }

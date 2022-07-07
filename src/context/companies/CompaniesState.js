@@ -28,7 +28,7 @@ const CompaniesState = (props) => {
       const res = await axios.get('https://careerio.azurewebsites.net/Company');
       dispatch({ type: GET_COMPANIES, payload: res.data });
     } catch (error) {
-      dispatch({ type: COMPANY_ERROR, payload: error });
+      dispatch({ type: COMPANY_ERROR, payload: error.response.data });
     }
   };
 
@@ -40,7 +40,7 @@ const CompaniesState = (props) => {
       );
       dispatch({ type: GET_COMPANY, payload: res.data });
     } catch (error) {
-      dispatch({ type: COMPANY_ERROR, payload: error });
+      dispatch({ type: COMPANY_ERROR, payload: error.response.data });
     }
   };
 
@@ -63,7 +63,7 @@ const CompaniesState = (props) => {
 
       dispatch({ type: ADD_COMPANY, payload: res.data });
     } catch (error) {
-      dispatch({ type: COMPANY_ERROR, payload: error });
+      dispatch({ type: COMPANY_ERROR, payload: error.response.data });
     }
   };
   // Update Company
@@ -85,13 +85,14 @@ const CompaniesState = (props) => {
 
       dispatch({ type: UPDATE_COMPANY, payload: res.data });
     } catch (error) {
-      dispatch({ type: COMPANY_ERROR, payload: error });
+      dispatch({ type: COMPANY_ERROR, payload: error.response.data });
     }
   };
 
   // Delete Company
 
   // Clear Errors
+  const clearErrors = () => dispatch({ type: CLEAR_COMPANIES_ERRORS });
 
   return (
     <CompaniesContext.Provider
@@ -104,6 +105,7 @@ const CompaniesState = (props) => {
         getCompany,
         addCompany,
         updateCompany,
+        clearErrors,
       }}
     >
       {props.children}

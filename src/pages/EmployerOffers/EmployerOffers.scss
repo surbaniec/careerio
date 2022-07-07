@@ -1,0 +1,341 @@
+.dashboard-menu {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  &__item {
+    margin: 15px 0;
+    cursor: pointer;
+  }
+
+  &__link {
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: var(--font-light-color);
+    cursor: pointer;
+
+    &--active {
+      color: var(--font-dark-color);
+    }
+  }
+
+  &__tile {
+    margin-left: 10px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 15px 0;
+
+    &--active {
+      background-color: var(--font-light-color);
+    }
+  }
+}
+
+.dashboard-menu span {
+  display: none;
+  margin-left: 10px;
+  font-weight: 700;
+}
+
+.employer-offers {
+  &__page-wrapper {
+    width: 100%;
+    display: flex;
+    padding-top: 50px;
+  }
+
+  &__left-wrap {
+    width: 20%;
+    background-color: #2a95ff;
+    padding-top: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  &__right-wrap {
+    width: 80%;
+    background-color: white;
+  }
+
+  &__box-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    flex-wrap: wrap;
+  }
+
+  &__box {
+    background-color: #f3f3f3;
+    width: 90%;
+    border-radius: 0 0 10px 10px;
+    margin-bottom: 50px;
+  }
+
+  &__title-wrapper {
+    background-color: #2a95ff;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  &__title {
+    margin: 0;
+  }
+}
+
+.employer-offers__list-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.job-offer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 220px;
+  margin: 15px 0;
+  padding: 15px;
+  background-color: var(--primary-color);
+  color: var(--font-dark-color);
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  transition: 0.4s;
+
+  &:hover {
+    box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  &__info {
+    display: flex;
+    width: 100%;
+    pointer-events: none;
+  }
+
+  &__img-wrapper {
+    margin-right: 10px;
+  }
+
+  &__logo {
+    width: 100%;
+    height: auto;
+  }
+
+  &__company-name,
+  &__salary-wrapper {
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.25rem;
+  }
+
+  &__position {
+    font-size: 1.4rem;
+    font-weight: 400;
+  }
+
+  &__salary-wrapper span {
+    color: var(--accent-color);
+  }
+
+  &__address-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__address-wrapper,
+  &__company-name,
+  &__position,
+  &__salary-wrapper {
+    margin: 0 0 5px 0;
+  }
+
+  &__salary-wrapper span:last-child {
+    color: var(--font-dark-color);
+  }
+
+  &__address-divider {
+    margin-right: 5px;
+  }
+
+  &__address-province,
+  &__address-city {
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+
+  &__controls {
+    width: 100%;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__btn {
+    font-size: 1.2rem;
+    font-weight: 500;
+    background-color: var(--secondary-color);
+    color: var(--font-dark-color);
+    text-decoration: none;
+    border: 1px solid var(--light-color-1);
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 2px;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--accent-color);
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .dashboard-menu {
+    &__link {
+      font-size: 1.4rem;
+    }
+
+    &__tile {
+      padding: 20px 0;
+      padding-left: 10px;
+    }
+  }
+
+  .dashboard-menu span {
+    display: inline-block;
+    width: 100%;
+  }
+
+  .employer-offers {
+    &__title {
+      font-size: 18px;
+    }
+  }
+
+  .job-offer {
+    width: 330px;
+    margin-right: 20px;
+    padding: 30px;
+
+    &__info {
+      width: 100%;
+    }
+
+    &__img-wrapper {
+      width: 20%;
+      margin-right: 20px;
+    }
+
+    &__company-name {
+      font-size: 1.8rem;
+    }
+
+    &__position {
+      font-size: 2.2rem;
+    }
+
+    &__salary-wrapper,
+    &__address-wrapper span {
+      font-size: 1.8rem;
+    }
+
+    &__address-wrapper,
+    &__company-name,
+    &__position,
+    &__salary-wrapper {
+      margin: 0 0 10px 0;
+    }
+
+    &__controls {
+      margin-top: 20px;
+    }
+
+    &__btn {
+      height: 100%;
+      font-size: 1.6rem;
+      padding: 15px;
+    }
+
+    &__btn svg {
+      width: 20px !important;
+      height: 20px !important;
+    }
+
+    &__btn:first-of-type {
+      padding: 10px 15px;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .dashboard-menu__link {
+    font-size: 1.6rem;
+  }
+
+  .dashboard-menu__tile {
+    padding-left: 20px;
+  }
+
+  .employer-offers {
+    &__title {
+      font-size: 18px;
+    }
+    &__box {
+      width: 80%;
+    }
+    &__title-wrapper {
+      padding: 30px 45px;
+    }
+
+    &__title {
+      font-size: 20px;
+    }
+    &__box-wrapper {
+      margin-top: 100px;
+      display: flex;
+      justify-content: flex-start;
+      padding-left: 50px;
+    }
+
+    &__left-wrap {
+      padding-top: 100px;
+    }
+  }
+
+  .job-offer {
+    width: 300px;
+    padding: 20px;
+    margin-left: 10px;
+    margin-bottom: 30px;
+
+    &__company-name {
+      font-size: 1.6rem;
+    }
+
+    &__position {
+      font-size: 1.8rem;
+    }
+
+    &__salary-wrapper,
+    &__address-wrapper span {
+      font-size: 1.4rem;
+    }
+
+    &__btn {
+      padding: 10px;
+    }
+  }
+}

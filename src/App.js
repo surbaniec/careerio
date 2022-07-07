@@ -11,6 +11,7 @@ import {
   OFFERSFORM,
   DASHBOARD,
   NOT_FOUND,
+  EMPLOYER_OFFERS,
 } from './Routes/routes';
 import Header from './layout/Header/Header';
 import Home from './pages/Home/Home';
@@ -19,7 +20,6 @@ import Footer from './layout/Footer/Footer';
 import SearchPage from './pages/SearchPage/SearchPage';
 import ScrollToTop from './utils/ScrollToTop';
 import JobAd from './pages/JobAd/JobAd';
-import OffersForm from './pages/OffersForm/OffersForm';
 import CompanyProfile from './pages/CompanyProfile/CompanyProfile';
 import Login from './pages/Login/Login';
 import NotFound from './pages/NotFound/NotFound';
@@ -31,6 +31,11 @@ import RequireAuth from './utils/requireAuth';
 
 const EmployersPage = React.lazy(() =>
   import('./pages/EmployersPage/EmployersPage')
+);
+
+const OffersForm = React.lazy(() => import('./pages/OfferForm/OffersForm'));
+const EmployerOffers = React.lazy(() =>
+  import('./pages/EmployerOffers/EmployerOffers')
 );
 
 if (localStorage.token) {
@@ -67,6 +72,10 @@ function App() {
                   <Route element={<RequireAuth />}>
                     <Route path={DASHBOARD} element={<EmployersPage />} />
                     <Route path={OFFERSFORM} element={<OffersForm />} />
+                    <Route
+                      path={EMPLOYER_OFFERS}
+                      element={<EmployerOffers />}
+                    />
                   </Route>
                   <Route path={NOT_FOUND} element={<NotFound />} />
                 </Routes>

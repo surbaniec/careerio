@@ -4,5 +4,6 @@ export const JOB_AD = '/ogloszenie/:jobOfferId';
 export const COMPANY_PROFILE = '/profil-firmy/:companyId';
 export const LOGIN = '/logowanie';
 export const OFFERSFORM = '/dodaj-oferte';
+export const EMPLOYER_OFFERS = '/oferty-pracy';
 export const DASHBOARD = '/panel-pracodawcy';
 export const NOT_FOUND = '*';
