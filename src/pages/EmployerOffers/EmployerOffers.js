@@ -54,8 +54,6 @@ const EmployerOffers = () => {
     toast.success('Usunięto ofertę pracy');
   };
 
-  const handleEdit = (jobOfferId) => {};
-
   return (
     <section className='employer-offers'>
       <div>
@@ -198,12 +196,6 @@ const EmployerOffers = () => {
                           </div>
                         </div>
                         <div className='job-offer__controls'>
-                          <button
-                            className='job-tile__btn'
-                            onClick={() => handleEdit(jobOffer.id)}
-                          >
-                            Edytuj
-                          </button>
                           <button
                             className='job-tile__btn'
                             onClick={() => handleDelete(jobOffer.id)}

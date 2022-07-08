@@ -227,6 +227,26 @@
     &__box {
       width: 100%;
     }
+
+    &__title {
+      font-size: 2rem;
+    }
+
+    &__label {
+      font-size: 1.8rem;
+    }
+
+    &__input,
+    &__textarea,
+    &__list {
+      font-size: 1.6rem;
+    }
+
+    &__btn,
+    &__add-btn {
+      width: 200px;
+      font-size: 1.8rem;
+    }
   }
 
   .employer-page__sidebar .dashboard-menu span {

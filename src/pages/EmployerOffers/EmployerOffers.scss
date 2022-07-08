@@ -178,27 +178,7 @@
     margin-top: 15px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-  }
-
-  &__btn {
-    font-size: 1.2rem;
-    font-weight: 500;
-    background-color: var(--secondary-color);
-    color: var(--font-dark-color);
-    text-decoration: none;
-    border: 1px solid var(--light-color-1);
-    border-radius: 5px;
-    padding: 10px;
-    display: flex;
     justify-content: center;
-    align-items: center;
-    margin: 0 2px;
-    cursor: pointer;
-
-    &:hover {
-      color: var(--accent-color);
-    }
   }
 }
 
@@ -262,21 +242,6 @@
     &__controls {
       margin-top: 20px;
     }
-
-    &__btn {
-      height: 100%;
-      font-size: 1.6rem;
-      padding: 15px;
-    }
-
-    &__btn svg {
-      width: 20px !important;
-      height: 20px !important;
-    }
-
-    &__btn:first-of-type {
-      padding: 10px 15px;
-    }
   }
 }
 
@@ -312,6 +277,7 @@
 
     &__left-wrap {
       padding-top: 100px;
+      width: 250px;
     }
   }
 
@@ -332,10 +298,6 @@
     &__salary-wrapper,
     &__address-wrapper span {
       font-size: 1.4rem;
-    }
-
-    &__btn {
-      padding: 10px;
     }
   }
 }

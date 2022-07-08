@@ -201,6 +201,10 @@
 
 @media (min-width: 1200px) {
   .offers-form {
+    &__left-wrap {
+      width: 250px;
+    }
+
     &__box {
       width: 80%;
     }
