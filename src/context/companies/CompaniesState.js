@@ -82,7 +82,6 @@ const CompaniesState = (props) => {
         company,
         config
       );
-
       dispatch({ type: UPDATE_COMPANY, payload: res.data });
     } catch (error) {
       dispatch({ type: COMPANY_ERROR, payload: error.response.data });
