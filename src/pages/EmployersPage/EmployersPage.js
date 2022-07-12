@@ -238,7 +238,12 @@ const EmployersPage = () => {
           companiesContext.currentCompany.id,
           company
         );
-        toast.success('Zaktualizowano dane!');
+        if (companiesContext.error === null) {
+          toast.success('Zaktualizowano dane!');
+        } else {
+          toast.error('Ups.. coś poszło nie tak!');
+        }
+
         // If current company doesn't exists, add company data
       } else {
         companiesContext.addCompany({
@@ -261,7 +266,11 @@ const EmployersPage = () => {
           imageUrl,
           relatedIndustries,
         });
-        toast.success('Założono profil firmy!');
+        if (companiesContext.error === null) {
+          toast.success('Założono profil firmy!');
+        } else {
+          toast.error('Ups.. coś poszło nie tak!');
+        }
       }
     } else {
       toast.error('Dane niepoprawne!');
@@ -473,9 +482,6 @@ const EmployersPage = () => {
                 onChange={onCompanyInputChange}
                 min='1'
               />
-              <button className='employer-page__btn' type='submit'>
-                Zapisz zmiany
-              </button>
             </form>
           </div>
 
@@ -562,7 +568,6 @@ const EmployersPage = () => {
                   value={technology}
                   name='technologies'
                   onChange={(e) => setTechnology(e.target.value)}
-                  required
                 />
                 <button
                   className='employer-page__add-btn'
@@ -611,7 +616,6 @@ const EmployersPage = () => {
                   value={benefit}
                   name='benefits'
                   onChange={(e) => setBenefit(e.target.value)}
-                  required
                 />
                 <button
                   className='employer-page__add-btn'
@@ -660,9 +664,12 @@ const EmployersPage = () => {
                   value={photo}
                   name='photos'
                   onChange={(e) => setPhoto(e.target.value)}
-                  required
                 />
-                <button className='employer-page__add-btn' data-name='photo'>
+                <button
+                  className='employer-page__add-btn'
+                  data-name='photo'
+                  onClick={handleAddValue}
+                >
                   Dodaj
                 </button>
                 <div className='employer-page__list-wrapper'>

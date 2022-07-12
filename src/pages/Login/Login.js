@@ -110,6 +110,9 @@ const Login = () => {
     const login = loggingLogin;
     const password = loggingPassword;
     loginUser({ login, password });
+    if (authContext.error === 'Niepoprawny login lub hasło.') {
+      toast.error('Niepoprawny login lub hasło!');
+    }
   };
 
   return (
