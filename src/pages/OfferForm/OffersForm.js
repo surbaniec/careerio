@@ -87,7 +87,7 @@ const OffersForm = () => {
   const jobOfferContext = useContext(JobOffersContext);
 
   const [jobOffer, setJobOffer] = useState({
-    experienceLevelId: null,
+    experienceLevelId: 'Wybierz poziom doświadczenia',
     isRemoteRecruitment: false,
     jobTitle: '',
     requirements: [''],
@@ -139,6 +139,13 @@ const OffersForm = () => {
       workingHoursID,
     } = jobOffer;
 
+    if (parseInt(salaryFrom) > parseInt(salaryTo)) {
+      toast.error(
+        'Niepoprawne widełki płacowe! Upewnij się, że kwota początkowa nie jest wyższa od końcowej.'
+      );
+      return;
+    }
+
     if (
       experienceLevelId !== null &&
       jobTitle !== '' &&
@@ -159,7 +166,17 @@ const OffersForm = () => {
         requirements,
         responsibilities,
       });
-      toast.success('Oferta pracy dodana pomyślnie!');
+      if (jobOfferContext.error === null) {
+        toast.success('Oferta pracy dodana pomyślnie!');
+      } else if (
+        jobOfferContext.error?.data ===
+        'Brak firmy powiązanej z zalogowanym użytkownikiem'
+      ) {
+        toast.error('Aby dodać ofertę pracy stwórz profil firmy!');
+      } else {
+        toast.error('Ups.. coś poszło nie tak!');
+      }
+
       setJobOffer({
         experienceLevelId: null,
         isRemoteRecruitment: false,
@@ -172,7 +189,6 @@ const OffersForm = () => {
         workingHoursID: null,
       });
     } else {
-      console.log('walidacja niepomyślna');
       toast.error('Dane niepoprawne!');
     }
   };
@@ -332,7 +348,7 @@ const OffersForm = () => {
                     });
                   }}
                 />
-                <p className='offers-form__p'>Widełki płacowe</p>
+                <p className='offers-form__p'>Widełki płacowe (B2B nett)</p>
                 <label
                   htmlFor='salaryFrom'
                   className='offers-form__label inline'

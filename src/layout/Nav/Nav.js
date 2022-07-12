@@ -18,7 +18,7 @@ const Nav = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const { submenuOpen, setSubmenuOpen } = useContext(SubmenuOpenContext);
 
-  const { isAuthenticated, logout, user } = authContext;
+  const { isAuthenticated, logout } = authContext;
 
   // disable background scrolling when mobile menu is active
   useEffect(() => {

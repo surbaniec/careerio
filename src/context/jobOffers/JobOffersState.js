@@ -7,7 +7,6 @@ import {
   GET_COMPANY_JOB_OFFERS,
   GET_JOB_OFFER,
   ADD_JOB_OFFER,
-  UPDATE_JOB_OFFER,
   DELETE_JOB_OFFER,
   JOB_OFFERS_ERROR,
   CLEAR_JOBS_ERRORS,
@@ -69,8 +68,6 @@ const JobOffersState = (props) => {
       dispatch({ type: JOB_OFFERS_ERROR, payload: error.response });
     }
   };
-
-  // Update Job Offer
 
   // Delete Job Offer
   const deleteJobOffer = async (jobOfferId) => {

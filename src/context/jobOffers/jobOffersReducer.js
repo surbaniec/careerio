@@ -3,7 +3,6 @@ import {
   GET_COMPANY_JOB_OFFERS,
   GET_JOB_OFFER,
   ADD_JOB_OFFER,
-  UPDATE_JOB_OFFER,
   DELETE_JOB_OFFER,
   JOB_OFFERS_ERROR,
   CLEAR_JOBS_ERRORS,
@@ -34,17 +33,6 @@ export default (state, action) => {
       return {
         ...state,
         jobOffers: [action.payload, ...state.jobOffers],
-        loading: false,
-      };
-    case UPDATE_JOB_OFFER:
-      return {
-        ...state,
-        jobOffers: state.jobOffers.map((jobOffer) =>
-          jobOffer.id === action.payload.id ? action.payload : jobOffer
-        ),
-        currentJobOffers: state.currentJobOffers.map((jobOffer) =>
-          jobOffer.id === action.payload.id ? action.payload : jobOffer
-        ),
         loading: false,
       };
     case DELETE_JOB_OFFER:
