@@ -125,6 +125,7 @@ const EmployersPage = () => {
       );
       setTechnology('');
       toast.success('Dodano pomyślnie!');
+      e.target.value = '';
     }
     if (e.target.dataset.name === 'benefit') {
       const existingBenefits = company.benefits;
@@ -230,7 +231,8 @@ const EmployersPage = () => {
       shortDescription !== '' &&
       benefits.length > 0 &&
       imageUrl !== '' &&
-      technologies.length > 0
+      technologies.length > 0 &&
+      photos.length > 0
     ) {
       // If current company exists, update data
       if (companiesContext.currentCompany) {
@@ -273,7 +275,9 @@ const EmployersPage = () => {
         }
       }
     } else {
-      toast.error('Dane niepoprawne!');
+      toast.error(
+        'Dane niepoprawne! Upewnij się, że wypełniłeś wszystkie pola.'
+      );
     }
   };
 
@@ -352,7 +356,7 @@ const EmployersPage = () => {
             </div>
             <form className='employer-page__form' onSubmit={onCompanySubmit}>
               <label htmlFor='name' className='employer-page__label'>
-                Nazwa firmy
+                Nazwa firmy*
               </label>
               <input
                 className='employer-page__input'
@@ -377,7 +381,7 @@ const EmployersPage = () => {
                 maxLength={20}
               />
               <label htmlFor='email' className='employer-page__label'>
-                Adres e-mail
+                Adres e-mail*
               </label>
               <input
                 className='employer-page__input'
@@ -390,7 +394,7 @@ const EmployersPage = () => {
                 required
               />
               <label htmlFor='country' className='employer-page__label'>
-                Kraj
+                Kraj*
               </label>
               <input
                 className='employer-page__input'
@@ -415,7 +419,7 @@ const EmployersPage = () => {
                 maxLength={30}
               />
               <label htmlFor='postCode' className='employer-page__label'>
-                Kod pocztowy
+                Kod pocztowy*
               </label>
               <input
                 className='employer-page__input'
@@ -428,7 +432,7 @@ const EmployersPage = () => {
                 required
               />
               <label htmlFor='city' className='employer-page__label'>
-                Miasto
+                Miasto*
               </label>
               <input
                 className='employer-page__input'
@@ -441,7 +445,7 @@ const EmployersPage = () => {
                 required
               />
               <label htmlFor='street' className='employer-page__label'>
-                Ulica
+                Ulica*
               </label>
               <input
                 className='employer-page__input'
@@ -487,7 +491,7 @@ const EmployersPage = () => {
 
           <div className='employer-page__box'>
             <div className='employer-page__title-wrapper'>
-              <h2 className='employer-page__title'>Logo firmy</h2>
+              <h2 className='employer-page__title'>Logo firmy*</h2>
             </div>
             <form className='employer-page__form' onSubmit={onCompanySubmit}>
               {/* <label htmlFor='logo'>
@@ -522,8 +526,11 @@ const EmployersPage = () => {
               <h2 className='employer-page__title'>Dane dodatkowe</h2>
             </div>
             <form className='employer-page__form' onSubmit={onCompanySubmit}>
-              <label htmlFor='longDescription' className='employer-page__label'>
-                Nagłówek firmy
+              <label
+                htmlFor='shortDescription'
+                className='employer-page__label'
+              >
+                Nagłówek firmy*
               </label>
               <textarea
                 className='employer-page__textarea'
@@ -535,7 +542,7 @@ const EmployersPage = () => {
                 required
               />
               <label htmlFor='longDescription' className='employer-page__label'>
-                O firmie
+                O firmie*
               </label>
               <textarea
                 className='employer-page__textarea'
@@ -558,7 +565,7 @@ const EmployersPage = () => {
                 onChange={onCompanyInputChange}
               />
               <label htmlFor='technologies' className='employer-page__label'>
-                Używane technologie
+                Używane technologie*
               </label>
               <div className='employer-page__input-wrapper'>
                 <input
@@ -606,7 +613,7 @@ const EmployersPage = () => {
               </div>
 
               <label htmlFor='benefits' className='employer-page__label'>
-                Benefity i udogodnienia
+                Benefity i udogodnienia*
               </label>
               <div className='employer-page__input-wrapper'>
                 <input
@@ -654,7 +661,7 @@ const EmployersPage = () => {
               </div>
 
               <label htmlFor='photos' className='employer-page__label'>
-                Galeria firmy
+                Galeria firmy*
               </label>
               <div className='employer-page__input-wrapper'>
                 <input

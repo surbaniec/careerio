@@ -15,7 +15,7 @@
     background-color: var(--secondary-color);
     border: 1px solid var(--light-color-1);
     border-radius: 5px;
-    padding: 3px;
+    padding: 5px;
     margin: 3px;
     font-size: 1.2rem;
   }
@@ -110,6 +110,7 @@
     text-decoration: none;
     color: var(--accent-color);
     text-align: right;
+    margin-right: 4px;
   }
 
   &__controls {
@@ -193,7 +194,8 @@
   &__about-text {
     font-weight: 500;
     font-size: 1.4rem;
-    line-height: 2rem;
+    line-height: 2.5rem;
+    text-align: justify;
   }
 
   /* GALLERY */
@@ -314,6 +316,7 @@
 
     &__about-text {
       font-size: 1.6rem;
+      text-align: left;
     }
 
     &__gallery-img,

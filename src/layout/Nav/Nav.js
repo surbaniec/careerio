@@ -3,6 +3,7 @@ import './Nav.scss';
 import { NavLink, useNavigate } from 'react-router-dom';
 // react icons
 import { BsBriefcase, BsPlusCircle } from 'react-icons/bs';
+import { BiPlusCircle } from 'react-icons/bi';
 import { FiMenu, FiMessageSquare, FiUsers } from 'react-icons/fi';
 import { CgFileDocument } from 'react-icons/cg';
 import { HiOutlineCog } from 'react-icons/hi';
@@ -132,7 +133,7 @@ const Nav = () => {
             className='dropdown-menu__item dropdown-menu__item--blue'
             onClick={() => setNavbarOpen(!navbarOpen)}
           >
-            <BsPlusCircle
+            <BiPlusCircle
               style={{
                 color: '#fff',
                 width: '25px',
@@ -175,7 +176,7 @@ const Nav = () => {
               />
             )}
             <NavLink
-              to=''
+              to={LOGIN}
               onClick={handleLogin}
               className={({ isActive }) =>
                 isActive
@@ -192,7 +193,7 @@ const Nav = () => {
       <nav className='nav-desktop'>
         <ul className='nav-desktop__menu'>
           <li className='nav-desktop__item'>
-            <BsPlusCircle
+            <BiPlusCircle
               style={{
                 color: '#575757',
                 width: '20px',

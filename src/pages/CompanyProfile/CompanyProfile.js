@@ -61,6 +61,7 @@ const CompanyProfile = () => {
         technologies: resCompany.technologies,
       });
     }
+
     //eslint-disable-next-line
   }, [companyId, companies, jobOffers]);
 
@@ -121,12 +122,14 @@ const CompanyProfile = () => {
                     </Link>
                     <div className='company-profile__controls'>
                       {selectedCompany.url && (
-                        <Link
+                        <a
+                          href={selectedCompany.url}
+                          target='_blank'
+                          rel='noreferrer'
                           className='company-profile__link'
-                          to={selectedCompany.url}
                         >
                           <FiLink />
-                        </Link>
+                        </a>
                       )}
 
                       <Link className='company-profile__link' to='/'>
@@ -166,7 +169,7 @@ const CompanyProfile = () => {
                         Wielkość firmy
                       </span>
                       <span className='company-profile__info'>
-                        {selectedCompany.numberOfEmployees}
+                        {selectedCompany.numberOfEmployees}+
                       </span>
                     </div>
                   )}
@@ -194,7 +197,7 @@ const CompanyProfile = () => {
                         Rok założenia
                       </span>
                       <span className='company-profile__info'>
-                        {selectedCompany.dateOfStarting}
+                        {selectedCompany.dateOfStarting}r.
                       </span>
                     </div>
                   )}
