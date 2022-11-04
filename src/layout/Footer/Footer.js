@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
+import { DASHBOARD, EMPLOYER_OFFERS, OFFERSFORM } from '../../Routes/routes';
 import './Footer.scss';
 
 const Footer = () => {
@@ -8,66 +9,66 @@ const Footer = () => {
       <div className='footer__container'>
         <div className='footer__wrapper'>
           <h2 className='footer__title'>Dla kandydatów</h2>
-          <Link to='/' className='footer__link'>
+          <NavLink to='/' className='footer__link'>
             Pomoc
-          </Link>
-          <Link to='/' className='footer__link'>
+          </NavLink>
+          <NavLink to='/' className='footer__link'>
             Kalkulator wynagrodzeń
-          </Link>
-          <Link to='/' className='footer__link'>
+          </NavLink>
+          <NavLink to='/' className='footer__link'>
             Pracuj w grupie Career.io
-          </Link>
-          <Link to='/' className='footer__link'>
+          </NavLink>
+          <NavLink to='/' className='footer__link'>
             Urzędy pracy
-          </Link>
-          <Link to='/' className='footer__link'>
+          </NavLink>
+          <NavLink to='/' className='footer__link'>
             Webinarium Career.io
-          </Link>
+          </NavLink>
         </div>
         <div className='footer__wrapper'>
           <h2 className='footer__title'>Dla firm</h2>
-          <Link to='/' className='footer__link'>
+          <NavLink to={OFFERSFORM} className='footer__link'>
             Dodaj ogłoszenie
-          </Link>
-          <Link to='/' className='footer__link'>
+          </NavLink>
+          <NavLink to={DASHBOARD} className='footer__link'>
             Konto pracodawcy
-          </Link>
-          <Link to='/' className='footer__link'>
+          </NavLink>
+          <NavLink to='/' className='footer__link'>
             Pomoc dla firm
-          </Link>
-          <Link to='/' className='footer__link'>
+          </NavLink>
+          <NavLink to='/' className='footer__link'>
             System rekrutacyjny
-          </Link>
+          </NavLink>
         </div>
         <div className='footer__wrapper'>
           <h2 className='footer__title'>Informacje</h2>
-          <Link to='/' className='footer__link'>
+          <NavLink to='/' className='footer__link'>
             Regulamin
-          </Link>
-          <Link to='/' className='footer__link'>
+          </NavLink>
+          <NavLink to='/' className='footer__link'>
             Polityka prywatności
-          </Link>
-          <Link to='/' className='footer__link'>
+          </NavLink>
+          <NavLink to='/' className='footer__link'>
             Polityka plików cookies
-          </Link>
-          <Link to='/' className='footer__link'>
+          </NavLink>
+          <NavLink to='/' className='footer__link'>
             Ustawienia plików cookies
-          </Link>
+          </NavLink>
         </div>
         <div className='footer__wrapper'>
           <h2 className='footer__title'>Szybki dostęp</h2>
-          <Link to='/' className='footer__link'>
+          <NavLink to={EMPLOYER_OFFERS} className='footer__link'>
             Oferty pracy
-          </Link>
-          <Link to='/' className='footer__link'>
+          </NavLink>
+          <NavLink to='/' className='footer__link'>
             Porady
-          </Link>
-          <Link to='/' className='footer__link'>
+          </NavLink>
+          <NavLink to='/' className='footer__link'>
             Profile pracodawców
-          </Link>
-          <Link to='/' className='footer__link'>
+          </NavLink>
+          <NavLink to='/' className='footer__link'>
             Kreator CV
-          </Link>
+          </NavLink>
         </div>
         <div className='footer__wrapper'>
           <h2 className='footer__title'>Pobierz aplikacje</h2>
@@ -86,7 +87,9 @@ const Footer = () => {
             />
           </Link>
 
-          <p className='footer__copyright'>Copyright© 2022 Career.io</p>
+          <p className='footer__copyright'>
+            &copy; {new Date().getFullYear()} Career.io
+          </p>
         </div>
       </div>
     </footer>

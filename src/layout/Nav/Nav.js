@@ -1,17 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './Nav.scss';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { SubmenuOpenContext } from '../../App';
+import AuthContext from '../../context/auth/authContext';
+import { DASHBOARD, LOGIN, OFFERSFORM, SEARCH_PAGE } from '../../Routes/routes';
+import toast, { Toaster } from 'react-hot-toast';
 // react icons
-import { BsBriefcase, BsPlusCircle } from 'react-icons/bs';
+import { BsBriefcase } from 'react-icons/bs';
 import { BiPlusCircle } from 'react-icons/bi';
 import { FiMenu, FiMessageSquare, FiUsers } from 'react-icons/fi';
 import { CgFileDocument } from 'react-icons/cg';
 import { HiOutlineCog } from 'react-icons/hi';
 import { MdOutlineClose, MdLogout, MdLogin } from 'react-icons/md';
-import { SubmenuOpenContext } from '../../App';
-import AuthContext from '../../context/auth/authContext';
-import { DASHBOARD, LOGIN, OFFERSFORM, SEARCH_PAGE } from '../../Routes/routes';
-import toast, { Toaster } from 'react-hot-toast';
 
 const Nav = () => {
   const authContext = useContext(AuthContext);
