@@ -3,17 +3,9 @@ import './EmployersPage.scss';
 import AuthContext from '../../context/auth/authContext';
 import { useState } from 'react';
 import CompaniesContext from '../../context/companies/companiesContext';
-import { Link } from 'react-router-dom';
-import {
-  MdOutlineSpaceDashboard,
-  MdListAlt,
-  MdAdd,
-  MdDeleteOutline,
-} from 'react-icons/md';
-import { CgProfile } from 'react-icons/cg';
-import { IoReceiptOutline } from 'react-icons/io5';
-import { DASHBOARD, EMPLOYER_OFFERS, OFFERSFORM } from '../../Routes/routes';
+import { MdDeleteOutline } from 'react-icons/md';
 import toast, { Toaster } from 'react-hot-toast';
+import DashboardMenu from '../../layout/DashboardMenu/DashboardMenu';
 
 const EmployersPage = () => {
   const authContext = useContext(AuthContext);
@@ -291,64 +283,7 @@ const EmployersPage = () => {
             }}
           />
         </div>
-        <aside className='employer-page__sidebar'>
-          <ul className='dashboard-menu'>
-            <li className='dashboard-menu__item'>
-              <Link to='' className='dashboard-menu__link'>
-                <div className='dashboard-menu__tile'>
-                  <MdOutlineSpaceDashboard
-                    style={{ width: '20px', height: 'auto', color: '#fff' }}
-                  />
-                  <span>Panel pracodawcy</span>
-                </div>
-              </Link>
-            </li>
-            <li className='dashboard-menu__item'>
-              <Link
-                to={DASHBOARD}
-                className='dashboard-menu__link dashboard-menu__link--active'
-              >
-                <div className='dashboard-menu__tile dashboard-menu__tile--active'>
-                  <CgProfile
-                    style={{ width: '20px', height: 'auto', color: '#575757' }}
-                  />
-                  <span>Profil pracodawcy</span>
-                </div>
-              </Link>
-            </li>
-            <li className='dashboard-menu__item'>
-              <Link to={EMPLOYER_OFFERS} className='dashboard-menu__link'>
-                <div className='dashboard-menu__tile'>
-                  <MdListAlt
-                    style={{ width: '20px', height: 'auto', color: '#fff' }}
-                  />
-
-                  <span>Oferty pracy</span>
-                </div>
-              </Link>
-            </li>
-            <li className='dashboard-menu__item'>
-              <Link to={OFFERSFORM} className='dashboard-menu__link'>
-                <div className='dashboard-menu__tile'>
-                  <MdAdd
-                    style={{ width: '20px', height: 'auto', color: '#fff' }}
-                  />
-                  <span>Dodaj ofertę</span>
-                </div>
-              </Link>
-            </li>
-            <li className='dashboard-menu__item'>
-              <Link to='' className='dashboard-menu__link'>
-                <div className='dashboard-menu__tile'>
-                  <IoReceiptOutline
-                    style={{ width: '20px', height: 'auto', color: '#fff' }}
-                  />
-                  <span>Faktury</span>
-                </div>
-              </Link>
-            </li>
-          </ul>
-        </aside>
+        <DashboardMenu />
         <section className='employer-page'>
           <div className='employer-page__box'>
             <div className='employer-page__title-wrapper'>

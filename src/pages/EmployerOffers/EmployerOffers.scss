@@ -1,76 +1,15 @@
-.dashboard-menu {
-  display: flex;
-  flex-direction: column;
-  list-style-type: none;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-
-  &__item {
-    margin: 15px 0;
-    cursor: pointer;
-  }
-
-  &__link {
-    text-decoration: none;
-    font-size: 1.1rem;
-    color: var(--font-light-color);
-    cursor: pointer;
-
-    &--active {
-      color: var(--font-dark-color);
-    }
-  }
-
-  &__tile {
-    margin-left: 10px;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 15px 0;
-
-    &--active {
-      background-color: var(--font-light-color);
-    }
-  }
-}
-
-.dashboard-menu span {
-  display: none;
-  margin-left: 10px;
-  font-weight: 700;
-}
-
 .employer-offers {
+  display: flex;
   &__page-wrapper {
     width: 100%;
     display: flex;
     padding-top: 50px;
   }
 
-  &__left-wrap {
-    width: 20%;
-    background-color: #2a95ff;
-    padding: 50px 0;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-  }
-
-  &__right-wrap {
-    width: 80%;
-    background-color: white;
-  }
-
   &__box-wrapper {
     display: flex;
-    justify-content: center;
+    width: 100%;
     margin-top: 50px;
-    flex-wrap: wrap;
   }
 
   &__box {
@@ -183,22 +122,6 @@
 }
 
 @media (min-width: 768px) {
-  .dashboard-menu {
-    &__link {
-      font-size: 1.4rem;
-    }
-
-    &__tile {
-      padding: 20px 0;
-      padding-left: 10px;
-    }
-  }
-
-  .dashboard-menu span {
-    display: inline-block;
-    width: 100%;
-  }
-
   .employer-offers {
     &__title {
       font-size: 18px;
@@ -246,14 +169,6 @@
 }
 
 @media (min-width: 1200px) {
-  .dashboard-menu__link {
-    font-size: 1.6rem;
-  }
-
-  .dashboard-menu__tile {
-    padding-left: 20px;
-  }
-
   .employer-offers {
     &__title {
       font-size: 18px;
@@ -273,11 +188,6 @@
       display: flex;
       justify-content: flex-start;
       padding-left: 50px;
-    }
-
-    &__left-wrap {
-      padding-top: 100px;
-      width: 250px;
     }
   }
 

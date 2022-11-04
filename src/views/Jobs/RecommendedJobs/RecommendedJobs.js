@@ -48,19 +48,7 @@ const RecommendedJobs = () => {
       <div className='recommended-jobs__wrapper'>
         {!loading && jobOffersToRender.length > 0 ? (
           jobOffersToRender.map((jobOffer, i) => {
-            return (
-              <JobTile
-                key={i}
-                jobOfferId={jobOffer.jobOfferId}
-                companyName={jobOffer.companyName}
-                salaryFrom={jobOffer.salaryFrom}
-                salaryTo={jobOffer.salaryTo}
-                city={jobOffer.city}
-                province={jobOffer.province}
-                logo={jobOffer.logo}
-                jobTitle={jobOffer.jobTitle}
-              />
-            );
+            return <JobTile key={i} {...jobOffer} />;
           })
         ) : (
           <>
