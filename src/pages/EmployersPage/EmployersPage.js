@@ -24,8 +24,8 @@ const EmployersPage = () => {
     postCode: '',
     city: '',
     street: '',
-    dateOfStarting: 0,
-    numberOfEmployees: 0,
+    dateOfStarting: '',
+    numberOfEmployees: '',
     shortDescription: '',
     longDescription: '',
     industry: '',
@@ -136,14 +136,20 @@ const EmployersPage = () => {
       if (!photo) {
         return;
       }
-      const existingPhotos = company.photos;
-      existingPhotos.push(photo);
-      setCompany({
-        ...company,
-        photos: existingPhotos,
-      });
-      setPhoto('');
-      toast.success('Dodano pomyślnie!');
+      if (
+        photo.match(
+          '^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?'
+        )
+      ) {
+        const existingPhotos = company.photos;
+        existingPhotos.push(photo);
+        setCompany({
+          ...company,
+          photos: existingPhotos,
+        });
+        setPhoto('');
+        toast.success('Dodano pomyślnie!');
+      }
     }
   };
 
@@ -212,7 +218,10 @@ const EmployersPage = () => {
     // Validate data
     if (
       name !== '' &&
-      email !== '' &&
+      url.match(
+        '^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?'
+      ) &&
+      email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) &&
       country !== '' &&
       postCode !== '' &&
       city !== '' &&
@@ -220,12 +229,15 @@ const EmployersPage = () => {
       longDescription !== '' &&
       shortDescription !== '' &&
       benefits.length > 0 &&
-      imageUrl !== '' &&
+      imageUrl.match(
+        '^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?'
+      ) &&
       technologies.length > 0 &&
       photos.length > 0
     ) {
       // If current company exists, update data
       if (companiesContext.currentCompany !== null) {
+        companiesContext.setCurrentCompany(company);
         companiesContext.updateCompany(
           companiesContext.currentCompany.id,
           company
@@ -302,7 +314,7 @@ const EmployersPage = () => {
                 required
               />
               <label htmlFor='url' className='employer-page__label'>
-                Adres WWW
+                Adres WWW*
               </label>
               <input
                 className='employer-page__input'
@@ -311,7 +323,8 @@ const EmployersPage = () => {
                 value={company.url}
                 name='url'
                 onChange={onCompanyInputChange}
-                maxLength={20}
+                maxLength={50}
+                required
               />
               <label htmlFor='email' className='employer-page__label'>
                 Adres e-mail*
@@ -361,7 +374,7 @@ const EmployersPage = () => {
                 value={company.postCode}
                 name='postCode'
                 onChange={onCompanyInputChange}
-                maxLength={30}
+                maxLength={6}
                 required
               />
               <label htmlFor='city' className='employer-page__label'>
@@ -374,7 +387,7 @@ const EmployersPage = () => {
                 value={company.city}
                 name='city'
                 onChange={onCompanyInputChange}
-                maxLength={30}
+                maxLength={15}
                 required
               />
               <label htmlFor='street' className='employer-page__label'>
@@ -419,6 +432,9 @@ const EmployersPage = () => {
                 onChange={onCompanyInputChange}
                 min='1'
               />
+              <button className='employer-page__btn' type='submit'>
+                Zapisz zmiany
+              </button>
             </form>
           </div>
 
@@ -472,6 +488,8 @@ const EmployersPage = () => {
                 value={company.shortDescription}
                 name='shortDescription'
                 onChange={onCompanyInputChange}
+                maxLength='50'
+                required
               />
               <label htmlFor='longDescription' className='employer-page__label'>
                 O firmie*
@@ -483,6 +501,8 @@ const EmployersPage = () => {
                 value={company.longDescription}
                 name='longDescription'
                 onChange={onCompanyInputChange}
+                maxLength='300'
+                required
               />
               <label htmlFor='industry' className='employer-page__label'>
                 Branża
@@ -494,6 +514,7 @@ const EmployersPage = () => {
                 value={company.industry}
                 name='industry'
                 onChange={onCompanyInputChange}
+                maxLength='50'
               />
               <label htmlFor='technologies' className='employer-page__label'>
                 Używane technologie*
