@@ -6,6 +6,8 @@ import {
   DELETE_COMPANY,
   COMPANY_ERROR,
   CLEAR_COMPANIES_ERRORS,
+  SET_CURRENT_COMPANY,
+  CLEAR_CURRENT_COMPANY,
 } from '../types';
 
 // eslint-disable-next-line
@@ -42,6 +44,16 @@ export default (state, action) => {
           company.id === action.payload.id ? action.payload : company
         ),
         loading: false,
+      };
+    case SET_CURRENT_COMPANY:
+      return {
+        ...state,
+        currentCompany: action.payload,
+      };
+    case CLEAR_CURRENT_COMPANY:
+      return {
+        ...state,
+        currentCompany: null,
       };
     case CLEAR_COMPANIES_ERRORS:
       return {

@@ -7,23 +7,15 @@ import toast, { Toaster } from 'react-hot-toast';
 
 const Login = () => {
   const authContext = useContext(AuthContext);
-  const { register, error, isAuthenticated, loginUser } = authContext;
+  const { register, isAuthenticated, loginUser } = authContext;
   let navigate = useNavigate();
 
   useEffect(() => {
     if (isAuthenticated) {
       navigate(DASHBOARD);
     }
-
-    if (error?.Email) {
-      toast.error('Podany email jest już zajęty!');
-    }
-
-    if (error?.Login) {
-      toast.error('Podany login jest już zajęty!');
-    }
     // eslint-disable-next-line
-  }, [error, isAuthenticated]);
+  }, [ isAuthenticated]);
 
   // register form
   const [user, setUser] = useState({
@@ -110,9 +102,6 @@ const Login = () => {
     const login = loggingLogin;
     const password = loggingPassword;
     loginUser({ login, password });
-    if (authContext.error === 'Niepoprawny login lub hasło.') {
-      toast.error('Niepoprawny login lub hasło!');
-    }
   };
 
   return (

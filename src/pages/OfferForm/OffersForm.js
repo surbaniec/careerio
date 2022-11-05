@@ -2,11 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import './OffersForm.scss';
 import AuthContext from '../../context/auth/authContext';
 import Select from 'react-select';
-import { Link } from 'react-router-dom';
-import { MdOutlineSpaceDashboard, MdListAlt, MdAdd } from 'react-icons/md';
-import { CgProfile } from 'react-icons/cg';
-import { IoReceiptOutline } from 'react-icons/io5';
-import { DASHBOARD, EMPLOYER_OFFERS, OFFERSFORM } from '../../Routes/routes';
 import CompaniesContext from '../../context/companies/companiesContext';
 import JobOffersContext from '../../context/jobOffers/jobOffersContext';
 import toast, { Toaster } from 'react-hot-toast';
@@ -103,7 +98,6 @@ const OffersForm = () => {
     if (authContext.isAuthenticated === null && authContext.loading === true) {
       authContext.loadUser();
     }
-
     // eslint-disable-next-line
   }, []);
 

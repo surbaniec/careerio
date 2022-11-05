@@ -8,6 +8,8 @@ import {
   ADD_COMPANY,
   UPDATE_COMPANY,
   DELETE_COMPANY,
+  SET_CURRENT_COMPANY,
+  CLEAR_CURRENT_COMPANY,
   COMPANY_ERROR,
   CLEAR_COMPANIES_ERRORS,
 } from '../types';
@@ -88,6 +90,17 @@ const CompaniesState = (props) => {
     }
   };
 
+  // Set Current Company
+
+  const setCurrentCompany = (company) => {
+    dispatch({ type: SET_CURRENT_COMPANY, payload: company });
+  };
+
+  // Clear Current Company
+  const clearCurrentCompany = () => {
+    dispatch({ type: CLEAR_CURRENT_COMPANY });
+  };
+
   // Delete Company
 
   // Clear Errors
@@ -104,6 +117,8 @@ const CompaniesState = (props) => {
         getCompany,
         addCompany,
         updateCompany,
+        setCurrentCompany,
+        clearCurrentCompany,
         clearErrors,
       }}
     >

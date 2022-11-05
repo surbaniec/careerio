@@ -29,11 +29,11 @@ const EmployersPage = () => {
     shortDescription: '',
     longDescription: '',
     industry: '',
-    technologies: [''],
-    benefits: [''],
+    technologies: [],
+    benefits: [],
     imageUrl: '',
-    photos: [''],
-    relatedIndustries: [''],
+    photos: [],
+    relatedIndustries: [],
   });
 
   // On page refresh load user
@@ -99,6 +99,7 @@ const EmployersPage = () => {
         relatedIndustries,
       });
     }
+    //eslint-disable-next-line
   }, [companiesContext.currentCompany]);
 
   const onCompanyInputChange = (e) => {
@@ -107,43 +108,40 @@ const EmployersPage = () => {
 
   const handleAddValue = (e) => {
     e.preventDefault();
+
     if (e.target.dataset.name === 'technology') {
+      if (!technology) {
+        return;
+      }
       const existingTechnologies = company.technologies;
       existingTechnologies.push(technology);
-      setCompany({ ...company, [company.technologies]: existingTechnologies });
-      companiesContext.updateCompany(
-        companiesContext.currentCompany.id,
-        company
-      );
+      setCompany({ ...company, technologies: existingTechnologies });
       setTechnology('');
       toast.success('Dodano pomyślnie!');
-      e.target.value = '';
     }
     if (e.target.dataset.name === 'benefit') {
+      if (!benefit) {
+        return;
+      }
       const existingBenefits = company.benefits;
       existingBenefits.push(benefit);
       setCompany({
         ...company,
-        [company.benefits]: existingBenefits,
+        benefits: existingBenefits,
       });
-      companiesContext.updateCompany(
-        companiesContext.currentCompany.id,
-        company
-      );
       setBenefit('');
       toast.success('Dodano pomyślnie!');
     }
     if (e.target.dataset.name === 'photo') {
+      if (!photo) {
+        return;
+      }
       const existingPhotos = company.photos;
       existingPhotos.push(photo);
       setCompany({
         ...company,
-        [company.photoss]: existingPhotos,
+        photos: existingPhotos,
       });
-      companiesContext.updateCompany(
-        companiesContext.currentCompany.id,
-        company
-      );
       setPhoto('');
       toast.success('Dodano pomyślnie!');
     }
@@ -227,15 +225,15 @@ const EmployersPage = () => {
       photos.length > 0
     ) {
       // If current company exists, update data
-      if (companiesContext.currentCompany) {
+      if (companiesContext.currentCompany !== null) {
         companiesContext.updateCompany(
           companiesContext.currentCompany.id,
           company
         );
         if (companiesContext.error === null) {
-          toast.success('Zaktualizowano dane!');
+          toast.success('Uaktualniono dane!');
         } else {
-          toast.error('Ups.. coś poszło nie tak!');
+          toast.error('Ups... coś poszło nie tak!');
         }
 
         // If current company doesn't exists, add company data
@@ -263,7 +261,7 @@ const EmployersPage = () => {
         if (companiesContext.error === null) {
           toast.success('Założono profil firmy!');
         } else {
-          toast.error('Ups.. coś poszło nie tak!');
+          toast.error('Ups... coś poszło nie tak!');
         }
       }
     } else {
@@ -474,7 +472,6 @@ const EmployersPage = () => {
                 value={company.shortDescription}
                 name='shortDescription'
                 onChange={onCompanyInputChange}
-                required
               />
               <label htmlFor='longDescription' className='employer-page__label'>
                 O firmie*
@@ -486,7 +483,6 @@ const EmployersPage = () => {
                 value={company.longDescription}
                 name='longDescription'
                 onChange={onCompanyInputChange}
-                required
               />
               <label htmlFor='industry' className='employer-page__label'>
                 Branża

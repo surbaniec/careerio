@@ -13,6 +13,7 @@ import {
   LOGOUT,
   CLEAR_AUTH_ERRORS,
 } from '../types';
+import toast from 'react-hot-toast';
 
 const AuthState = (props) => {
   const initialState = {
@@ -63,7 +64,14 @@ const AuthState = (props) => {
 
       loadUser();
     } catch (error) {
-      console.log(error.response.data.errors);
+      if (error.response.data.errors?.Email) {
+        toast.error('Podany email jest już zajęty!');
+      }
+
+      if (error.response.data.errors?.Login) {
+        toast.error('Podany login jest już zajęty!');
+      }
+
       dispatch({ type: REGISTER_FAIL, payload: error.response.data.errors });
     }
   };
@@ -87,10 +95,11 @@ const AuthState = (props) => {
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
-
+      toast.success('Zalogowano pomyślnie!');
       loadUser();
     } catch (error) {
       dispatch({ type: LOGIN_FAIL, payload: error.response.data });
+      toast.error('Niepoprawny login lub hasło!');
     }
   };
   // Logout

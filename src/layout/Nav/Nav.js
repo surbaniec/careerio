@@ -12,9 +12,11 @@ import { FiMenu, FiMessageSquare, FiUsers } from 'react-icons/fi';
 import { CgFileDocument } from 'react-icons/cg';
 import { HiOutlineCog } from 'react-icons/hi';
 import { MdOutlineClose, MdLogout, MdLogin } from 'react-icons/md';
+import CompaniesContext from '../../context/companies/companiesContext';
 
 const Nav = () => {
   const authContext = useContext(AuthContext);
+  const companiesContext = useContext(CompaniesContext);
   let navigate = useNavigate();
   const [navbarOpen, setNavbarOpen] = useState(false);
   const { submenuOpen, setSubmenuOpen } = useContext(SubmenuOpenContext);
@@ -37,7 +39,10 @@ const Nav = () => {
 
   const handleLogin = () => {
     if (isAuthenticated) {
+      // logout current user and clear current company state
       logout();
+      companiesContext.clearCurrentCompany();
+      companiesContext.clearErrors();
       toast.success('Wylogowano pomyślnie!');
     } else {
       navigate(LOGIN);
