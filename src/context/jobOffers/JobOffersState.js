@@ -11,6 +11,7 @@ import {
   JOB_OFFERS_ERROR,
   CLEAR_JOBS_ERRORS,
 } from '../types';
+import toast from 'react-hot-toast';
 
 const JobOffersState = (props) => {
   const initialState = {
@@ -64,7 +65,16 @@ const JobOffersState = (props) => {
       );
 
       dispatch({ type: ADD_JOB_OFFER, payload: res.data });
+      toast.success('Oferta pracy dodana pomyślnie!');
     } catch (error) {
+      if (
+        error.response.data ===
+        'Brak firmy powiązanej z zalogowanym użytkownikiem'
+      ) {
+        toast.error('Aby dodać ofertę pracy stwórz profil firmy!');
+      } else {
+        toast.error('Ups.. coś poszło nie tak!');
+      }
       dispatch({ type: JOB_OFFERS_ERROR, payload: error.response });
     }
   };
@@ -80,7 +90,7 @@ const JobOffersState = (props) => {
     };
 
     try {
-      const res = await axios.delete(
+      await axios.delete(
         `https://careerio.azurewebsites.net/JobOffer/${jobOfferId}`,
         config
       );

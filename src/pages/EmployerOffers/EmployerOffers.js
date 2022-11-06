@@ -1,11 +1,6 @@
 import React from 'react';
 import './EmployerOffers.scss';
-import { Link } from 'react-router-dom';
-import { MdOutlineSpaceDashboard, MdListAlt, MdAdd } from 'react-icons/md';
-import { CgProfile } from 'react-icons/cg';
-import { IoReceiptOutline } from 'react-icons/io5';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
-import { DASHBOARD, OFFERSFORM } from '../../Routes/routes';
 import { useContext } from 'react';
 import JobOffersContext from '../../context/jobOffers/jobOffersContext';
 import CompaniesContext from '../../context/companies/companiesContext';

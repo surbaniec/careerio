@@ -16,6 +16,7 @@ const EmployersPage = () => {
   const [photo, setPhoto] = useState('');
 
   const [company, setCompany] = useState({
+    id: null,
     name: '',
     url: '',
     email: '',
@@ -33,7 +34,7 @@ const EmployersPage = () => {
     benefits: [],
     imageUrl: '',
     photos: [],
-    relatedIndustries: [],
+    relatedIndustries: '',
   });
 
   // On page refresh load user
@@ -59,6 +60,7 @@ const EmployersPage = () => {
   useEffect(() => {
     if (companiesContext.currentCompany) {
       const {
+        id,
         name,
         url,
         email,
@@ -79,6 +81,7 @@ const EmployersPage = () => {
         relatedIndustries,
       } = companiesContext.currentCompany;
       setCompany({
+        id,
         name,
         url,
         email,
@@ -488,7 +491,7 @@ const EmployersPage = () => {
                 value={company.shortDescription}
                 name='shortDescription'
                 onChange={onCompanyInputChange}
-                maxLength='50'
+                maxLength='80'
                 required
               />
               <label htmlFor='longDescription' className='employer-page__label'>

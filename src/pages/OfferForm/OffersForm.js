@@ -98,6 +98,8 @@ const OffersForm = () => {
     if (authContext.isAuthenticated === null && authContext.loading === true) {
       authContext.loadUser();
     }
+    companiesContext.getCompanies();
+    jobOfferContext.getJobOffers();
     // eslint-disable-next-line
   }, []);
 
@@ -161,16 +163,6 @@ const OffersForm = () => {
         requirements,
         responsibilities,
       });
-      if (jobOfferContext.error === null) {
-        toast.success('Oferta pracy dodana pomyślnie!');
-      } else if (
-        jobOfferContext.error?.data ===
-        'Brak firmy powiązanej z zalogowanym użytkownikiem'
-      ) {
-        toast.error('Aby dodać ofertę pracy stwórz profil firmy!');
-      } else {
-        toast.error('Ups.. coś poszło nie tak!');
-      }
 
       setJobOffer({
         experienceLevelId: null,
@@ -184,7 +176,7 @@ const OffersForm = () => {
         workingHoursID: null,
       });
     } else {
-      toast.error('Dane niepoprawne!');
+      toast.error('Uzupełnij poprawnie wszystkie wymagane dane!');
     }
   };
 
@@ -208,7 +200,7 @@ const OffersForm = () => {
             </div>
             <form className='offers-form__form' onSubmit={onJobOfferSubmit}>
               <label htmlFor='jobTitle' className='offers-form__label'>
-                Nazwa stanowiska
+                Nazwa stanowiska*
               </label>
               <input
                 className='offers-form__input'
@@ -217,9 +209,11 @@ const OffersForm = () => {
                 placeholder='Wpisz nazwę stanowiska...'
                 value={jobOffer.jobTitle}
                 onChange={onOfferInputChange}
+                required
+                maxLength={30}
               />
               <label htmlFor='experienceLevel' className='offers-form__label'>
-                Poziom doświadczenia
+                Poziom doświadczenia*
               </label>
               <Select
                 name='experienceLevel'
@@ -240,7 +234,7 @@ const OffersForm = () => {
                 }}
               />
               <label htmlFor='employmentType' className='offers-form__label'>
-                Rodzaj umowy
+                Rodzaj umowy*
               </label>
               <Select
                 name='employmentType'
@@ -261,7 +255,7 @@ const OffersForm = () => {
                 }}
               />
               <label htmlFor='workingHours' className='offers-form__label'>
-                Wymiar czasu pracy
+                Wymiar czasu pracy*
               </label>
               <Select
                 name='workingHours'
@@ -281,9 +275,9 @@ const OffersForm = () => {
                   });
                 }}
               />
-              <p className='offers-form__p'>Widełki płacowe (B2B nett)</p>
+              <p className='offers-form__p'>Widełki płacowe (PLN)</p>
               <label htmlFor='salaryFrom' className='offers-form__label inline'>
-                Od:{' '}
+                Od:*
               </label>
               <input
                 className='offers-form__input'
@@ -291,14 +285,14 @@ const OffersForm = () => {
                 name='salaryFrom'
                 id='salaryFrom'
                 min={0}
-                max={50000}
+                max={100000}
                 value={jobOffer.salaryFrom}
                 onChange={onOfferInputChange}
                 required
               />
 
               <label htmlFor='salaryTo' className='offers-form__label inline'>
-                Do:{' '}
+                Do:*
               </label>
               <input
                 className='offers-form__input'
@@ -306,13 +300,14 @@ const OffersForm = () => {
                 name='salaryTo'
                 id='salaryTo'
                 min={0}
-                max={50000}
+                max={500000}
                 value={jobOffer.salaryTo}
                 onChange={onOfferInputChange}
+                required
               />
 
               <label htmlFor='responsibilities' className='offers-form__label'>
-                Zakres obowiązków
+                Zakres obowiązków*
               </label>
               <textarea
                 className='offers-form__textarea'
@@ -321,9 +316,10 @@ const OffersForm = () => {
                 placeholder='Wpisz zakres obowiązków, rozdzielając średnikami...'
                 value={jobOffer.responsibilities}
                 onChange={onOfferInputChange}
+                required
               />
               <label htmlFor='requirements' className='offers-form__label'>
-                Wymagania wobec kandydata
+                Wymagania wobec kandydata*
               </label>
               <textarea
                 className='offers-form__textarea'
@@ -332,6 +328,7 @@ const OffersForm = () => {
                 placeholder='Wpisz wymagania wobec kandydata, rozdzielając średnikami...'
                 value={jobOffer.requirements}
                 onChange={onOfferInputChange}
+                required
               />
 
               <label

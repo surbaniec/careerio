@@ -33,7 +33,9 @@ export default (state, action) => {
       return {
         ...state,
         jobOffers: [action.payload, ...state.jobOffers],
+        currentJobOffers: [action.payload, ...state.currentJobOffers],
         loading: false,
+        error: null,
       };
     case DELETE_JOB_OFFER:
       return {
