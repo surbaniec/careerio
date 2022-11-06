@@ -95,8 +95,10 @@ const JobOffersState = (props) => {
         config
       );
       dispatch({ type: DELETE_JOB_OFFER, payload: jobOfferId });
+      toast.success('Usunięto ofertę pracy');
     } catch (error) {
       dispatch({ type: JOB_OFFERS_ERROR, payload: error.response.data });
+      toast.error('Ups... coś poszło nie tak!');
     }
   };
 

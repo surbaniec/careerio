@@ -8,6 +8,7 @@
 
   &__box-wrapper {
     display: flex;
+    justify-content: center;
     width: 100%;
     margin-top: 50px;
   }
@@ -28,6 +29,24 @@
 
   &__title {
     margin: 0;
+  }
+
+  &__info {
+    font-size: 16px;
+  }
+
+  &__btn {
+    display: block;
+    margin-top: 20px;
+    background-color: #2a95ff;
+    color: white;
+    cursor: pointer;
+    border: 2px solid #2a95ff;
+    padding: 10px 30px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
   }
 }
 
@@ -126,6 +145,10 @@
     &__title {
       font-size: 18px;
     }
+
+    &__btn {
+      font-size: 14px;
+    }
   }
 
   .job-offer {
@@ -188,6 +211,10 @@
       display: flex;
       justify-content: flex-start;
       padding-left: 50px;
+    }
+    &__btn {
+      margin-top: 25px;
+      font-size: 18px;
     }
   }
 

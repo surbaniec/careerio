@@ -7,8 +7,10 @@ import CompaniesContext from '../../context/companies/companiesContext';
 import { useEffect } from 'react';
 import AuthContext from '../../context/auth/authContext';
 import { useState } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import DashboardMenu from '../../layout/DashboardMenu/DashboardMenu';
+import { Link } from 'react-router-dom';
+import { OFFERSFORM } from '../../Routes/routes';
 
 const EmployerOffers = () => {
   const jobOffersContext = useContext(JobOffersContext);
@@ -26,6 +28,7 @@ const EmployerOffers = () => {
     if (authContext.user) {
       companiesContext.getCompany(authContext.user.id);
     }
+    jobOffersContext.getJobOffers();
     // eslint-disable-next-line
   }, [authContext.user]);
 
@@ -47,7 +50,6 @@ const EmployerOffers = () => {
 
   const handleDelete = (jobOfferId) => {
     jobOffersContext.deleteJobOffer(jobOfferId);
-    toast.success('Usunięto ofertę pracy');
   };
 
   return (
@@ -141,7 +143,12 @@ const EmployerOffers = () => {
                   );
                 })
               ) : (
-                <p>Brak ofert pracy</p>
+                <>
+                  <p className='employer-offers__info'>Brak ofert pracy</p>
+                  <Link to={OFFERSFORM} className='employer-offers__btn'>
+                    Dodaj ofertę
+                  </Link>
+                </>
               )}
             </div>
           </div>
