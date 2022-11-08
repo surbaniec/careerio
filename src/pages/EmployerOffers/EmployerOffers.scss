@@ -32,7 +32,8 @@
   }
 
   &__info {
-    font-size: 16px;
+    margin-top: 60px;
+    font-size: 1.8rem;
   }
 
   &__btn {
@@ -143,11 +144,11 @@
 @media (min-width: 768px) {
   .employer-offers {
     &__title {
-      font-size: 18px;
+      font-size: 1.8rem;
     }
 
     &__btn {
-      font-size: 14px;
+      font-size: 1.6rem;
     }
   }
 
@@ -193,9 +194,14 @@
 
 @media (min-width: 1200px) {
   .employer-offers {
-    &__title {
-      font-size: 18px;
+    &__page-wrapper {
+      width: 1100px;
     }
+
+    &__title {
+      font-size: 1.8rem;
+    }
+
     &__box {
       width: 80%;
     }
@@ -204,17 +210,17 @@
     }
 
     &__title {
-      font-size: 20px;
+      font-size: 2rem;
     }
     &__box-wrapper {
+      width: 100%;
       margin-top: 100px;
       display: flex;
-      justify-content: flex-start;
       padding-left: 50px;
     }
     &__btn {
       margin-top: 25px;
-      font-size: 18px;
+      font-size: 1.8rem;
     }
   }
 

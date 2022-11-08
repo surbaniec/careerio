@@ -33,7 +33,7 @@ const EmployersPage = React.lazy(() =>
   import('./pages/EmployersPage/EmployersPage')
 );
 
-const OffersForm = React.lazy(() => import('./pages/OfferForm/OffersForm'));
+const OffersForm = React.lazy(() => import('./pages/OffersForm/OffersForm'));
 const EmployerOffers = React.lazy(() =>
   import('./pages/EmployerOffers/EmployerOffers')
 );

@@ -14,6 +14,7 @@
 
   &__box {
     background-color: #f3f3f3;
+    margin: 0 auto;
     width: 90%;
     border-radius: 0 0 10px 10px;
     margin-bottom: 50px;
@@ -69,13 +70,13 @@
     border: 2px solid #2a95ff;
     padding: 10px 30px;
     border-radius: 10px;
-    font-size: 12px;
+    font-size: 1.6rem;
     font-weight: 600;
   }
 
   &__label {
     display: block;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     color: var(--font-dark-color);
     font-weight: 700;
     margin-top: 10px;
@@ -95,7 +96,7 @@
   &__p {
     font-weight: 700;
     color: var(--font-dark-color);
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     margin-left: 5px;
   }
 
@@ -172,13 +173,17 @@
     &__btn,
     &__add-btn {
       width: 200px;
-      font-size: 1.6rempx;
+      font-size: 1.6rem;
     }
   }
 }
 
 @media (min-width: 1200px) {
   .offers-form {
+    &__page-wrapper {
+      width: 1100px;
+    }
+
     &__box {
       width: 80%;
     }
@@ -220,7 +225,6 @@
     &__box-wrapper {
       margin-top: 100px;
       display: flex;
-      justify-content: flex-start;
       padding-left: 50px;
     }
 

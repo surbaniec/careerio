@@ -14,7 +14,7 @@ const DashboardMenu = () => {
           <NavLink to='' className='dashboard-menu__link'>
             <div className='dashboard-menu__tile'>
               <MdOutlineSpaceDashboard
-                style={{ width: '20px', height: 'auto', color: '#fff' }}
+                style={{ width: '25px', height: 'auto', color: '#fff' }}
               />
               <span>Panel pracodawcy</span>
             </div>
@@ -31,7 +31,7 @@ const DashboardMenu = () => {
           >
             <div className='dashboard-menu__tile'>
               <CgProfile
-                style={{ width: '20px', height: 'auto', color: '#fff' }}
+                style={{ width: '25px', height: 'auto', color: '#fff' }}
               />
               <span>Profil pracodawcy</span>
             </div>
@@ -48,7 +48,7 @@ const DashboardMenu = () => {
           >
             <div className='dashboard-menu__tile'>
               <MdListAlt
-                style={{ width: '20px', height: 'auto', color: '#fff' }}
+                style={{ width: '25px', height: 'auto', color: '#fff' }}
               />
 
               <span>Oferty pracy</span>
@@ -65,7 +65,7 @@ const DashboardMenu = () => {
             }
           >
             <div className='dashboard-menu__tile'>
-              <MdAdd style={{ width: '20px', height: 'auto', color: '#fff' }} />
+              <MdAdd style={{ width: '25px', height: 'auto', color: '#fff' }} />
               <span>Dodaj ofertę</span>
             </div>
           </NavLink>
@@ -74,7 +74,7 @@ const DashboardMenu = () => {
           <NavLink to='' className='dashboard-menu__link'>
             <div className='dashboard-menu__tile'>
               <IoReceiptOutline
-                style={{ width: '20px', height: 'auto', color: '#fff' }}
+                style={{ width: '25px', height: 'auto', color: '#fff' }}
               />
               <span>Faktury</span>
             </div>

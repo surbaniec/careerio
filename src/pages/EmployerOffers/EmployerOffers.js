@@ -71,7 +71,7 @@ const EmployerOffers = () => {
               </h2>
             </div>
             <div className='employer-offers__list-wrapper'>
-              {jobOffers !== null && company !== null ? (
+              {jobOffers && jobOffers.length > 0 && company !== null ? (
                 jobOffers.map((jobOffer, i) => {
                   return (
                     <div className='job-offer' key={i}>
