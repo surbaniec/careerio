@@ -156,6 +156,10 @@
 
 @media (min-width: 768px) {
   .offers-form {
+    &__box-wrapper {
+      margin-top: 80px;
+    }
+
     &__input,
     &__textarea,
     &__list {

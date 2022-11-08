@@ -9,6 +9,7 @@
   flex-direction: column;
   list-style-type: none;
   margin: 0;
+  margin-top: -10px;
   padding: 0;
 
   &__item {
@@ -51,6 +52,7 @@
 
 @media (min-width: 768px) {
   .dashboard-menu {
+    margin-top: 20px;
     &__link {
       font-size: 1.4rem;
     }

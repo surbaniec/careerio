@@ -143,6 +143,10 @@
 
 @media (min-width: 768px) {
   .employer-offers {
+    &__box-wrapper {
+      margin-top: 80px;
+    }
+
     &__title {
       font-size: 1.8rem;
     }
