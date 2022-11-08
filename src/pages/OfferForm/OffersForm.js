@@ -6,6 +6,7 @@ import CompaniesContext from '../../context/companies/companiesContext';
 import JobOffersContext from '../../context/jobOffers/jobOffersContext';
 import toast, { Toaster } from 'react-hot-toast';
 import DashboardMenu from '../../layout/DashboardMenu/DashboardMenu';
+import { MdDeleteOutline } from 'react-icons/md';
 
 const employmentTypeOptions = [
   { value: '1', label: 'B2B' },
@@ -80,26 +81,29 @@ const selectStyles = {
 const OffersForm = () => {
   const authContext = useContext(AuthContext);
   const companiesContext = useContext(CompaniesContext);
-  const jobOfferContext = useContext(JobOffersContext);
+  const jobOffersContext = useContext(JobOffersContext);
 
   const [jobOffer, setJobOffer] = useState({
     experienceLevelId: 'Wybierz poziom doświadczenia',
     isRemoteRecruitment: false,
     jobTitle: '',
-    requirements: [''],
-    responsibilities: [''],
+    requirements: [],
+    responsibilities: [],
     salaryFrom: 0,
     salaryTo: 0,
     typeOfContractId: null,
     workingHoursID: null,
   });
 
+  const [responsibility, setResponsibility] = useState('');
+  const [requirement, setRequirement] = useState('');
+
   useEffect(() => {
     if (authContext.isAuthenticated === null && authContext.loading === true) {
       authContext.loadUser();
     }
     companiesContext.getCompanies();
-    jobOfferContext.getJobOffers();
+    jobOffersContext.getJobOffers();
     // eslint-disable-next-line
   }, []);
 
@@ -109,6 +113,60 @@ const OffersForm = () => {
     }
     // eslint-disable-next-line
   }, [authContext.user]);
+
+  const handleAddValue = (e) => {
+    e.preventDefault();
+
+    if (e.target.dataset.name === 'responsibility') {
+      if (!responsibility) {
+        return;
+      }
+      const existingResponsibilities = jobOffer.responsibilities;
+      existingResponsibilities.push(responsibility);
+      setJobOffer({ ...jobOffer, responsibilities: existingResponsibilities });
+      setResponsibility('');
+      toast.success('Dodano pomyślnie!');
+    }
+    if (e.target.dataset.name === 'requirement') {
+      if (!requirement) {
+        return;
+      }
+      const existingRequirements = jobOffer.requirements;
+      existingRequirements.push(requirement);
+      setJobOffer({
+        ...jobOffer,
+        requirements: existingRequirements,
+      });
+      setRequirement('');
+      toast.success('Dodano pomyślnie!');
+    }
+  };
+
+  const handleDeleteValue = (e, value) => {
+    e.preventDefault();
+
+    if (e.target.dataset.name === 'responsibility') {
+      const index = jobOffer.responsibilities.indexOf(value);
+      if (index > -1) {
+        jobOffer.responsibilities.splice(index, 1);
+        setJobOffer({
+          ...jobOffer,
+        });
+        toast.success('Usunięto pomyślnie!');
+      }
+    }
+    if (e.target.dataset.name === 'requirement') {
+      const index = jobOffer.requirements.indexOf(value);
+
+      if (index > -1) {
+        jobOffer.requirements.splice(index, 1);
+        setJobOffer({
+          ...jobOffer,
+        });
+        toast.success('Usunięto pomyślnie!');
+      }
+    }
+  };
 
   const onOfferInputChange = (e) => {
     if (e.target.name === 'responsibilities') {
@@ -152,7 +210,7 @@ const OffersForm = () => {
       typeOfContractId !== null &&
       workingHoursID !== null
     ) {
-      jobOfferContext.addJobOffer({
+      jobOffersContext.addJobOffer({
         jobTitle,
         salaryFrom: parseInt(salaryFrom),
         salaryTo: parseInt(salaryTo),
@@ -306,7 +364,7 @@ const OffersForm = () => {
                 required
               />
 
-              <label htmlFor='responsibilities' className='offers-form__label'>
+              {/* <label htmlFor='responsibilities' className='offers-form__label'>
                 Zakres obowiązków*
               </label>
               <textarea
@@ -317,8 +375,57 @@ const OffersForm = () => {
                 value={jobOffer.responsibilities}
                 onChange={onOfferInputChange}
                 required
-              />
-              <label htmlFor='requirements' className='offers-form__label'>
+              /> */}
+              <label htmlFor='responsibilities' className='offers-form__label'>
+                Zakres obowiązków*
+              </label>
+              <div className='offers-form__input-wrapper'>
+                <input
+                  className='offers-form__input'
+                  type='text'
+                  placeholder='Dodaj wymaganie...'
+                  value={responsibility}
+                  name='responsibilities'
+                  onChange={(e) => setResponsibility(e.target.value)}
+                />
+                <button
+                  className='offers-form__add-btn'
+                  data-name='responsibility'
+                  onClick={handleAddValue}
+                >
+                  Dodaj
+                </button>
+                <div className='offers-form__list-wrapper'>
+                  <ul className='offers-form__list'>
+                    {jobOffer.responsibilities &&
+                      jobOffer.responsibilities.map((responsibility, i) => {
+                        return (
+                          <li className='offers-form__list-item' key={i}>
+                            <span className='offers-form__list-value'>
+                              {responsibility}
+                            </span>
+                            <button
+                              className='offers-form__list-btn'
+                              data-name='responsibility'
+                              onClick={(e) =>
+                                handleDeleteValue(e, responsibility)
+                              }
+                            >
+                              <MdDeleteOutline
+                                style={{
+                                  width: '20px',
+                                  height: 'auto',
+                                  color: '#575757',
+                                }}
+                              />
+                            </button>
+                          </li>
+                        );
+                      })}
+                  </ul>
+                </div>
+              </div>
+              {/* <label htmlFor='requirements' className='offers-form__label'>
                 Wymagania wobec kandydata*
               </label>
               <textarea
@@ -329,7 +436,54 @@ const OffersForm = () => {
                 value={jobOffer.requirements}
                 onChange={onOfferInputChange}
                 required
-              />
+              /> */}
+              <label htmlFor='requirements' className='offers-form__label'>
+                Wymagania wobec kandydata*
+              </label>
+              <div className='offers-form__input-wrapper'>
+                <input
+                  className='offers-form__input'
+                  type='text'
+                  placeholder='Dodaj wymaganie...'
+                  value={requirement}
+                  name='requirements'
+                  onChange={(e) => setRequirement(e.target.value)}
+                />
+                <button
+                  className='offers-form__add-btn'
+                  data-name='requirement'
+                  onClick={handleAddValue}
+                >
+                  Dodaj
+                </button>
+                <div className='offers-form__list-wrapper'>
+                  <ul className='offers-form__list'>
+                    {jobOffer.requirements &&
+                      jobOffer.requirements.map((requirement, i) => {
+                        return (
+                          <li className='offers-form__list-item' key={i}>
+                            <span className='offers-form__list-value'>
+                              {requirement}
+                            </span>
+                            <button
+                              className='offers-form__list-btn'
+                              data-name='requirement'
+                              onClick={(e) => handleDeleteValue(e, requirement)}
+                            >
+                              <MdDeleteOutline
+                                style={{
+                                  width: '20px',
+                                  height: 'auto',
+                                  color: '#575757',
+                                }}
+                              />
+                            </button>
+                          </li>
+                        );
+                      })}
+                  </ul>
+                </div>
+              </div>
 
               <label
                 className='offers-form__label inline'

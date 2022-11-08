@@ -15,8 +15,8 @@ import toast from 'react-hot-toast';
 
 const JobOffersState = (props) => {
   const initialState = {
-    jobOffers: null,
-    currentJobOffers: null,
+    jobOffers: [],
+    currentJobOffers: [],
     loading: true,
     error: null,
   };
