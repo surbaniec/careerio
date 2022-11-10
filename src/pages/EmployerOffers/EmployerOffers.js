@@ -8,9 +8,8 @@ import { useEffect } from 'react';
 import AuthContext from '../../context/auth/authContext';
 import { useState } from 'react';
 import { Toaster } from 'react-hot-toast';
-import DashboardMenu from '../../layout/DashboardMenu/DashboardMenu';
 import { Link } from 'react-router-dom';
-import { OFFERSFORM } from '../../Routes/routes';
+import { DASHBOARD_ADD_OFFER } from '../../Routes/routes';
 
 const EmployerOffers = () => {
   const jobOffersContext = useContext(JobOffersContext);
@@ -53,7 +52,7 @@ const EmployerOffers = () => {
   };
 
   return (
-    <section className='employer-offers'>
+    <>
       <div>
         <Toaster
           toastOptions={{
@@ -61,8 +60,7 @@ const EmployerOffers = () => {
           }}
         />
       </div>
-      <DashboardMenu />
-      <div className='employer-offers__page-wrapper'>
+      <section className='employer-offers'>
         <div className='employer-offers__box-wrapper'>
           <div className='employer-offers__box'>
             <div className='employer-offers__title-wrapper'>
@@ -145,7 +143,10 @@ const EmployerOffers = () => {
               ) : (
                 <>
                   <p className='employer-offers__info'>Brak ofert pracy</p>
-                  <Link to={OFFERSFORM} className='employer-offers__btn'>
+                  <Link
+                    to={DASHBOARD_ADD_OFFER}
+                    className='employer-offers__btn'
+                  >
                     Dodaj ofertę
                   </Link>
                 </>
@@ -153,8 +154,8 @@ const EmployerOffers = () => {
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

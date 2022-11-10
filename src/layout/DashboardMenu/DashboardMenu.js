@@ -1,7 +1,11 @@
 import React from 'react';
 import './DashboardMenu.scss';
 import { NavLink } from 'react-router-dom';
-import { DASHBOARD, EMPLOYER_OFFERS, OFFERSFORM } from '../../Routes/routes';
+import {
+  DASHBOARD_ADD_OFFER,
+  DASHBOARD_COMPANY,
+  DASHBOARD_JOB_OFFERS,
+} from '../../Routes/routes';
 import { MdOutlineSpaceDashboard, MdListAlt, MdAdd } from 'react-icons/md';
 import { CgProfile } from 'react-icons/cg';
 import { IoReceiptOutline } from 'react-icons/io5';
@@ -22,7 +26,7 @@ const DashboardMenu = () => {
         </li>
         <li className='dashboard-menu__item'>
           <NavLink
-            to={DASHBOARD}
+            to={`/panel${DASHBOARD_COMPANY}`}
             className={({ isActive }) =>
               isActive
                 ? 'dashboard-menu__link dashboard-menu__link--active'
@@ -39,7 +43,7 @@ const DashboardMenu = () => {
         </li>
         <li className='dashboard-menu__item'>
           <NavLink
-            to={EMPLOYER_OFFERS}
+            to={`/panel${DASHBOARD_JOB_OFFERS}`}
             className={({ isActive }) =>
               isActive
                 ? 'dashboard-menu__link dashboard-menu__link--active'
@@ -57,7 +61,7 @@ const DashboardMenu = () => {
         </li>
         <li className='dashboard-menu__item'>
           <NavLink
-            to={OFFERSFORM}
+            to={`/panel${DASHBOARD_ADD_OFFER}`}
             className={({ isActive }) =>
               isActive
                 ? 'dashboard-menu__link dashboard-menu__link--active'

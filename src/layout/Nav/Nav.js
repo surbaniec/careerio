@@ -3,7 +3,12 @@ import './Nav.scss';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { SubmenuOpenContext } from '../../App';
 import AuthContext from '../../context/auth/authContext';
-import { DASHBOARD, LOGIN, OFFERSFORM, SEARCH_PAGE } from '../../Routes/routes';
+import {
+  DASHBOARD,
+  DASHBOARD_ADD_OFFER,
+  LOGIN,
+  SEARCH_PAGE,
+} from '../../Routes/routes';
 import toast, { Toaster } from 'react-hot-toast';
 // react icons
 import { BsBriefcase } from 'react-icons/bs';
@@ -147,7 +152,7 @@ const Nav = () => {
               }}
             />
             <NavLink
-              to={OFFERSFORM}
+              to={DASHBOARD_ADD_OFFER}
               className={({ isActive }) =>
                 isActive
                   ? 'dropdown-menu__link dropdown-menu__link--blue active'
@@ -207,7 +212,7 @@ const Nav = () => {
               }}
             />
             <NavLink
-              to={OFFERSFORM}
+              to={DASHBOARD_ADD_OFFER}
               className={({ isActive }) =>
                 isActive ? 'nav-desktop__link active' : 'nav-desktop__link'
               }

@@ -5,7 +5,6 @@ import Select from 'react-select';
 import CompaniesContext from '../../context/companies/companiesContext';
 import JobOffersContext from '../../context/jobOffers/jobOffersContext';
 import toast, { Toaster } from 'react-hot-toast';
-import DashboardMenu from '../../layout/DashboardMenu/DashboardMenu';
 import { MdDeleteOutline } from 'react-icons/md';
 
 const employmentTypeOptions = [
@@ -239,7 +238,7 @@ const OffersForm = () => {
   };
 
   return (
-    <section className='offers-form'>
+    <>
       <div>
         <Toaster
           toastOptions={{
@@ -247,8 +246,7 @@ const OffersForm = () => {
           }}
         />
       </div>
-      <DashboardMenu />
-      <div className='offers-form__page-wrapper'>
+      <section className='offers-form'>
         <div className='offers-form__box-wrapper'>
           <div className='offers-form__box'>
             <div className='offers-form__title-wrapper'>
@@ -510,8 +508,8 @@ const OffersForm = () => {
             </form>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

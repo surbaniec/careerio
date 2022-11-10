@@ -8,10 +8,8 @@ import {
   JOB_AD,
   COMPANY_PROFILE,
   LOGIN,
-  OFFERSFORM,
-  DASHBOARD,
   NOT_FOUND,
-  EMPLOYER_OFFERS,
+  DASHBOARD,
 } from './Routes/routes';
 import Header from './layout/Header/Header';
 import Home from './pages/Home/Home';
@@ -28,6 +26,7 @@ import JobOffersState from './context/jobOffers/JobOffersState';
 import AuthState from './context/auth/AuthState';
 import setAuthToken from './utils/setAuthToken';
 import RequireAuth from './utils/requireAuth';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 const EmployersPage = React.lazy(() =>
   import('./pages/EmployersPage/EmployersPage')
@@ -70,12 +69,7 @@ function App() {
                   <Route path={COMPANY_PROFILE} element={<CompanyProfile />} />
                   <Route path={LOGIN} element={<Login />} />
                   <Route element={<RequireAuth />}>
-                    <Route path={DASHBOARD} element={<EmployersPage />} />
-                    <Route path={OFFERSFORM} element={<OffersForm />} />
-                    <Route
-                      path={EMPLOYER_OFFERS}
-                      element={<EmployerOffers />}
-                    />
+                    <Route path={DASHBOARD} element={<Dashboard />} />
                   </Route>
                   <Route path={NOT_FOUND} element={<NotFound />} />
                 </Routes>

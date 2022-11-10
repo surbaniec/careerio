@@ -1,6 +1,10 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { DASHBOARD, EMPLOYER_OFFERS, OFFERSFORM } from '../../Routes/routes';
+import {
+  DASHBOARD,
+  DASHBOARD_ADD_OFFER,
+  SEARCH_PAGE,
+} from '../../Routes/routes';
 import './Footer.scss';
 
 const Footer = () => {
@@ -27,7 +31,7 @@ const Footer = () => {
         </div>
         <div className='footer__wrapper'>
           <h2 className='footer__title'>Dla firm</h2>
-          <NavLink to={OFFERSFORM} className='footer__link'>
+          <NavLink to={`/panel${DASHBOARD_ADD_OFFER}`} className='footer__link'>
             Dodaj ogłoszenie
           </NavLink>
           <NavLink to={DASHBOARD} className='footer__link'>
@@ -57,7 +61,7 @@ const Footer = () => {
         </div>
         <div className='footer__wrapper'>
           <h2 className='footer__title'>Szybki dostęp</h2>
-          <NavLink to={EMPLOYER_OFFERS} className='footer__link'>
+          <NavLink to={SEARCH_PAGE} className='footer__link'>
             Oferty pracy
           </NavLink>
           <NavLink to='/' className='footer__link'>
