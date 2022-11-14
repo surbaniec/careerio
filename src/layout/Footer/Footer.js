@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import {
+  BRAND_STORIES,
   DASHBOARD,
   DASHBOARD_ADD_OFFER,
   SEARCH_PAGE,
@@ -67,7 +68,7 @@ const Footer = () => {
           <NavLink to='/' className='footer__link'>
             Porady
           </NavLink>
-          <NavLink to='/' className='footer__link'>
+          <NavLink to={BRAND_STORIES} className='footer__link'>
             Profile pracodawców
           </NavLink>
           <NavLink to='/' className='footer__link'>

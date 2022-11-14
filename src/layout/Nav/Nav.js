@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { SubmenuOpenContext } from '../../App';
 import AuthContext from '../../context/auth/authContext';
 import {
+  BRAND_STORIES,
   DASHBOARD,
   DASHBOARD_ADD_OFFER,
   LOGIN,
@@ -103,7 +104,7 @@ const Nav = () => {
           >
             <FiUsers style={iconStyle} />
             <NavLink
-              to='/pracodawcy'
+              to={BRAND_STORIES}
               className={({ isActive }) =>
                 isActive ? 'dropdown-menu__link active' : 'dropdown-menu__link'
               }

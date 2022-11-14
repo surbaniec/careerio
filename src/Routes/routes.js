@@ -7,4 +7,5 @@ export const DASHBOARD = '/panel/*';
 export const DASHBOARD_ADD_OFFER = '/dodaj-oferte';
 export const DASHBOARD_JOB_OFFERS = '/oferty-pracy';
 export const DASHBOARD_COMPANY = '/firma';
+export const BRAND_STORIES = '/profile-pracodawcow';
 export const NOT_FOUND = '*';

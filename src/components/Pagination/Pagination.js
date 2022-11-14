@@ -9,6 +9,7 @@ const Pagination = ({ data, RenderComponent, pageLimit, dataLimit }) => {
 
   useEffect(() => {
     setPages(Math.ceil(data.length / dataLimit));
+    //eslint-disable-next-line
   }, [data]);
 
   useEffect(() => {

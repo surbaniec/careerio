@@ -10,6 +10,7 @@ import {
   LOGIN,
   NOT_FOUND,
   DASHBOARD,
+  BRAND_STORIES,
 } from './Routes/routes';
 import Header from './layout/Header/Header';
 import Home from './pages/Home/Home';
@@ -27,6 +28,7 @@ import AuthState from './context/auth/AuthState';
 import setAuthToken from './utils/setAuthToken';
 import RequireAuth from './utils/requireAuth';
 import Dashboard from './pages/Dashboard/Dashboard';
+import BrandStories from './pages/BrandStories/BrandStories';
 
 const EmployersPage = React.lazy(() =>
   import('./pages/EmployersPage/EmployersPage')
@@ -68,6 +70,7 @@ function App() {
                   <Route path={JOB_AD} element={<JobAd />} />
                   <Route path={COMPANY_PROFILE} element={<CompanyProfile />} />
                   <Route path={LOGIN} element={<Login />} />
+                  <Route path={BRAND_STORIES} element={<BrandStories />} />
                   <Route element={<RequireAuth />}>
                     <Route path={DASHBOARD} element={<Dashboard />} />
                   </Route>
