@@ -283,7 +283,7 @@ const JobAd = () => {
             </section>
 
             <aside className='similar-ads'>
-              <h2 className='similar-ads__title'>Sprawdź podobne</h2>
+              <h2 className='similar-ads__title'>Sprawdź następne</h2>
               <div className='similar-ads__container'>
                 {jobOffersToRender.map((jobOffer, i) => {
                   return (
@@ -300,6 +300,9 @@ const JobAd = () => {
                     />
                   );
                 })}
+                {jobOffersToRender.length < 1 && (
+                  <p>Brak nowych ofert pracy.</p>
+                )}
               </div>
             </aside>
           </>

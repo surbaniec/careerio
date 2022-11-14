@@ -155,9 +155,10 @@
   .employer-page {
     width: 1100px;
     padding-top: 150px;
+    margin: 0 auto;
     display: grid;
     align-items: stretch;
-    column-gap: 20px;
+    column-gap: 30px;
     grid-template-columns: 70% 25%;
     &__box {
       width: 100%;

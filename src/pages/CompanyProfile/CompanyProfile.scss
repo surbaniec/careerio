@@ -4,6 +4,12 @@
   align-items: center;
   color: var(--font-dark-color);
 
+  &__text {
+    font-size: 1.4rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   &__badges-container {
     display: flex;
   }
@@ -214,6 +220,7 @@
     width: 150px;
     height: 150px;
     border-radius: 15px;
+    object-fit: cover;
     cursor: pointer;
   }
 
@@ -242,6 +249,10 @@
 
 @media (min-width: 768px) {
   .company-profile {
+    &__text {
+      font-size: 1.4rem;
+    }
+
     &__section {
       padding: 30px 40px;
     }
@@ -331,6 +342,12 @@
 @media (min-width: 1200px) {
   .company-profile {
     width: 70%;
+
+    &__text {
+      font-size: 1.6rem;
+      margin-left: 15px;
+      margin-right: 0;
+    }
 
     &__section {
       width: 100%;

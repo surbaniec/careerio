@@ -30,15 +30,6 @@ import RequireAuth from './utils/requireAuth';
 import Dashboard from './pages/Dashboard/Dashboard';
 import BrandStories from './pages/BrandStories/BrandStories';
 
-const EmployersPage = React.lazy(() =>
-  import('./pages/EmployersPage/EmployersPage')
-);
-
-const OffersForm = React.lazy(() => import('./pages/OffersForm/OffersForm'));
-const EmployerOffers = React.lazy(() =>
-  import('./pages/EmployerOffers/EmployerOffers')
-);
-
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }

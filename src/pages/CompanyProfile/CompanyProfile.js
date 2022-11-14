@@ -314,6 +314,9 @@ const CompanyProfile = () => {
                       />
                     );
                   })}
+                  {companyOffers.length < 1 && (
+                    <p className='company-profile__text'>Brak ofert pracy.</p>
+                  )}
                 </div>
               </aside>
             </>
