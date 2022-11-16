@@ -29,6 +29,7 @@ import setAuthToken from './utils/setAuthToken';
 import RequireAuth from './utils/requireAuth';
 import Dashboard from './pages/Dashboard/Dashboard';
 import BrandStories from './pages/BrandStories/BrandStories';
+import LocalStorageUserState from './context/localStorageUser/LocalStorageUserState';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -47,30 +48,35 @@ function App() {
     <AuthState>
       <CompaniesState>
         <JobOffersState>
-          <Router>
-            <Suspense fallback={<p>Loading...</p>}>
-              <>
-                <ScrollToTop />
-                <SubmenuOpenContext.Provider value={submenuValue}>
-                  <Header />
-                  <DesktopSubmenu />
-                </SubmenuOpenContext.Provider>
-                <Routes>
-                  <Route path={HOME} element={<Home />} />
-                  <Route path={SEARCH_PAGE} element={<SearchPage />} />
-                  <Route path={JOB_AD} element={<JobAd />} />
-                  <Route path={COMPANY_PROFILE} element={<CompanyProfile />} />
-                  <Route path={LOGIN} element={<Login />} />
-                  <Route path={BRAND_STORIES} element={<BrandStories />} />
-                  <Route element={<RequireAuth />}>
-                    <Route path={DASHBOARD} element={<Dashboard />} />
-                  </Route>
-                  <Route path={NOT_FOUND} element={<NotFound />} />
-                </Routes>
-                <Footer />
-              </>
-            </Suspense>
-          </Router>
+          <LocalStorageUserState>
+            <Router>
+              <Suspense fallback={<p>Loading...</p>}>
+                <>
+                  <ScrollToTop />
+                  <SubmenuOpenContext.Provider value={submenuValue}>
+                    <Header />
+                    <DesktopSubmenu />
+                  </SubmenuOpenContext.Provider>
+                  <Routes>
+                    <Route path={HOME} element={<Home />} />
+                    <Route path={SEARCH_PAGE} element={<SearchPage />} />
+                    <Route path={JOB_AD} element={<JobAd />} />
+                    <Route
+                      path={COMPANY_PROFILE}
+                      element={<CompanyProfile />}
+                    />
+                    <Route path={LOGIN} element={<Login />} />
+                    <Route path={BRAND_STORIES} element={<BrandStories />} />
+                    <Route element={<RequireAuth />}>
+                      <Route path={DASHBOARD} element={<Dashboard />} />
+                    </Route>
+                    <Route path={NOT_FOUND} element={<NotFound />} />
+                  </Routes>
+                  <Footer />
+                </>
+              </Suspense>
+            </Router>
+          </LocalStorageUserState>
         </JobOffersState>
       </CompaniesState>
     </AuthState>

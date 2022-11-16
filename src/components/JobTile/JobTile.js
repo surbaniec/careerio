@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import './JobTile.scss';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { MdChevronRight, MdOutlineClose } from 'react-icons/md';
 import { FiHeart } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import LocalStorageUserContext from '../../context/localStorageUser/localStorageUserContext';
+import { useEffect } from 'react';
 
 const JobTile = ({
   jobOfferId,
@@ -16,9 +19,39 @@ const JobTile = ({
   logo,
   jobTitle,
 }) => {
+  const { favourites, addToFavourites, removeFromFavourites } = useContext(
+    LocalStorageUserContext
+  );
+
+  const heartIcon = useRef(null);
+
+  useEffect(() => {
+    console.log(favourites);
+    const tempItem = favourites.find((i) => i.jobOfferId === jobOfferId);
+
+    if (tempItem) {
+      heartIcon.current.classList.add('favourite');
+    }
+    //eslint-disable-next-line
+  }, [favourites]);
+
   const toggleFavourite = (e) => {
     e.stopPropagation();
     e.target.classList.toggle('favourite');
+    if (e.target.classList.contains('favourite')) {
+      addToFavourites(
+        jobOfferId,
+        companyName,
+        salaryFrom,
+        salaryTo,
+        province,
+        city,
+        logo,
+        jobTitle
+      );
+    } else {
+      removeFromFavourites(jobOfferId);
+    }
   };
 
   const handleRemove = (e) => {
@@ -63,7 +96,11 @@ const JobTile = ({
           Aplikuj teraz{' '}
           <MdChevronRight style={{ width: '15px', height: '15px' }} />
         </Link>
-        <button className='job-tile__btn' onClick={toggleFavourite}>
+        <button
+          className='job-tile__btn'
+          onClick={toggleFavourite}
+          ref={heartIcon}
+        >
           <FiHeart
             className='heart-icon'
             style={{ width: '15px', height: '15px' }}
