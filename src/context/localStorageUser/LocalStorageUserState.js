@@ -53,6 +53,7 @@ export const LocalStorageUserState = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem('favourites', JSON.stringify(state.favourites));
+    window.dispatchEvent(new Event('storage'));
     //eslint-disable-next-line
   }, [state.favourites]);
 

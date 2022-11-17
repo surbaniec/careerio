@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './JobTile.scss';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
@@ -7,7 +7,6 @@ import { FiHeart } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import LocalStorageUserContext from '../../context/localStorageUser/localStorageUserContext';
-import { useEffect } from 'react';
 
 const JobTile = ({
   jobOfferId,
@@ -26,11 +25,12 @@ const JobTile = ({
   const heartIcon = useRef(null);
 
   useEffect(() => {
-    console.log(favourites);
     const tempItem = favourites.find((i) => i.jobOfferId === jobOfferId);
 
     if (tempItem) {
       heartIcon.current.classList.add('favourite');
+    } else {
+      heartIcon.current.classList.remove('favourite');
     }
     //eslint-disable-next-line
   }, [favourites]);

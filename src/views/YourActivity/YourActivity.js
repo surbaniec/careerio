@@ -1,50 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './YourActivity.scss';
 import { IoPhonePortraitOutline } from 'react-icons/io5';
 import { FiStar, FiSend } from 'react-icons/fi';
 import JobTile from '../../components/JobTile/JobTile';
-import { useContext } from 'react';
-import JobOffersContext from '../../context/jobOffers/jobOffersContext';
-import CompaniesContext from '../../context/companies/companiesContext';
-import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { useEffect } from 'react';
 
 const YourActivity = () => {
-  const jobOffersContext = useContext(JobOffersContext);
-  const companiesContext = useContext(CompaniesContext);
+  const [jobOffers, setJobOffers] = useState([]);
 
-  const { jobOffers, loading } = jobOffersContext;
-  const companies = companiesContext.companies;
-
-  const jobOffersToRender = [];
-
-  const createJobOffersToRender = () => {
-    const jobOffersAmount = jobOffers.length;
-    let companyName = '';
-    let currentCompany;
-
-    for (let i = jobOffersAmount - 1; i >= jobOffersAmount - 4; i--) {
-      companyName = jobOffers[i].companyName;
-      currentCompany = companies.find(
-        (company) => company.name === companyName
-      );
-
-      jobOffersToRender.push({
-        jobOfferId: jobOffers[i].id,
-        companyName,
-        salaryFrom: jobOffers[i].salaryFrom,
-        salaryTo: jobOffers[i].salaryTo,
-        city: currentCompany.city,
-        province: currentCompany.province,
-        logo: currentCompany.imageUrl,
-        jobTitle: jobOffers[i].jobTitle,
-      });
-    }
+  const checkLocalStorageFavourites = () => {
+    const tempOffers = JSON.parse(localStorage.getItem('favourites'));
+    setJobOffers(tempOffers);
   };
 
-  if (!loading && jobOffers !== null && companies !== null) {
-    createJobOffersToRender();
-  }
+  useEffect(() => {
+    window.addEventListener('storage', checkLocalStorageFavourites);
+
+    return () => {
+      window.removeEventListener('storage', checkLocalStorageFavourites);
+    };
+  }, []);
 
   // add & remove 'active' class on clicked btn
   const changeActiveBtn = (e) => {
@@ -95,45 +71,12 @@ const YourActivity = () => {
 
       <div className='your-activity__tiles'>
         <div className='your-activity__tiles-wrapper'>
-          {!loading && jobOffersToRender.length > 0 ? (
-            jobOffersToRender.map((jobOffer, i) => {
+          {jobOffers.length > 0 ? (
+            jobOffers.map((jobOffer, i) => {
               return <JobTile key={i} {...jobOffer} />;
             })
           ) : (
-            <>
-              <Skeleton
-                sx={{ bgcolor: 'grey.500' }}
-                animation='wave'
-                variant='rectangular'
-                width={210}
-                height={118}
-                style={{ margin: '0 50px' }}
-              />
-              <Skeleton
-                sx={{ bgcolor: 'grey.500' }}
-                animation='wave'
-                variant='rectangular'
-                width={210}
-                height={118}
-                style={{ margin: '0 50px' }}
-              />
-              <Skeleton
-                sx={{ bgcolor: 'grey.500' }}
-                animation='wave'
-                variant='rectangular'
-                width={210}
-                height={118}
-                style={{ margin: '0 50px' }}
-              />
-              <Skeleton
-                sx={{ bgcolor: 'grey.500' }}
-                animation='wave'
-                variant='rectangular'
-                width={210}
-                height={118}
-                style={{ margin: '0 50px' }}
-              />
-            </>
+            <p>Brak ulubionych ofert pracy.</p>
           )}
         </div>
       </div>
