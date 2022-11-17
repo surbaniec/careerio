@@ -34,7 +34,7 @@ export default (state, action) => {
           logo,
           jobTitle,
         };
-        return { ...state, favourites: [...state.favourites, newItem] };
+        return { ...state, favourites: [newItem, ...state.favourites] };
       }
     case REMOVE_FROM_FAVUIRITES: {
       return {

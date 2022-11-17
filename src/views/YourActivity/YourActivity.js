@@ -76,7 +76,7 @@ const YourActivity = () => {
               return <JobTile key={i} {...jobOffer} />;
             })
           ) : (
-            <p>Brak ulubionych ofert pracy.</p>
+            <p className='your-activity__info'>Brak aktywności</p>
           )}
         </div>
       </div>

@@ -52,6 +52,13 @@
     overflow-x: scroll;
     white-space: nowrap;
   }
+
+  &__info {
+    margin: 0 auto;
+    font-size: 1.4rem;
+    color: var(--font-dark-color);
+    font-weight: 600;
+  }
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -103,6 +110,10 @@
       margin: 40px 0 0 0;
       padding: 40px 0 40px 40px;
     }
+
+    &__info {
+      font-size: 1.6rem;
+    }
   }
 }
 
@@ -134,6 +145,10 @@
       width: 1300px;
       margin: 20px auto;
       padding: 20px 0;
+    }
+
+    &__info {
+      margin-left: 20px;
     }
   }
 }
