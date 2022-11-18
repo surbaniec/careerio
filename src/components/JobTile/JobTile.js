@@ -37,8 +37,8 @@ const JobTile = ({
 
   const toggleFavourite = (e) => {
     e.stopPropagation();
-    e.target.classList.toggle('favourite');
-    if (e.target.classList.contains('favourite')) {
+    heartIcon.current.classList.toggle('favourite');
+    if (heartIcon.current.classList.contains('favourite')) {
       addToFavourites(
         jobOfferId,
         companyName,

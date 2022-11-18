@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './FilteredJob.scss';
-import { FiHeart } from 'react-icons/fi';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { AiOutlineHome } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 
 const FilteredJob = ({ data }) => {
   const navigate = useNavigate();
-  const [favourite, setFavourite] = useState(false);
 
   const {
     city,
@@ -23,10 +21,6 @@ const FilteredJob = ({ data }) => {
 
   const handleRedirect = () => {
     navigate(`/ogloszenie/${jobOfferId}`);
-  };
-
-  const toggleFavourite = () => {
-    setFavourite(!favourite);
   };
 
   return (
@@ -58,23 +52,6 @@ const FilteredJob = ({ data }) => {
           </span>{' '}
           PLN
         </p>
-        <div
-          className='filtered-job__controls-favourite'
-          onClick={toggleFavourite}
-        >
-          {favourite ? (
-            <>
-              {' '}
-              <span className='text-blue'>Dodano do ulubionych </span>
-              <FiHeart style={{ marginLeft: '5px', color: '#2a95ff' }} />
-            </>
-          ) : (
-            <>
-              <span>Dodaj do ulubionych </span>
-              <FiHeart style={{ marginLeft: '5px' }} />
-            </>
-          )}
-        </div>
       </div>
     </div>
   );

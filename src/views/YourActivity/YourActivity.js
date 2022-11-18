@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './YourActivity.scss';
 import { IoPhonePortraitOutline } from 'react-icons/io5';
 import { FiStar, FiSend } from 'react-icons/fi';
 import JobTile from '../../components/JobTile/JobTile';
 import 'react-loading-skeleton/dist/skeleton.css';
-import { useEffect } from 'react';
 
 const YourActivity = () => {
   const [jobOffers, setJobOffers] = useState([]);
@@ -15,6 +14,7 @@ const YourActivity = () => {
   };
 
   useEffect(() => {
+    checkLocalStorageFavourites();
     window.addEventListener('storage', checkLocalStorageFavourites);
 
     return () => {
