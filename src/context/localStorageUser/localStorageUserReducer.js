@@ -1,4 +1,4 @@
-import { ADD_TO_FAVOURITES, REMOVE_FROM_FAVUIRITES } from '../types';
+import { ADD_TO_FAVOURITES, REMOVE_FROM_FAVOURITES } from '../types';
 
 // eslint-disable-next-line
 export default (state, action) => {
@@ -36,7 +36,7 @@ export default (state, action) => {
         };
         return { ...state, favourites: [newItem, ...state.favourites] };
       }
-    case REMOVE_FROM_FAVUIRITES: {
+    case REMOVE_FROM_FAVOURITES: {
       return {
         ...state,
         favourites: state.favourites.filter(

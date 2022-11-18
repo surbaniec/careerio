@@ -13,6 +13,7 @@ import {
   COMPANY_ERROR,
   CLEAR_COMPANIES_ERRORS,
 } from '../types';
+import { useEffect } from 'react';
 
 const CompaniesState = (props) => {
   const initialState = {

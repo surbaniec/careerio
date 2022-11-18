@@ -7,15 +7,19 @@ import { IoPersonOutline } from 'react-icons/io5';
 import { HiFire } from 'react-icons/hi';
 import ListItem from '../../components/ListItem/ListItem';
 import JobTile from '../../components/JobTile/JobTile';
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import JobOffersContext from '../../context/jobOffers/jobOffersContext';
 import CompaniesContext from '../../context/companies/companiesContext';
 import AuthContext from '../../context/auth/authContext';
+import LocalStorageUserContext from '../../context/localStorageUser/localStorageUserContext';
 
 const JobAd = () => {
   const jobOffersContext = useContext(JobOffersContext);
   const companiesContext = useContext(CompaniesContext);
   const authContext = useContext(AuthContext);
+  const { favourites, addToFavourites, removeFromFavourites } = useContext(
+    LocalStorageUserContext
+  );
 
   const jobOffers = jobOffersContext.jobOffers;
   const jobOffersLoading = jobOffersContext.loading;
@@ -25,6 +29,8 @@ const JobAd = () => {
 
   const [currentJobOffer, setCurrentJobOffer] = useState(null);
   const [currentCompany, setCurrentCompany] = useState(null);
+
+  const heartIcon = useRef(null);
 
   // job offers to display on sidebar
   const jobOffersToRender = [];
@@ -79,9 +85,21 @@ const JobAd = () => {
     //eslint-disable-next-line
   }, [jobOfferId, companies, jobOffers]);
 
-  const toggleFavourite = () => {
-    document.querySelector('.heart-icon').classList.toggle('favourite');
-  };
+  useEffect(() => {
+    if (currentJobOffer) {
+      const tempItem = favourites.find(
+        (i) => i.jobOfferId === parseInt(jobOfferId)
+      );
+
+      if (tempItem) {
+        heartIcon.current.classList.add('favourite');
+      } else {
+        heartIcon.current.classList.remove('favourite');
+      }
+    }
+
+    //eslint-disable-next-line
+  }, [favourites, currentJobOffer]);
 
   const createJobOffersToRender = () => {
     const jobOffersAmount = jobOffers.length;
@@ -113,6 +131,26 @@ const JobAd = () => {
   if (jobOffers !== null && companies !== null) {
     createJobOffersToRender();
   }
+
+  const toggleFavourite = (e) => {
+    e.stopPropagation();
+    heartIcon.current.classList.toggle('favourite');
+
+    if (heartIcon.current.classList.contains('favourite')) {
+      addToFavourites(
+        currentJobOffer.id,
+        currentCompany.companyName,
+        currentJobOffer.salaryFrom,
+        currentJobOffer.salaryTo,
+        currentCompany.province,
+        currentCompany.city,
+        currentCompany.imageUrl,
+        currentJobOffer.jobTitle
+      );
+    } else {
+      removeFromFavourites(parseInt(jobOfferId));
+    }
+  };
 
   return (
     <section className='job-ad__container'>
@@ -165,7 +203,11 @@ const JobAd = () => {
                     >
                       Aplikuj teraz <MdChevronRight />
                     </button>
-                    <button className='job-ad__btn' onClick={toggleFavourite}>
+                    <button
+                      className='job-ad__btn'
+                      onClick={toggleFavourite}
+                      ref={heartIcon}
+                    >
                       <FiHeart className='heart-icon' />
                     </button>
                   </div>

@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import LocalStorageUserContext from './localStorageUserContext';
 import localStorageUserReducer from './localStorageUserReducer';
-import { ADD_TO_FAVOURITES, REMOVE_FROM_FAVUIRITES } from '../types';
+import { ADD_TO_FAVOURITES, REMOVE_FROM_FAVOURITES } from '../types';
 import { useEffect } from 'react';
 
 const getLocalStorage = () => {
@@ -48,7 +48,7 @@ export const LocalStorageUserState = ({ children }) => {
   };
   // Remove from favourites
   const removeFromFavourites = (jobOfferId) => {
-    dispatch({ type: REMOVE_FROM_FAVUIRITES, payload: jobOfferId });
+    dispatch({ type: REMOVE_FROM_FAVOURITES, payload: jobOfferId });
   };
 
   useEffect(() => {
