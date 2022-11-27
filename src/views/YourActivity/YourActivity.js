@@ -7,24 +7,38 @@ import 'react-loading-skeleton/dist/skeleton.css';
 
 const YourActivity = () => {
   const [jobOffers, setJobOffers] = useState([]);
+  const [bookmarkName, setBookmarkName] = useState('recentlyVisited');
 
-  const checkLocalStorageFavourites = () => {
-    const tempOffers = JSON.parse(localStorage.getItem('favourites'));
+  // fetch jobOffers from ls
+  const checkLocalStorage = (bookmarkName) => {
+    const tempOffers = JSON.parse(localStorage.getItem(bookmarkName));
     setJobOffers(tempOffers);
   };
 
   useEffect(() => {
-    checkLocalStorageFavourites();
-    window.addEventListener('storage', checkLocalStorageFavourites);
+    if (bookmarkName === 'favourites') {
+      window.addEventListener('storage', checkLocalStorage(bookmarkName));
+    }
 
     return () => {
-      window.removeEventListener('storage', checkLocalStorageFavourites);
+      window.removeEventListener('storage', checkLocalStorage(bookmarkName));
     };
+    //eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    if (bookmarkName === 'recentlyVisited') {
+      checkLocalStorage(bookmarkName);
+    } else if (bookmarkName === 'favourites') {
+      checkLocalStorage(bookmarkName);
+    }
+  }, [bookmarkName]);
 
   // add & remove 'active' class on clicked btn
   const changeActiveBtn = (e) => {
     const buttons = [...document.querySelectorAll('.your-activity__btn')];
+
+    setBookmarkName(e.target.dataset.name);
 
     buttons.forEach((btn) => {
       if (btn.classList.contains('active')) {
@@ -45,6 +59,7 @@ const YourActivity = () => {
           <button
             className='your-activity__btn active'
             data-id='0'
+            data-name='recentlyVisited'
             onClick={changeActiveBtn}
           >
             <IoPhonePortraitOutline style={{ height: 'auto', width: '15px' }} />
@@ -53,6 +68,7 @@ const YourActivity = () => {
           <button
             className='your-activity__btn'
             data-id='1'
+            data-name='favourites'
             onClick={changeActiveBtn}
           >
             <FiStar style={{ height: 'auto', width: '15px' }} />
@@ -61,6 +77,7 @@ const YourActivity = () => {
           <button
             className='your-activity__btn'
             data-id='2'
+            data-name='lastApplications'
             onClick={changeActiveBtn}
           >
             <FiSend style={{ height: 'auto', width: '15px' }} />

@@ -1,4 +1,8 @@
-import { ADD_TO_FAVOURITES, REMOVE_FROM_FAVOURITES } from '../types';
+import {
+  ADD_TO_FAVOURITES,
+  ADD_TO_RECENTLY_VISITED,
+  REMOVE_FROM_FAVOURITES,
+} from '../types';
 
 // eslint-disable-next-line
 export default (state, action) => {
@@ -36,6 +40,46 @@ export default (state, action) => {
         };
         return { ...state, favourites: [newItem, ...state.favourites] };
       }
+    case ADD_TO_RECENTLY_VISITED: {
+      const {
+        jobOfferId,
+        companyName,
+        salaryFrom,
+        salaryTo,
+        province,
+        city,
+        logo,
+        jobTitle,
+      } = action.payload;
+
+      const tempItem = state.recentlyVisited.find(
+        (i) => i.jobOfferId === jobOfferId
+      );
+
+      if (tempItem) {
+        return {
+          ...state,
+        };
+      } else {
+        const newItem = {
+          jobOfferId,
+          companyName,
+          salaryFrom,
+          salaryTo,
+          province,
+          city,
+          logo,
+          jobTitle,
+        };
+        // store only 4 items in ls
+        const tempRecentlyVisited = [newItem, ...state.recentlyVisited];
+        return {
+          ...state,
+          recentlyVisited: tempRecentlyVisited.slice(0, 4),
+        };
+      }
+    }
+
     case REMOVE_FROM_FAVOURITES: {
       return {
         ...state,

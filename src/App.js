@@ -50,31 +50,26 @@ function App() {
         <JobOffersState>
           <LocalStorageUserState>
             <Router>
-              <Suspense fallback={<p>Loading...</p>}>
-                <>
-                  <ScrollToTop />
-                  <SubmenuOpenContext.Provider value={submenuValue}>
-                    <Header />
-                    <DesktopSubmenu />
-                  </SubmenuOpenContext.Provider>
-                  <Routes>
-                    <Route path={HOME} element={<Home />} />
-                    <Route path={SEARCH_PAGE} element={<SearchPage />} />
-                    <Route path={JOB_AD} element={<JobAd />} />
-                    <Route
-                      path={COMPANY_PROFILE}
-                      element={<CompanyProfile />}
-                    />
-                    <Route path={LOGIN} element={<Login />} />
-                    <Route path={BRAND_STORIES} element={<BrandStories />} />
-                    <Route element={<RequireAuth />}>
-                      <Route path={DASHBOARD} element={<Dashboard />} />
-                    </Route>
-                    <Route path={NOT_FOUND} element={<NotFound />} />
-                  </Routes>
-                  <Footer />
-                </>
-              </Suspense>
+              <>
+                <ScrollToTop />
+                <SubmenuOpenContext.Provider value={submenuValue}>
+                  <Header />
+                  <DesktopSubmenu />
+                </SubmenuOpenContext.Provider>
+                <Routes>
+                  <Route path={HOME} element={<Home />} />
+                  <Route path={SEARCH_PAGE} element={<SearchPage />} />
+                  <Route path={JOB_AD} element={<JobAd />} />
+                  <Route path={COMPANY_PROFILE} element={<CompanyProfile />} />
+                  <Route path={LOGIN} element={<Login />} />
+                  <Route path={BRAND_STORIES} element={<BrandStories />} />
+                  <Route element={<RequireAuth />}>
+                    <Route path={DASHBOARD} element={<Dashboard />} />
+                  </Route>
+                  <Route path={NOT_FOUND} element={<NotFound />} />
+                </Routes>
+                <Footer />
+              </>
             </Router>
           </LocalStorageUserState>
         </JobOffersState>

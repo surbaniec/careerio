@@ -17,9 +17,12 @@ const JobAd = () => {
   const jobOffersContext = useContext(JobOffersContext);
   const companiesContext = useContext(CompaniesContext);
   const authContext = useContext(AuthContext);
-  const { favourites, addToFavourites, removeFromFavourites } = useContext(
-    LocalStorageUserContext
-  );
+  const {
+    favourites,
+    addToFavourites,
+    removeFromFavourites,
+    addToRecentlyVisited,
+  } = useContext(LocalStorageUserContext);
 
   const jobOffers = jobOffersContext.jobOffers;
   const jobOffersLoading = jobOffersContext.loading;
@@ -41,8 +44,11 @@ const JobAd = () => {
   }, []);
 
   useEffect(() => {
-    if (jobOffersLoading || companiesLoading) {
+    if (jobOffersLoading) {
       jobOffersContext.getJobOffers();
+    }
+
+    if (companiesLoading) {
       companiesContext.getCompanies();
     }
 
@@ -100,6 +106,25 @@ const JobAd = () => {
 
     //eslint-disable-next-line
   }, [favourites, currentJobOffer]);
+
+  // add job offer to recently visited in local storage
+  useEffect(() => {
+    if (currentCompany && currentJobOffer) {
+      const { id, salaryFrom, salaryTo, jobTitle } = currentJobOffer;
+      const { companyName, province, city, imageUrl: logo } = currentCompany;
+      addToRecentlyVisited(
+        id,
+        companyName,
+        salaryFrom,
+        salaryTo,
+        province,
+        city,
+        logo,
+        jobTitle
+      );
+    }
+    //eslint-disable-next-line
+  }, [currentCompany, currentJobOffer]);
 
   const createJobOffersToRender = () => {
     const jobOffersAmount = jobOffers.length;
