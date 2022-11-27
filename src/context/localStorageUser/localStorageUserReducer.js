@@ -1,5 +1,6 @@
 import {
   ADD_TO_FAVOURITES,
+  ADD_TO_LAST_APPLICATIONS,
   ADD_TO_RECENTLY_VISITED,
   REMOVE_FROM_FAVOURITES,
 } from '../types';
@@ -40,6 +41,14 @@ export default (state, action) => {
         };
         return { ...state, favourites: [newItem, ...state.favourites] };
       }
+    case REMOVE_FROM_FAVOURITES: {
+      return {
+        ...state,
+        favourites: state.favourites.filter(
+          (jobOffer) => jobOffer.jobOfferId !== action.payload
+        ),
+      };
+    }
     case ADD_TO_RECENTLY_VISITED: {
       const {
         jobOfferId,
@@ -79,14 +88,44 @@ export default (state, action) => {
         };
       }
     }
+    case ADD_TO_LAST_APPLICATIONS: {
+      const {
+        jobOfferId,
+        companyName,
+        salaryFrom,
+        salaryTo,
+        province,
+        city,
+        logo,
+        jobTitle,
+      } = action.payload;
 
-    case REMOVE_FROM_FAVOURITES: {
-      return {
-        ...state,
-        favourites: state.favourites.filter(
-          (jobOffer) => jobOffer.jobOfferId !== action.payload
-        ),
-      };
+      const tempItem = state.lastApplications.find(
+        (i) => i.jobOfferId === jobOfferId
+      );
+
+      if (tempItem) {
+        return {
+          ...state,
+        };
+      } else {
+        const newItem = {
+          jobOfferId,
+          companyName,
+          salaryFrom,
+          salaryTo,
+          province,
+          city,
+          logo,
+          jobTitle,
+        };
+        // store only 4 items in ls
+        const tempLastApplications = [newItem, ...state.lastApplications];
+        return {
+          ...state,
+          lastApplications: tempLastApplications.slice(0, 4),
+        };
+      }
     }
     default:
       return state;

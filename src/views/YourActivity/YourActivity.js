@@ -27,11 +27,7 @@ const YourActivity = () => {
   }, []);
 
   useEffect(() => {
-    if (bookmarkName === 'recentlyVisited') {
-      checkLocalStorage(bookmarkName);
-    } else if (bookmarkName === 'favourites') {
-      checkLocalStorage(bookmarkName);
-    }
+    checkLocalStorage(bookmarkName);
   }, [bookmarkName]);
 
   // add & remove 'active' class on clicked btn

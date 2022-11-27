@@ -22,6 +22,7 @@ const JobAd = () => {
     addToFavourites,
     removeFromFavourites,
     addToRecentlyVisited,
+    addToLastApplications,
   } = useContext(LocalStorageUserContext);
 
   const jobOffers = jobOffersContext.jobOffers;
@@ -177,6 +178,23 @@ const JobAd = () => {
     }
   };
 
+  const handleJobApplication = () => {
+    window.location.href = `mailto:${currentCompany.companyEmail}`;
+
+    const { id, salaryFrom, salaryTo, jobTitle } = currentJobOffer;
+    const { companyName, province, city, imageUrl: logo } = currentCompany;
+    addToLastApplications(
+      id,
+      companyName,
+      salaryFrom,
+      salaryTo,
+      province,
+      city,
+      logo,
+      jobTitle
+    );
+  };
+
   return (
     <section className='job-ad__container'>
       <div className='job-ad__background-wrapper'>
@@ -222,9 +240,7 @@ const JobAd = () => {
                   <div className='job-ad__controls'>
                     <button
                       className='job-ad__btn'
-                      onClick={() =>
-                        (window.location.href = `mailto:${currentCompany.companyEmail}`)
-                      }
+                      onClick={handleJobApplication}
                     >
                       Aplikuj teraz <MdChevronRight />
                     </button>

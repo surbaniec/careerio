@@ -3,6 +3,7 @@ import LocalStorageUserContext from './localStorageUserContext';
 import localStorageUserReducer from './localStorageUserReducer';
 import {
   ADD_TO_FAVOURITES,
+  ADD_TO_LAST_APPLICATIONS,
   ADD_TO_RECENTLY_VISITED,
   REMOVE_FROM_FAVOURITES,
 } from '../types';
@@ -22,6 +23,7 @@ export const LocalStorageUserState = ({ children }) => {
   const initialState = {
     favourites: getLocalStorage('favourites'),
     recentlyVisited: getLocalStorage('recentlyVisited'),
+    lastApplications: getLocalStorage('lastApplications'),
   };
 
   const [state, dispatch] = useReducer(localStorageUserReducer, initialState);
@@ -81,7 +83,32 @@ export const LocalStorageUserState = ({ children }) => {
       },
     });
   };
-  // Remove from recently visited
+
+  // Add to last applications
+  const addToLastApplications = (
+    jobOfferId,
+    companyName,
+    salaryFrom,
+    salaryTo,
+    province,
+    city,
+    logo,
+    jobTitle
+  ) => {
+    dispatch({
+      type: ADD_TO_LAST_APPLICATIONS,
+      payload: {
+        jobOfferId,
+        companyName,
+        salaryFrom,
+        salaryTo,
+        province,
+        city,
+        logo,
+        jobTitle,
+      },
+    });
+  };
 
   useEffect(() => {
     localStorage.setItem('favourites', JSON.stringify(state.favourites));
@@ -90,8 +117,12 @@ export const LocalStorageUserState = ({ children }) => {
       'recentlyVisited',
       JSON.stringify(state.recentlyVisited)
     );
+    localStorage.setItem(
+      'lastApplications',
+      JSON.stringify(state.lastApplications)
+    );
     //eslint-disable-next-line
-  }, [state.favourites, state.recentlyVisited]);
+  }, [state.favourites, state.recentlyVisited, state.lastApplications]);
 
   return (
     <LocalStorageUserContext.Provider
@@ -100,6 +131,7 @@ export const LocalStorageUserState = ({ children }) => {
         addToFavourites,
         removeFromFavourites,
         addToRecentlyVisited,
+        addToLastApplications,
       }}
     >
       {children}
