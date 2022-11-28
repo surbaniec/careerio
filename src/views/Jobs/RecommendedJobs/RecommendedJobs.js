@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import JobTile from '../../../components/JobTile/JobTile';
 import CompaniesContext from '../../../context/companies/companiesContext';
 import JobOffersContext from '../../../context/jobOffers/jobOffersContext';

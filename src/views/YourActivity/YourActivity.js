@@ -16,17 +16,6 @@ const YourActivity = () => {
   };
 
   useEffect(() => {
-    if (bookmarkName === 'favourites') {
-      window.addEventListener('storage', checkLocalStorage(bookmarkName));
-    }
-
-    return () => {
-      window.removeEventListener('storage', checkLocalStorage(bookmarkName));
-    };
-    //eslint-disable-next-line
-  }, []);
-
-  useEffect(() => {
     checkLocalStorage(bookmarkName);
   }, [bookmarkName]);
 

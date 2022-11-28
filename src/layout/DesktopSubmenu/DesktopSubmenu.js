@@ -8,7 +8,12 @@ import { FiMessageSquare, FiUsers } from 'react-icons/fi';
 import { CgFileDocument } from 'react-icons/cg';
 import { HiOutlineCog } from 'react-icons/hi';
 import { SubmenuOpenContext } from '../../App';
-import { BRAND_STORIES, DASHBOARD, SEARCH_PAGE } from '../../Routes/routes';
+import {
+  BRAND_STORIES,
+  DASHBOARD,
+  DASHBOARD_COMPANY,
+  SEARCH_PAGE,
+} from '../../Routes/routes';
 
 const DesktopSubmenu = () => {
   const { submenuOpen, setSubmenuOpen } = useContext(SubmenuOpenContext);
@@ -65,7 +70,7 @@ const DesktopSubmenu = () => {
       </li>
       <li className='desktop-submenu__item'>
         <NavLink
-          to={DASHBOARD}
+          to={`/panel${DASHBOARD_COMPANY}`}
           className={({ isActive }) =>
             isActive ? 'desktop-submenu__link active' : 'desktop-submenu__link'
           }

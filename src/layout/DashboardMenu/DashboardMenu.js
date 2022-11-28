@@ -15,7 +15,10 @@ const DashboardMenu = () => {
     <aside className='employer-page__sidebar'>
       <ul className='dashboard-menu'>
         <li className='dashboard-menu__item'>
-          <NavLink to='' className='dashboard-menu__link'>
+          <NavLink
+            to={`/panel${DASHBOARD_COMPANY}`}
+            className='dashboard-menu__link'
+          >
             <div className='dashboard-menu__tile'>
               <MdOutlineSpaceDashboard
                 style={{ width: '25px', height: 'auto', color: '#fff' }}

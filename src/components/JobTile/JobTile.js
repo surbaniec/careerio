@@ -54,10 +54,10 @@ const JobTile = ({
     }
   };
 
-  const handleRemove = (e) => {
-    e.stopPropagation();
-    e.target.parentElement.parentElement.remove();
-  };
+  // const handleRemove = (e) => {
+  //   e.stopPropagation();
+  //   e.target.parentElement.parentElement.remove();
+  // };
 
   return (
     <div className='job-tile'>
@@ -106,11 +106,11 @@ const JobTile = ({
             style={{ width: '15px', height: '15px' }}
           />
         </button>
-        <button className='job-tile__btn' onClick={handleRemove}>
+        {/* <button className='job-tile__btn' onClick={handleRemove}>
           <MdOutlineClose
             style={{ width: '15px', height: '15px', pointerEvents: 'none' }}
           />
-        </button>
+        </button> */}
       </div>
     </div>
   );

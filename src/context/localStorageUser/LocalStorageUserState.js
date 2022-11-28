@@ -112,7 +112,6 @@ export const LocalStorageUserState = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem('favourites', JSON.stringify(state.favourites));
-    window.dispatchEvent(new Event('storage'));
     localStorage.setItem(
       'recentlyVisited',
       JSON.stringify(state.recentlyVisited)
